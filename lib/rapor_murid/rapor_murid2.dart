@@ -209,7 +209,7 @@ class RaporMurid2 extends StatelessWidget {
                     color: Colors.white,
                     child: ListView.separated(
                       separatorBuilder: (context, index) => SizedBox(
-                        height: mediaQueryHeight * 0.03125,
+                        height: bodyHeight * 0.03125,
                       ),
                       padding: EdgeInsets.only(bottom: 48),
                       itemCount: nama.length,
@@ -233,7 +233,7 @@ class RaporMurid2 extends StatelessWidget {
                                   PageRouteBuilder(
                                     pageBuilder:
                                         (context, animation1, animation2) =>
-                                            const RaporMurid3(),
+                                            RaporMurid3(),
                                     transitionDuration: Duration.zero,
                                     reverseTransitionDuration: Duration.zero,
                                   ),
@@ -244,76 +244,6 @@ class RaporMurid2 extends StatelessWidget {
                         );
                       },
                     ),
-
-                    // ListView(
-                    //   children: [
-                    //     SizedBox(
-                    //       height: 25 - (bodyHeight * 0.02),
-                    //     ),
-                    //     Padding(
-                    //       padding: const EdgeInsets.only(bottom: 25.0),
-                    //       child: Row(
-                    //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    //         children: [
-                    //           Text(
-                    //             "Ahmad Jourji Zaidan",
-                    //             style: GoogleFonts.notoSans(
-                    //                 fontSize: 14, fontWeight: FontWeight.w400),
-                    //           ),
-                    //           InkWell(
-                    //             child: Image.asset(
-                    //               'assets/Arrow-R.png',
-                    //               width: 20,
-                    //             ),
-                    //             onTap: () {
-                    //               Navigator.pushReplacement(
-                    //                 context,
-                    //                 PageRouteBuilder(
-                    //                   pageBuilder:
-                    //                       (context, animation1, animation2) =>
-                    //                           const RaporMurid3(),
-                    //                   transitionDuration: Duration.zero,
-                    //                   reverseTransitionDuration: Duration.zero,
-                    //                 ),
-                    //               );
-                    //             },
-                    //           ),
-                    //         ],
-                    //       ),
-                    //     ),
-                    //     Padding(
-                    //       padding: const EdgeInsets.only(bottom: 25.0),
-                    //       child: Row(
-                    //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    //         children: [
-                    //           Text(
-                    //             "Ahmad Jourji Zaidan",
-                    //             style: GoogleFonts.notoSans(
-                    //                 fontSize: 14, fontWeight: FontWeight.w400),
-                    //           ),
-                    //           InkWell(
-                    //             child: Image.asset(
-                    //               'assets/Arrow-R.png',
-                    //               width: 20,
-                    //             ),
-                    //             onTap: () {
-                    //               Navigator.pushReplacement(
-                    //                 context,
-                    //                 PageRouteBuilder(
-                    //                   pageBuilder:
-                    //                       (context, animation1, animation2) =>
-                    //                           const RaporMurid3(),
-                    //                   transitionDuration: Duration.zero,
-                    //                   reverseTransitionDuration: Duration.zero,
-                    //                 ),
-                    //               );
-                    //             },
-                    //           ),
-                    //         ],
-                    //       ),
-                    //     ),
-                    //   ],
-                    // ),
                   ),
                 ],
               ),

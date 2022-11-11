@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cekula/drawer.dart';
-import 'package:cekula/penilaian_pembelajaran/penilaian_pembelajaran4.dart';
+import 'package:cekula/penilaian_pembelajaran/penilaian_pembelajaran3.dart';
 import 'package:cekula/radio/radio_jenis_nilai.dart';
 
 class BuatPenilaianPembelajaran extends StatelessWidget {
@@ -57,7 +57,7 @@ class BuatPenilaianPembelajaran extends StatelessWidget {
                                 PageRouteBuilder(
                                   pageBuilder:
                                       (context, animation1, animation2) =>
-                                          const PenilaianPembelajaran4(),
+                                          const PenilaianPembelajaran3(),
                                   transitionDuration: Duration.zero,
                                   reverseTransitionDuration: Duration.zero,
                                 ),
@@ -1006,7 +1006,7 @@ class _RoundedAlertBoxState extends State<RoundedAlertBox> {
                             context,
                             PageRouteBuilder(
                               pageBuilder: (context, animation1, animation2) =>
-                                  const PenilaianPembelajaran4(),
+                                  const PenilaianPembelajaran3(),
                               transitionDuration: Duration.zero,
                               reverseTransitionDuration: Duration.zero,
                             ),

@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:cekula/jadwal_kelas/jadwal_kelas2.dart';
 import 'package:cekula/rapor_murid/rapor_murid2.dart';
 
 class RaporMurid3 extends StatelessWidget {
-  const RaporMurid3({Key? key}) : super(key: key);
+  RaporMurid3({Key? key}) : super(key: key);
+  final List rapor = [
+    "Identitas Murid",
+    "Semester 1",
+    "Semester 2",
+    "Semester 3",
+    "Semester 4",
+    "Semester 5",
+    "Semester 6",
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -133,236 +141,46 @@ class RaporMurid3 extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.only(top: bodyHeight * 0.07),
+                    margin: EdgeInsets.only(top: bodyHeight * (0.05 + 0.03125)),
                     padding: const EdgeInsets.symmetric(horizontal: 24),
                     width: mediaQueryWidth,
                     color: Colors.white,
-                    child: ListView(
-                      children: [
-                        SizedBox(
-                          height: 25 - (bodyHeight * 0.02),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 25.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Identitas Murid",
-                                style: GoogleFonts.notoSans(
-                                    fontSize: 14, fontWeight: FontWeight.w400),
+                    child: ListView.separated(
+                      separatorBuilder: (context, index) => SizedBox(
+                        height: bodyHeight * 0.03125,
+                      ),
+                      padding: EdgeInsets.only(bottom: 48),
+                      itemCount: rapor.length,
+                      itemBuilder: (context, index) {
+                        return Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              rapor[index],
+                              style: GoogleFonts.notoSans(
+                                  fontSize: 14, fontWeight: FontWeight.w400),
+                            ),
+                            InkWell(
+                              child: Image.asset(
+                                'assets/Arrow-R.png',
+                                width: 20,
                               ),
-                              InkWell(
-                                child: Image.asset(
-                                  'assets/Arrow-R.png',
-                                  width: 20,
-                                ),
-                                onTap: () {
-                                  // Navigator.pushReplacement(
-                                  //   context,
-                                  //   PageRouteBuilder(
-                                  //     pageBuilder:
-                                  //         (context, animation1, animation2) =>
-                                  //             KartuPelajar4(),
-                                  //     transitionDuration: Duration.zero,
-                                  //     reverseTransitionDuration: Duration.zero,
-                                  //   ),
-                                  // );
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 25.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Semester 1",
-                                style: GoogleFonts.notoSans(
-                                    fontSize: 14, fontWeight: FontWeight.w400),
-                              ),
-                              InkWell(
-                                child: Image.asset(
-                                  'assets/Arrow-R.png',
-                                  width: 20,
-                                ),
-                                onTap: () {
-                                  // Navigator.pushReplacement(
-                                  //   context,
-                                  //   PageRouteBuilder(
-                                  //     pageBuilder:
-                                  //         (context, animation1, animation2) =>
-                                  //             KartuPelajar4(),
-                                  //     transitionDuration: Duration.zero,
-                                  //     reverseTransitionDuration: Duration.zero,
-                                  //   ),
-                                  // );
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 25.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Semester 2",
-                                style: GoogleFonts.notoSans(
-                                    fontSize: 14, fontWeight: FontWeight.w400),
-                              ),
-                              InkWell(
-                                child: Image.asset(
-                                  'assets/Arrow-R.png',
-                                  width: 20,
-                                ),
-                                onTap: () {
-                                  // Navigator.pushReplacement(
-                                  //   context,
-                                  //   PageRouteBuilder(
-                                  //     pageBuilder:
-                                  //         (context, animation1, animation2) =>
-                                  //             KartuPelajar4(),
-                                  //     transitionDuration: Duration.zero,
-                                  //     reverseTransitionDuration: Duration.zero,
-                                  //   ),
-                                  // );
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 25.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Semester 3",
-                                style: GoogleFonts.notoSans(
-                                    fontSize: 14, fontWeight: FontWeight.w400),
-                              ),
-                              InkWell(
-                                child: Image.asset(
-                                  'assets/Arrow-R.png',
-                                  width: 20,
-                                ),
-                                onTap: () {
-                                  // Navigator.pushReplacement(
-                                  //   context,
-                                  //   PageRouteBuilder(
-                                  //     pageBuilder:
-                                  //         (context, animation1, animation2) =>
-                                  //             KartuPelajar4(),
-                                  //     transitionDuration: Duration.zero,
-                                  //     reverseTransitionDuration: Duration.zero,
-                                  //   ),
-                                  // );
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 25.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Semester 4",
-                                style: GoogleFonts.notoSans(
-                                    fontSize: 14, fontWeight: FontWeight.w400),
-                              ),
-                              InkWell(
-                                child: Image.asset(
-                                  'assets/Arrow-R.png',
-                                  width: 20,
-                                ),
-                                onTap: () {
-                                  // Navigator.pushReplacement(
-                                  //   context,
-                                  //   PageRouteBuilder(
-                                  //     pageBuilder:
-                                  //         (context, animation1, animation2) =>
-                                  //             KartuPelajar4(),
-                                  //     transitionDuration: Duration.zero,
-                                  //     reverseTransitionDuration: Duration.zero,
-                                  //   ),
-                                  // );
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 25.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Semester 5",
-                                style: GoogleFonts.notoSans(
-                                    fontSize: 14, fontWeight: FontWeight.w400),
-                              ),
-                              InkWell(
-                                child: Image.asset(
-                                  'assets/Arrow-R.png',
-                                  width: 20,
-                                ),
-                                onTap: () {
-                                  // Navigator.pushReplacement(
-                                  //   context,
-                                  //   PageRouteBuilder(
-                                  //     pageBuilder:
-                                  //         (context, animation1, animation2) =>
-                                  //             KartuPelajar4(),
-                                  //     transitionDuration: Duration.zero,
-                                  //     reverseTransitionDuration: Duration.zero,
-                                  //   ),
-                                  // );
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 25.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Semester 6",
-                                style: GoogleFonts.notoSans(
-                                    fontSize: 14, fontWeight: FontWeight.w400),
-                              ),
-                              InkWell(
-                                child: Image.asset(
-                                  'assets/Arrow-R.png',
-                                  width: 20,
-                                ),
-                                onTap: () {
-                                  // Navigator.pushReplacement(
-                                  //   context,
-                                  //   PageRouteBuilder(
-                                  //     pageBuilder:
-                                  //         (context, animation1, animation2) =>
-                                  //             KartuPelajar4(),
-                                  //     transitionDuration: Duration.zero,
-                                  //     reverseTransitionDuration: Duration.zero,
-                                  //   ),
-                                  // );
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 48,
-                        ),
-                      ],
+                              onTap: () {
+                                // Navigator.pushReplacement(
+                                //   context,
+                                //   PageRouteBuilder(
+                                //     pageBuilder:
+                                //         (context, animation1, animation2) =>
+                                //             KartuPelajar4(),
+                                //     transitionDuration: Duration.zero,
+                                //     reverseTransitionDuration: Duration.zero,
+                                //   ),
+                                // );
+                              },
+                            ),
+                          ],
+                        );
+                      },
                     ),
                   ),
                 ],

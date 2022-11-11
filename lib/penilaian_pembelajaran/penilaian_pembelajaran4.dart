@@ -3,9 +3,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:cekula/drawer.dart';
 import 'package:cekula/penilaian_pembelajaran/buat_penilaian_pembelajaran.dart';
 import 'package:cekula/penilaian_pembelajaran/edit_penilaian_pembelajaran.dart';
+import 'package:cekula/penilaian_pembelajaran/penilaian_pembelajaran2.dart';
 import 'package:cekula/penilaian_pembelajaran/penilaian_pembelajaran3.dart';
 import 'package:cekula/penilaian_pembelajaran/penilaian_pembelajaran5.dart';
-import 'package:cekula/penilaian_pembelajaran/penilaian_pembelajaran6.dart';
 
 class PenilaianPembelajaran4 extends StatelessWidget {
   const PenilaianPembelajaran4({Key? key}) : super(key: key);
@@ -168,7 +168,7 @@ class PenilaianPembelajaran4 extends StatelessWidget {
                                                     pageBuilder: (context,
                                                             animation1,
                                                             animation2) =>
-                                                        const PenilaianPembelajaran6(),
+                                                        const PenilaianPembelajaran5(),
                                                     transitionDuration:
                                                         Duration.zero,
                                                     reverseTransitionDuration:
@@ -266,7 +266,7 @@ class PenilaianPembelajaran4 extends StatelessWidget {
                                                     pageBuilder: (context,
                                                             animation1,
                                                             animation2) =>
-                                                        const PenilaianPembelajaran6(),
+                                                        const PenilaianPembelajaran5(),
                                                     transitionDuration:
                                                         Duration.zero,
                                                     reverseTransitionDuration:
@@ -364,7 +364,7 @@ class PenilaianPembelajaran4 extends StatelessWidget {
                                                     pageBuilder: (context,
                                                             animation1,
                                                             animation2) =>
-                                                        const PenilaianPembelajaran6(),
+                                                        const PenilaianPembelajaran5(),
                                                     transitionDuration:
                                                         Duration.zero,
                                                     reverseTransitionDuration:
@@ -464,59 +464,16 @@ class PenilaianPembelajaran4 extends StatelessWidget {
                                     InkWell(
                                       child: Text(
                                         "Ganjil",
-                                        style: GoogleFonts.notoSans(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w600),
+                                        style:
+                                            GoogleFonts.notoSans(fontSize: 14),
                                       ),
-                                      onTap: () {
-                                        // Navigator.pushReplacement(
-                                        //   context,
-                                        //   PageRouteBuilder(
-                                        //     pageBuilder: (context, animation1,
-                                        //             animation2) =>
-                                        //         DaftarEkstra1(),
-                                        //     transitionDuration: Duration.zero,
-                                        //     reverseTransitionDuration:
-                                        //         Duration.zero,
-                                        //   ),
-                                        // );
-                                      },
-                                    ),
-                                    Container(
-                                      margin: const EdgeInsets.only(top: 10),
-                                      height: 3,
-                                      width: mediaQueryWidth * 0.4,
-                                      decoration: const BoxDecoration(
-                                        borderRadius: BorderRadius.only(
-                                            topRight: Radius.circular(40),
-                                            topLeft: Radius.circular(40)),
-                                        gradient: LinearGradient(
-                                          begin: Alignment.topCenter,
-                                          end: Alignment.bottomCenter,
-                                          colors: <Color>[
-                                            Color(0xFF9FC3F9),
-                                            Color(0xFF83DBE0),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    InkWell(
-                                      child: Text("Genap",
-                                          style: GoogleFonts.notoSans(
-                                            fontSize: 14,
-                                          )),
                                       onTap: () {
                                         Navigator.pushReplacement(
                                           context,
                                           PageRouteBuilder(
                                             pageBuilder: (context, animation1,
                                                     animation2) =>
-                                                const PenilaianPembelajaran5(),
+                                                const PenilaianPembelajaran4(),
                                             transitionDuration: Duration.zero,
                                             reverseTransitionDuration:
                                                 Duration.zero,
@@ -540,6 +497,48 @@ class PenilaianPembelajaran4 extends StatelessWidget {
                                         //     Color(0xFF83DBE0),
                                         //   ],
                                         // ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    InkWell(
+                                      child: Text("Genap",
+                                          style: GoogleFonts.notoSans(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w600)),
+                                      onTap: () {
+                                        // Navigator.pushReplacement(
+                                        //   context,
+                                        //   PageRouteBuilder(
+                                        //     pageBuilder: (context, animation1,
+                                        //             animation2) =>
+                                        //         PenilaianPembelajaran5(),
+                                        //     transitionDuration: Duration.zero,
+                                        //     reverseTransitionDuration:
+                                        //         Duration.zero,
+                                        //   ),
+                                        // );
+                                      },
+                                    ),
+                                    Container(
+                                      margin: const EdgeInsets.only(top: 10),
+                                      height: 3,
+                                      width: mediaQueryWidth * 0.4,
+                                      decoration: const BoxDecoration(
+                                        borderRadius: BorderRadius.only(
+                                            topRight: Radius.circular(40),
+                                            topLeft: Radius.circular(40)),
+                                        gradient: LinearGradient(
+                                          begin: Alignment.topCenter,
+                                          end: Alignment.bottomCenter,
+                                          colors: <Color>[
+                                            Color(0xFF9FC3F9),
+                                            Color(0xFF83DBE0),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ],
@@ -649,7 +648,7 @@ class _RoundedAlertBoxState extends State<RoundedAlertBox> {
                             context,
                             PageRouteBuilder(
                               pageBuilder: (context, animation1, animation2) =>
-                                  const PenilaianPembelajaran4(),
+                                  const PenilaianPembelajaran5(),
                               transitionDuration: Duration.zero,
                               reverseTransitionDuration: Duration.zero,
                             ),
