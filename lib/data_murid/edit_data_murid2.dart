@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cekula/data_murid/edit_data_murid3.dart';
 import 'package:cekula/drawer.dart';
-import 'package:cekula/jadwal_kelas/jadwal_kelas3.dart';
+import 'package:cekula/jadwal_kelas/jadwal_kelas2.dart';
 
 class EditDataMurid2 extends StatelessWidget {
   const EditDataMurid2({Key? key}) : super(key: key);
@@ -379,15 +379,15 @@ class _RoundedAlertBoxState extends State<RoundedAlertBox> {
                           width: 16,
                         ),
                         onTap: () {
-                          Navigator.pushReplacement(
-                            context,
-                            PageRouteBuilder(
-                              pageBuilder: (context, animation1, animation2) =>
-                                  const JadwalKelas3(),
-                              transitionDuration: Duration.zero,
-                              reverseTransitionDuration: Duration.zero,
-                            ),
-                          );
+                          // Navigator.pushReplacement(
+                          //   context,
+                          //   PageRouteBuilder(
+                          //     pageBuilder: (context, animation1, animation2) =>
+                          //         const JadwalKelas3(),
+                          //     transitionDuration: Duration.zero,
+                          //     reverseTransitionDuration: Duration.zero,
+                          //   ),
+                          // );
                         },
                       ),
                     ],

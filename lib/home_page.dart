@@ -362,7 +362,7 @@ class _HomePageState extends State<HomePage> {
                               PageRouteBuilder(
                                 pageBuilder:
                                     (context, animation1, animation2) =>
-                                        const JadwalSekolah1(),
+                                        JadwalSekolah1(),
                                 transitionDuration: Duration.zero,
                                 reverseTransitionDuration: Duration.zero,
                               ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:cekula/jadwal_kelas/jadwal_kelas3.dart';
+import 'package:cekula/jadwal_kelas/jadwal_kelas2.dart';
 import 'package:cekula/kartu_pelajar_digital/buat_kartu_pelajar.dart';
 import 'package:cekula/kartu_pelajar_digital/kartu_pelajar2.dart';
 import 'package:cekula/kartu_pelajar_digital/kartu_pelajar4.dart';
@@ -28,15 +28,15 @@ class KartuPelajar3 extends StatelessWidget {
               Builder(builder: (context) {
                 return IconButton(
                     onPressed: () {
-                      Navigator.pushReplacement(
-                        context,
-                        PageRouteBuilder(
-                          pageBuilder: (context, animation1, animation2) =>
-                              const JadwalKelas3(),
-                          transitionDuration: Duration.zero,
-                          reverseTransitionDuration: Duration.zero,
-                        ),
-                      );
+                      // Navigator.pushReplacement(
+                      //   context,
+                      //   PageRouteBuilder(
+                      //     pageBuilder: (context, animation1, animation2) =>
+                      //         const JadwalKelas3(),
+                      //     transitionDuration: Duration.zero,
+                      //     reverseTransitionDuration: Duration.zero,
+                      //   ),
+                      // );
                     },
                     icon: const Icon(Icons.arrow_back));
               }),

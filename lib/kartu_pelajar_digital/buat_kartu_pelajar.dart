@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cekula/drawer.dart';
-import 'package:cekula/jadwal_kelas/jadwal_kelas3.dart';
+import 'package:cekula/jadwal_kelas/jadwal_kelas2.dart';
 import 'package:cekula/kartu_pelajar_digital/kartu_pelajar3.dart';
 
 class BuatKartuPelajar extends StatelessWidget {

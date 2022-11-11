@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:cekula/jadwal_kelas/jadwal_kelas3.dart';
+import 'package:cekula/jadwal_kelas/jadwal_kelas2.dart';
 import 'package:cekula/rapor_murid/rapor_murid2.dart';
 import 'package:cekula/rapor_murid/rapor_murid4.dart';
 
@@ -27,15 +27,15 @@ class RaporMurid3 extends StatelessWidget {
               Builder(builder: (context) {
                 return IconButton(
                     onPressed: () {
-                      Navigator.pushReplacement(
-                        context,
-                        PageRouteBuilder(
-                          pageBuilder: (context, animation1, animation2) =>
-                              const JadwalKelas3(),
-                          transitionDuration: Duration.zero,
-                          reverseTransitionDuration: Duration.zero,
-                        ),
-                      );
+                      // Navigator.pushReplacement(
+                      //   context,
+                      //   PageRouteBuilder(
+                      //     pageBuilder: (context, animation1, animation2) =>
+                      //         const JadwalKelas3(),
+                      //     transitionDuration: Duration.zero,
+                      //     reverseTransitionDuration: Duration.zero,
+                      //   ),
+                      // );
                     },
                     icon: const Icon(Icons.arrow_back));
               }),

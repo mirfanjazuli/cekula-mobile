@@ -6,7 +6,23 @@ import 'package:cekula/jadwal_sekolah/buat_jadwal_sekolah.dart';
 import 'package:cekula/jadwal_sekolah/edit_jadwal_sekolah.dart';
 
 class JadwalSekolah1 extends StatelessWidget {
-  const JadwalSekolah1({Key? key}) : super(key: key);
+  final List image = [
+    "assets/jadwal-sekolah.png",
+    "assets/jadwal-sekolah-2.png",
+    "assets/jadwal-sekolah-2.png",
+  ];
+
+  final List judul = [
+    "Kegiatan Tengah Semester",
+    "Dies Natalis Sekolah",
+    "Pentas Seni Akhir Tahun",
+  ];
+
+  final List tanggal = [
+    "15 Oktober - 23 Oktober 2022",
+    "21 Desember - 28 Desember 2022",
+    "29 Desember - 23 Desember 2022",
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -71,227 +87,94 @@ class JadwalSekolah1 extends StatelessWidget {
                         height: bodyHeight * (1 - 0.10625 - 0.0875) + 50,
                         width: mediaQueryWidth,
                         color: Colors.white,
-                        child: ListView(children: [
-                          Container(
-                            margin: const EdgeInsets.only(
-                                bottom: 20, left: 24, right: 24),
-                            width: mediaQueryWidth,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
-                              color: const Color(0xFFEDF1F7),
-                            ),
-                            child: Column(
-                              children: [
-                                Image.asset(
-                                  'assets/jadwal-sekolah.png',
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 10.0, top: 10, right: 5, bottom: 5),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "Kegiatan Tengah Semester",
-                                        style: GoogleFonts.notoSans(
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w600),
-                                      ),
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(top: 2.0),
-                                        child: Text(
-                                            "15 Oktober - 23 Oktober 2022",
-                                            style: GoogleFonts.notoSans(
-                                                fontSize: 10,
-                                                fontWeight: FontWeight.w400)),
-                                      ),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                        children: [
-                                          InkWell(
-                                            child: Image.asset(
-                                              'assets/Edit.png',
-                                              width: 16,
-                                            ),
-                                            onTap: () {
-                                              Navigator.pushReplacement(
-                                                context,
-                                                PageRouteBuilder(
-                                                  pageBuilder: (context,
-                                                          animation1,
-                                                          animation2) =>
-                                                      const EditJadwalSekolah(),
-                                                  transitionDuration:
-                                                      Duration.zero,
-                                                  reverseTransitionDuration:
-                                                      Duration.zero,
-                                                ),
-                                              );
-                                            },
-                                          ),
-                                          const SizedBox(
-                                            width: 8,
-                                          ),
-                                          const RoundedAlertBox()
-                                        ],
-                                      ),
-                                    ],
+                        child: ListView.builder(
+                          padding: const EdgeInsets.only(top: 25, bottom: 100),
+                          itemCount: judul.length,
+                          itemBuilder: (context, index) {
+                            return Container(
+                              margin: const EdgeInsets.only(
+                                  bottom: 20, left: 24, right: 24),
+                              width: mediaQueryWidth,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                color: const Color(0xFFEDF1F7),
+                              ),
+                              child: Column(
+                                children: [
+                                  Container(
+                                    width: mediaQueryWidth,
+                                    height: 142,
+                                    decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                          fit: BoxFit.cover,
+                                          image: AssetImage(image[index])),
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(8.0)),
+                                    ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Container(
-                            margin: const EdgeInsets.only(
-                                bottom: 20, left: 24, right: 24),
-                            width: mediaQueryWidth,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
-                              color: const Color(0xFFEDF1F7),
-                            ),
-                            child: Column(
-                              children: [
-                                Image.asset(
-                                  'assets/jadwal-sekolah.png',
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 10.0, top: 10, right: 5, bottom: 5),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "Kegiatan Tengah Semester",
-                                        style: GoogleFonts.notoSans(
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w600),
-                                      ),
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(top: 2.0),
-                                        child: Text(
-                                            "15 Oktober - 23 Oktober 2022",
-                                            style: GoogleFonts.notoSans(
-                                                fontSize: 10,
-                                                fontWeight: FontWeight.w400)),
-                                      ),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                        children: [
-                                          InkWell(
-                                            child: Image.asset(
-                                              'assets/Edit.png',
-                                              width: 16,
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 10.0,
+                                        top: 10,
+                                        right: 5,
+                                        bottom: 5),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          judul[index],
+                                          style: GoogleFonts.notoSans(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w600),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 2.0),
+                                          child: Text(tanggal[index],
+                                              style: GoogleFonts.notoSans(
+                                                  fontSize: 10,
+                                                  fontWeight: FontWeight.w400)),
+                                        ),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.end,
+                                          children: [
+                                            InkWell(
+                                              child: Image.asset(
+                                                'assets/Edit.png',
+                                                width: 16,
+                                              ),
+                                              onTap: () {
+                                                Navigator.pushReplacement(
+                                                  context,
+                                                  PageRouteBuilder(
+                                                    pageBuilder: (context,
+                                                            animation1,
+                                                            animation2) =>
+                                                        const EditJadwalSekolah(),
+                                                    transitionDuration:
+                                                        Duration.zero,
+                                                    reverseTransitionDuration:
+                                                        Duration.zero,
+                                                  ),
+                                                );
+                                              },
                                             ),
-                                            onTap: () {
-                                              Navigator.pushReplacement(
-                                                context,
-                                                PageRouteBuilder(
-                                                  pageBuilder: (context,
-                                                          animation1,
-                                                          animation2) =>
-                                                      const EditJadwalSekolah(),
-                                                  transitionDuration:
-                                                      Duration.zero,
-                                                  reverseTransitionDuration:
-                                                      Duration.zero,
-                                                ),
-                                              );
-                                            },
-                                          ),
-                                          const SizedBox(
-                                            width: 8,
-                                          ),
-                                          const RoundedAlertBox()
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Container(
-                            margin: const EdgeInsets.only(
-                                bottom: 20, left: 24, right: 24),
-                            width: mediaQueryWidth,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
-                              color: const Color(0xFFEDF1F7),
-                            ),
-                            child: Column(
-                              children: [
-                                Image.asset(
-                                  'assets/jadwal-sekolah.png',
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 10.0, top: 10, right: 5, bottom: 5),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "Kegiatan Tengah Semester",
-                                        style: GoogleFonts.notoSans(
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w600),
-                                      ),
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(top: 2.0),
-                                        child: Text(
-                                            "15 Oktober - 23 Oktober 2022",
-                                            style: GoogleFonts.notoSans(
-                                                fontSize: 10,
-                                                fontWeight: FontWeight.w400)),
-                                      ),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                        children: [
-                                          InkWell(
-                                            child: Image.asset(
-                                              'assets/Edit.png',
-                                              width: 16,
+                                            const SizedBox(
+                                              width: 8,
                                             ),
-                                            onTap: () {
-                                              Navigator.pushReplacement(
-                                                context,
-                                                PageRouteBuilder(
-                                                  pageBuilder: (context,
-                                                          animation1,
-                                                          animation2) =>
-                                                      const EditJadwalSekolah(),
-                                                  transitionDuration:
-                                                      Duration.zero,
-                                                  reverseTransitionDuration:
-                                                      Duration.zero,
-                                                ),
-                                              );
-                                            },
-                                          ),
-                                          const SizedBox(
-                                            width: 8,
-                                          ),
-                                          const RoundedAlertBox()
-                                        ],
-                                      ),
-                                    ],
+                                            const RoundedAlertBox()
+                                          ],
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 100,
-                          )
-                        ]),
+                                ],
+                              ),
+                            );
+                          },
+                        ),
                       ),
                     ),
                   ],
@@ -369,7 +252,7 @@ class JadwalSekolah1 extends StatelessWidget {
                                       PageRouteBuilder(
                                         pageBuilder:
                                             (context, animation1, animation2) =>
-                                                const JadwalKelas1(),
+                                                JadwalKelas1(),
                                         transitionDuration: Duration.zero,
                                         reverseTransitionDuration:
                                             Duration.zero,
@@ -483,7 +366,6 @@ class _RoundedAlertBoxState extends State<RoundedAlertBox> {
             content: SizedBox(
               width: 290,
               height: 295,
-              // color: Colors.amber,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -500,7 +382,7 @@ class _RoundedAlertBoxState extends State<RoundedAlertBox> {
                             context,
                             PageRouteBuilder(
                               pageBuilder: (context, animation1, animation2) =>
-                                  const JadwalSekolah1(),
+                                  JadwalSekolah1(),
                               transitionDuration: Duration.zero,
                               reverseTransitionDuration: Duration.zero,
                             ),
@@ -535,7 +417,6 @@ class _RoundedAlertBoxState extends State<RoundedAlertBox> {
                       child: const Text('Ya'),
                       style: OutlinedButton.styleFrom(
                         primary: const Color(0xFF9FC3F9),
-                        // backgroundColor: Colors.teal,
                         side: const BorderSide(
                             color: Color(0xFF9FC3F9), width: 1),
                       ),

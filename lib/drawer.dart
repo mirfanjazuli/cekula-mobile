@@ -141,7 +141,7 @@ class _DrawerViewState extends State<DrawerView> {
         children: [
           Container(
             color: Colors.white,
-            width: 190,
+            width: mediaQueryWidth * 0.527,
             height: mediaQueryHeight,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
