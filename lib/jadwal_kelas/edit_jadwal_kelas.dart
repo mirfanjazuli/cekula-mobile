@@ -273,7 +273,7 @@ class EditJadwalKelas extends StatelessWidget {
                                         PageRouteBuilder(
                                           pageBuilder: (context, animation1,
                                                   animation2) =>
-                                              const JadwalKelas3(),
+                                              JadwalKelas3(),
                                           transitionDuration: Duration.zero,
                                           reverseTransitionDuration:
                                               Duration.zero,
@@ -390,7 +390,7 @@ class _RoundedAlertBoxState extends State<RoundedAlertBox> {
                             context,
                             PageRouteBuilder(
                               pageBuilder: (context, animation1, animation2) =>
-                                  const JadwalKelas3(),
+                                  JadwalKelas3(),
                               transitionDuration: Duration.zero,
                               reverseTransitionDuration: Duration.zero,
                             ),

@@ -1,10 +1,25 @@
+import 'package:cekula/rapor_murid/rapor_murid1.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:cekula/drawer.dart';
 import 'package:cekula/rapor_murid/rapor_murid3.dart';
 
 class RaporMurid2 extends StatelessWidget {
-  const RaporMurid2({Key? key}) : super(key: key);
+  RaporMurid2({Key? key}) : super(key: key);
+
+  final List nama = [
+    "Ahmad Jourji Zaidan",
+    "Arsenio Hamas Syahid",
+    "Daryl Mahardikasiandi",
+    "Dini Anjani",
+    "Muhammad Irfan Jazuli",
+    "Taqiyuddin Ja’far Syaifullah",
+    "Ahmad Jourji Zaidan",
+    "Arsenio Hamas Syahid",
+    "Daryl Mahardikasiandi",
+    "Dini Anjani",
+    "Muhammad Irfan Jazuli",
+    "Taqiyuddin Ja’far Syaifullah",
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +30,7 @@ class RaporMurid2 extends StatelessWidget {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         leadingWidth: 20,
+        // toolbarHeight: bodyHeight * 0.10625,
         toolbarHeight: 0,
         backgroundColor: const Color(0xFF91ceec),
         elevation: 0.0,
@@ -25,15 +41,18 @@ class RaporMurid2 extends StatelessWidget {
               Builder(builder: (context) {
                 return IconButton(
                     onPressed: () {
-                      Scaffold.of(context).openDrawer();
+                      // Navigator.pushReplacement(
+                      //   context,
+                      //   PageRouteBuilder(
+                      //     pageBuilder: (context, animation1, animation2) =>
+                      //         const JadwalKelas3(),
+                      //     transitionDuration: Duration.zero,
+                      //     reverseTransitionDuration: Duration.zero,
+                      //   ),
+                      // );
                     },
-                    icon: const Icon(Icons.menu));
+                    icon: const Icon(Icons.arrow_back));
               }),
-              Text(
-                "Kartu Pelajar Digital",
-                style: GoogleFonts.rubik(
-                    fontSize: 20, fontWeight: FontWeight.w600),
-              ),
             ],
           ),
         ),
@@ -51,12 +70,11 @@ class RaporMurid2 extends StatelessWidget {
           ),
         ),
       ),
-      drawer: const DrawerView(),
       body: SafeArea(
         child: Stack(
           children: [
             SizedBox(
-              height: bodyHeight * 0.10625,
+              height: bodyHeight * 0.1062,
               child: AppBar(
                 automaticallyImplyLeading: false,
                 leadingWidth: 20,
@@ -70,9 +88,18 @@ class RaporMurid2 extends StatelessWidget {
                       Builder(builder: (context) {
                         return IconButton(
                             onPressed: () {
-                              Scaffold.of(context).openDrawer();
+                              Navigator.pushReplacement(
+                                context,
+                                PageRouteBuilder(
+                                  pageBuilder:
+                                      (context, animation1, animation2) =>
+                                          const RaporMurid1(),
+                                  transitionDuration: Duration.zero,
+                                  reverseTransitionDuration: Duration.zero,
+                                ),
+                              );
                             },
-                            icon: const Icon(Icons.menu));
+                            icon: const Icon(Icons.arrow_back));
                       }),
                       Text(
                         "Rapor Murid",
@@ -97,430 +124,199 @@ class RaporMurid2 extends StatelessWidget {
                 ),
               ),
             ),
-            Column(
-              children: [
-                SizedBox(
-                  height: bodyHeight * 0.10625 - 1,
-                ),
-                Stack(
-                  children: [
-                    Container(
-                      width: mediaQueryWidth,
-                      height: bodyHeight * (0.035) - 1,
-                      decoration: const BoxDecoration(
-                        gradient: LinearGradient(
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
-                          colors: <Color>[
-                            Color(0xFF9FC3F9),
-                            Color(0xFF83DBE0),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Container(
-                      padding: const EdgeInsets.only(top: 10),
-                      width: mediaQueryWidth,
-                      height: bodyHeight * 0.035,
-                      decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(20),
-                            topRight: Radius.circular(20)),
-                        color: Colors.white,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  // color: Colors.red,
-                  height: bodyHeight * 0.385,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 3.0, vertical: 10),
-                        child: Container(
-                          margin: const EdgeInsets.only(left: 21),
-                          width: bodyHeight * 0.28,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: const Color(0xFFEDF1F7),
-                            boxShadow: const [
-                              BoxShadow(
-                                color: Color.fromRGBO(202, 184, 184, 0.25),
-                                blurRadius: 3.0,
-                                offset: Offset(0.0, 2.0),
-                              ),
-                            ],
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 15.0, vertical: 18.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Center(
-                                  child: Image.asset(
-                                    'assets/Slide-1.png',
-                                    width: bodyHeight * 0.2,
-                                  ),
-                                ),
-                                Text(
-                                  'Kelas 9',
-                                  style: GoogleFonts.rubik(
-                                      fontWeight: FontWeight.w600,
-                                      color: const Color(0xFF4D5569),
-                                      fontSize: 14),
-                                ),
-                                Row(
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Image.asset(
-                                          'assets/Paper.png',
-                                          width: 13,
-                                        ),
-                                        const SizedBox(
-                                          width: 6,
-                                        ),
-                                        Text(
-                                          '3 Kelas',
-                                          style: GoogleFonts.rubik(
-                                              color: const Color(0xFF4D5569),
-                                              fontSize: 12),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 3.0, vertical: 10),
-                        child: Container(
-                          margin: const EdgeInsets.only(left: 21),
-                          width: bodyHeight * 0.28,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.white,
-                            boxShadow: const [
-                              BoxShadow(
-                                color: Color.fromRGBO(202, 184, 184, 0.25),
-                                blurRadius: 3.0,
-                                offset: Offset(0.0, 2.0),
-                              ),
-                            ],
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 15.0, vertical: 18.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Center(
-                                  child: Image.asset(
-                                    'assets/Slide-2.png',
-                                    width: bodyHeight * 0.2,
-                                  ),
-                                ),
-                                Text(
-                                  'Kelas 8',
-                                  style: GoogleFonts.rubik(
-                                      fontWeight: FontWeight.w600,
-                                      color: const Color(0xFF4D5569),
-                                      fontSize: 14),
-                                ),
-                                Row(
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Image.asset(
-                                          'assets/Paper.png',
-                                          width: 13,
-                                        ),
-                                        const SizedBox(
-                                          width: 6,
-                                        ),
-                                        Text(
-                                          '3 Kelas',
-                                          style: GoogleFonts.rubik(
-                                              color: const Color(0xFF4D5569),
-                                              fontSize: 12),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 3.0, vertical: 10),
-                        child: Container(
-                          margin: const EdgeInsets.only(left: 21),
-                          width: bodyHeight * 0.28,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.white,
-                            boxShadow: const [
-                              BoxShadow(
-                                color: Color.fromRGBO(202, 184, 184, 0.25),
-                                blurRadius: 3.0,
-                                offset: Offset(0.0, 2.0),
-                              ),
-                            ],
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 15.0, vertical: 18.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Center(
-                                  child: Image.asset(
-                                    'assets/Slide-3.png',
-                                    width: bodyHeight * 0.2,
-                                  ),
-                                ),
-                                Text(
-                                  'Kelas 7',
-                                  style: GoogleFonts.rubik(
-                                      fontWeight: FontWeight.w600,
-                                      color: const Color(0xFF4D5569),
-                                      fontSize: 14),
-                                ),
-                                Row(
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Image.asset(
-                                          'assets/Paper.png',
-                                          width: 13,
-                                        ),
-                                        const SizedBox(
-                                          width: 6,
-                                        ),
-                                        Text(
-                                          '3 Kelas',
-                                          style: GoogleFonts.rubik(
-                                              color: const Color(0xFF4D5569),
-                                              fontSize: 12),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 21,
-                      )
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  width: mediaQueryWidth,
-                  height: bodyHeight * 0.3025,
-                  child: SizedBox(
-                    // color: Colors.amber,
-                    height: bodyHeight * 0.25,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 24.0,
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Container(
-                            padding: const EdgeInsets.symmetric(vertical: 16),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(6),
-                                color: Colors.white,
-                                boxShadow: const [
-                                  BoxShadow(
-                                      color: Color.fromARGB(255, 237, 237, 237),
-                                      blurRadius: 6.0,
-                                      offset: Offset(0, 2)),
-                                ]),
-                            child: Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 10.0, right: 15.0),
-                              child: Column(
-                                children: [
-                                  InkWell(
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Container(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 10),
-                                          child: const Text(
-                                            "Kelas 9A",
-                                            style: TextStyle(
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w600),
-                                          ),
-                                        ),
-                                        const Icon(Icons.arrow_forward_ios,
-                                            size: 20),
-                                      ],
-                                    ),
-                                    onTap: () {
-                                      Navigator.pushReplacement(
-                                        context,
-                                        PageRouteBuilder(
-                                          pageBuilder: (context, animation1,
-                                                  animation2) =>
-                                              const RaporMurid3(),
-                                          transitionDuration: Duration.zero,
-                                          reverseTransitionDuration:
-                                              Duration.zero,
-                                        ),
-                                      );
-                                    },
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-
-                          // SizedBox(
-                          //   height: 10,
-                          // ),
-                          Container(
-                            padding: const EdgeInsets.symmetric(vertical: 16),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(6),
-                                color: Colors.white,
-                                boxShadow: const [
-                                  BoxShadow(
-                                      color: Color.fromARGB(255, 237, 237, 237),
-                                      blurRadius: 6.0,
-                                      offset: Offset(0, 2)),
-                                ]),
-                            child: Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 10.0, right: 15.0),
-                              child: Column(
-                                children: [
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Container(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 10),
-                                        child: const Text(
-                                          "Kelas 9B",
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w600),
-                                        ),
-                                      ),
-                                      const Icon(
-                                        Icons.arrow_forward_ios,
-                                        size: 20,
-                                      ),
-                                    ],
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                          // SizedBox(
-                          //   height: 10,
-                          // ),
-                          Container(
-                            padding: const EdgeInsets.symmetric(vertical: 16),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(6),
-                                color: Colors.white,
-                                boxShadow: const [
-                                  BoxShadow(
-                                      color: Color.fromARGB(255, 237, 237, 237),
-                                      blurRadius: 6.0,
-                                      offset: Offset(0, 2)),
-                                ]),
-                            child: Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 10.0, right: 15.0),
-                              child: Column(
-                                children: [
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Container(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 10),
-                                        child: const Text(
-                                          "Kelas 9C",
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w600),
-                                        ),
-                                      ),
-                                      const Icon(Icons.arrow_forward_ios,
-                                          size: 20),
-                                    ],
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
+            Padding(
+              padding: EdgeInsets.only(top: bodyHeight * 0.10625 - 1),
+              child: Stack(
+                children: [
+                  Container(
+                    width: mediaQueryWidth,
+                    height: bodyHeight * (0.05),
+                    decoration: const BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                        colors: <Color>[
+                          Color(0xFF9FC3F9),
+                          Color(0xFF83DBE0),
                         ],
                       ),
                     ),
                   ),
-                ),
-                // Container(
-                //   width: mediaQueryWidth,
-                //   height: bodyHeight * 0.14,
-                //   // color: Colors.red,
-                //   child: Row(
-                //     mainAxisAlignment: MainAxisAlignment.end,
-                //     crossAxisAlignment: CrossAxisAlignment.center,
-                //     children: [
-                //       Container(
-                //         margin: EdgeInsets.only(right: 24),
-                //         height: 50,
-                //         width: 50,
-                //         padding: EdgeInsets.all(8.0),
-                //         decoration: BoxDecoration(
-                //           gradient: LinearGradient(
-                //             begin: Alignment.centerLeft,
-                //             end: Alignment.centerRight,
-                //             colors: <Color>[
-                //               Color(0xFF9FC3F9),
-                //               Color(0xFF83DBE0),
-                //             ],
-                //           ),
-                //           borderRadius: BorderRadius.circular(6),
-                //         ),
-                //         child: Image.asset(
-                //           'assets/Plus.png',
-                //           scale: 1,
-                //         ),
-                //       ),
-                //     ],
-                //   ),
-                // ),
-              ],
+                  Container(
+                    padding: const EdgeInsets.only(left: 24, right: 24),
+                    width: mediaQueryWidth,
+                    decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(20),
+                          topRight: Radius.circular(20)),
+                      color: Colors.white,
+                    ),
+                    child: Column(
+                      children: [
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Kelas 7 A",
+                              style: GoogleFonts.notoSans(
+                                  fontSize: 14, fontWeight: FontWeight.w600),
+                            ),
+                          ],
+                        ),
+                        Container(
+                          alignment: Alignment.center,
+                          margin: const EdgeInsets.only(top: 20),
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          height: 40,
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFEDF1F7),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Row(
+                            children: <Widget>[
+                              Expanded(
+                                child: TextField(
+                                  onChanged: (value) {},
+                                  decoration: InputDecoration(
+                                    hintText: "Cari nama murid",
+                                    hintStyle: GoogleFonts.notoSans(
+                                        color: const Color(0xFFD2D4DA),
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w400),
+                                    enabledBorder: InputBorder.none,
+                                    focusedBorder: InputBorder.none,
+                                  ),
+                                ),
+                              ),
+                              Image.asset(
+                                'assets/Search.png',
+                                width: 20,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    margin:
+                        EdgeInsets.only(top: bodyHeight * 0.07 + 40 + 20 + 25),
+                    padding: const EdgeInsets.symmetric(horizontal: 24),
+                    width: mediaQueryWidth,
+                    color: Colors.white,
+                    child: ListView.separated(
+                      separatorBuilder: (context, index) => SizedBox(
+                        height: mediaQueryHeight * 0.03125,
+                      ),
+                      padding: EdgeInsets.only(bottom: 48),
+                      itemCount: nama.length,
+                      itemBuilder: (context, index) {
+                        return Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              nama[index],
+                              style: GoogleFonts.notoSans(
+                                  fontSize: 14, fontWeight: FontWeight.w400),
+                            ),
+                            InkWell(
+                              child: Image.asset(
+                                'assets/Arrow-R.png',
+                                width: 20,
+                              ),
+                              onTap: () {
+                                Navigator.pushReplacement(
+                                  context,
+                                  PageRouteBuilder(
+                                    pageBuilder:
+                                        (context, animation1, animation2) =>
+                                            const RaporMurid3(),
+                                    transitionDuration: Duration.zero,
+                                    reverseTransitionDuration: Duration.zero,
+                                  ),
+                                );
+                              },
+                            ),
+                          ],
+                        );
+                      },
+                    ),
+
+                    // ListView(
+                    //   children: [
+                    //     SizedBox(
+                    //       height: 25 - (bodyHeight * 0.02),
+                    //     ),
+                    //     Padding(
+                    //       padding: const EdgeInsets.only(bottom: 25.0),
+                    //       child: Row(
+                    //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //         children: [
+                    //           Text(
+                    //             "Ahmad Jourji Zaidan",
+                    //             style: GoogleFonts.notoSans(
+                    //                 fontSize: 14, fontWeight: FontWeight.w400),
+                    //           ),
+                    //           InkWell(
+                    //             child: Image.asset(
+                    //               'assets/Arrow-R.png',
+                    //               width: 20,
+                    //             ),
+                    //             onTap: () {
+                    //               Navigator.pushReplacement(
+                    //                 context,
+                    //                 PageRouteBuilder(
+                    //                   pageBuilder:
+                    //                       (context, animation1, animation2) =>
+                    //                           const RaporMurid3(),
+                    //                   transitionDuration: Duration.zero,
+                    //                   reverseTransitionDuration: Duration.zero,
+                    //                 ),
+                    //               );
+                    //             },
+                    //           ),
+                    //         ],
+                    //       ),
+                    //     ),
+                    //     Padding(
+                    //       padding: const EdgeInsets.only(bottom: 25.0),
+                    //       child: Row(
+                    //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //         children: [
+                    //           Text(
+                    //             "Ahmad Jourji Zaidan",
+                    //             style: GoogleFonts.notoSans(
+                    //                 fontSize: 14, fontWeight: FontWeight.w400),
+                    //           ),
+                    //           InkWell(
+                    //             child: Image.asset(
+                    //               'assets/Arrow-R.png',
+                    //               width: 20,
+                    //             ),
+                    //             onTap: () {
+                    //               Navigator.pushReplacement(
+                    //                 context,
+                    //                 PageRouteBuilder(
+                    //                   pageBuilder:
+                    //                       (context, animation1, animation2) =>
+                    //                           const RaporMurid3(),
+                    //                   transitionDuration: Duration.zero,
+                    //                   reverseTransitionDuration: Duration.zero,
+                    //                 ),
+                    //               );
+                    //             },
+                    //           ),
+                    //         ],
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
+                  ),
+                ],
+              ),
             ),
           ],
         ),

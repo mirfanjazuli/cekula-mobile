@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cekula/jadwal_kelas/jadwal_kelas2.dart';
 import 'package:cekula/rapor_murid/rapor_murid2.dart';
-import 'package:cekula/rapor_murid/rapor_murid4.dart';
 
 class RaporMurid3 extends StatelessWidget {
   const RaporMurid3({Key? key}) : super(key: key);
@@ -20,28 +19,6 @@ class RaporMurid3 extends StatelessWidget {
         toolbarHeight: 0,
         backgroundColor: const Color(0xFF91ceec),
         elevation: 0.0,
-        title: Padding(
-          padding: const EdgeInsets.only(top: 25.0),
-          child: Row(
-            children: [
-              Builder(builder: (context) {
-                return IconButton(
-                    onPressed: () {
-                      // Navigator.pushReplacement(
-                      //   context,
-                      //   PageRouteBuilder(
-                      //     pageBuilder: (context, animation1, animation2) =>
-                      //         const JadwalKelas3(),
-                      //     transitionDuration: Duration.zero,
-                      //     reverseTransitionDuration: Duration.zero,
-                      //   ),
-                      // );
-                    },
-                    icon: const Icon(Icons.arrow_back));
-              }),
-            ],
-          ),
-        ),
         flexibleSpace: Container(
           width: mediaQueryWidth,
           decoration: const BoxDecoration(
@@ -79,7 +56,7 @@ class RaporMurid3 extends StatelessWidget {
                                 PageRouteBuilder(
                                   pageBuilder:
                                       (context, animation1, animation2) =>
-                                          const RaporMurid2(),
+                                          RaporMurid2(),
                                   transitionDuration: Duration.zero,
                                   reverseTransitionDuration: Duration.zero,
                                 ),
@@ -146,49 +123,17 @@ class RaporMurid3 extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              "Kelas 7 A",
+                              "Ahmad Jourji Zaidan",
                               style: GoogleFonts.notoSans(
                                   fontSize: 14, fontWeight: FontWeight.w600),
                             ),
                           ],
                         ),
-                        Container(
-                          alignment: Alignment.center,
-                          margin: const EdgeInsets.only(top: 20),
-                          padding: const EdgeInsets.symmetric(horizontal: 10),
-                          height: 40,
-                          decoration: BoxDecoration(
-                            color: const Color(0xFFEDF1F7),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Row(
-                            children: <Widget>[
-                              Expanded(
-                                child: TextField(
-                                  onChanged: (value) {},
-                                  decoration: InputDecoration(
-                                    hintText: "Cari nama murid",
-                                    hintStyle: GoogleFonts.notoSans(
-                                        color: const Color(0xFFD2D4DA),
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w400),
-                                    enabledBorder: InputBorder.none,
-                                    focusedBorder: InputBorder.none,
-                                  ),
-                                ),
-                              ),
-                              Image.asset(
-                                'assets/Search.png',
-                                width: 20,
-                              ),
-                            ],
-                          ),
-                        ),
                       ],
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.only(top: bodyHeight * 0.07 + 40 + 20),
+                    margin: EdgeInsets.only(top: bodyHeight * 0.07),
                     padding: const EdgeInsets.symmetric(horizontal: 24),
                     width: mediaQueryWidth,
                     color: Colors.white,
@@ -203,7 +148,7 @@ class RaporMurid3 extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                "Ahmad Jourji Zaidan",
+                                "Identitas Murid",
                                 style: GoogleFonts.notoSans(
                                     fontSize: 14, fontWeight: FontWeight.w400),
                               ),
@@ -213,16 +158,16 @@ class RaporMurid3 extends StatelessWidget {
                                   width: 20,
                                 ),
                                 onTap: () {
-                                  Navigator.pushReplacement(
-                                    context,
-                                    PageRouteBuilder(
-                                      pageBuilder:
-                                          (context, animation1, animation2) =>
-                                              const RaporMurid4(),
-                                      transitionDuration: Duration.zero,
-                                      reverseTransitionDuration: Duration.zero,
-                                    ),
-                                  );
+                                  // Navigator.pushReplacement(
+                                  //   context,
+                                  //   PageRouteBuilder(
+                                  //     pageBuilder:
+                                  //         (context, animation1, animation2) =>
+                                  //             KartuPelajar4(),
+                                  //     transitionDuration: Duration.zero,
+                                  //     reverseTransitionDuration: Duration.zero,
+                                  //   ),
+                                  // );
                                 },
                               ),
                             ],
@@ -234,7 +179,7 @@ class RaporMurid3 extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                "Ahmad Jourji Zaidan",
+                                "Semester 1",
                                 style: GoogleFonts.notoSans(
                                     fontSize: 14, fontWeight: FontWeight.w400),
                               ),
@@ -244,16 +189,16 @@ class RaporMurid3 extends StatelessWidget {
                                   width: 20,
                                 ),
                                 onTap: () {
-                                  Navigator.pushReplacement(
-                                    context,
-                                    PageRouteBuilder(
-                                      pageBuilder:
-                                          (context, animation1, animation2) =>
-                                              const RaporMurid4(),
-                                      transitionDuration: Duration.zero,
-                                      reverseTransitionDuration: Duration.zero,
-                                    ),
-                                  );
+                                  // Navigator.pushReplacement(
+                                  //   context,
+                                  //   PageRouteBuilder(
+                                  //     pageBuilder:
+                                  //         (context, animation1, animation2) =>
+                                  //             KartuPelajar4(),
+                                  //     transitionDuration: Duration.zero,
+                                  //     reverseTransitionDuration: Duration.zero,
+                                  //   ),
+                                  // );
                                 },
                               ),
                             ],
@@ -265,7 +210,7 @@ class RaporMurid3 extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                "Ahmad Jourji Zaidan",
+                                "Semester 2",
                                 style: GoogleFonts.notoSans(
                                     fontSize: 14, fontWeight: FontWeight.w400),
                               ),
@@ -275,16 +220,16 @@ class RaporMurid3 extends StatelessWidget {
                                   width: 20,
                                 ),
                                 onTap: () {
-                                  Navigator.pushReplacement(
-                                    context,
-                                    PageRouteBuilder(
-                                      pageBuilder:
-                                          (context, animation1, animation2) =>
-                                              const RaporMurid4(),
-                                      transitionDuration: Duration.zero,
-                                      reverseTransitionDuration: Duration.zero,
-                                    ),
-                                  );
+                                  // Navigator.pushReplacement(
+                                  //   context,
+                                  //   PageRouteBuilder(
+                                  //     pageBuilder:
+                                  //         (context, animation1, animation2) =>
+                                  //             KartuPelajar4(),
+                                  //     transitionDuration: Duration.zero,
+                                  //     reverseTransitionDuration: Duration.zero,
+                                  //   ),
+                                  // );
                                 },
                               ),
                             ],
@@ -296,7 +241,7 @@ class RaporMurid3 extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                "Ahmad Jourji Zaidan",
+                                "Semester 3",
                                 style: GoogleFonts.notoSans(
                                     fontSize: 14, fontWeight: FontWeight.w400),
                               ),
@@ -306,16 +251,16 @@ class RaporMurid3 extends StatelessWidget {
                                   width: 20,
                                 ),
                                 onTap: () {
-                                  Navigator.pushReplacement(
-                                    context,
-                                    PageRouteBuilder(
-                                      pageBuilder:
-                                          (context, animation1, animation2) =>
-                                              const RaporMurid4(),
-                                      transitionDuration: Duration.zero,
-                                      reverseTransitionDuration: Duration.zero,
-                                    ),
-                                  );
+                                  // Navigator.pushReplacement(
+                                  //   context,
+                                  //   PageRouteBuilder(
+                                  //     pageBuilder:
+                                  //         (context, animation1, animation2) =>
+                                  //             KartuPelajar4(),
+                                  //     transitionDuration: Duration.zero,
+                                  //     reverseTransitionDuration: Duration.zero,
+                                  //   ),
+                                  // );
                                 },
                               ),
                             ],
@@ -327,7 +272,7 @@ class RaporMurid3 extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                "Ahmad Jourji Zaidan",
+                                "Semester 4",
                                 style: GoogleFonts.notoSans(
                                     fontSize: 14, fontWeight: FontWeight.w400),
                               ),
@@ -337,16 +282,16 @@ class RaporMurid3 extends StatelessWidget {
                                   width: 20,
                                 ),
                                 onTap: () {
-                                  Navigator.pushReplacement(
-                                    context,
-                                    PageRouteBuilder(
-                                      pageBuilder:
-                                          (context, animation1, animation2) =>
-                                              const RaporMurid4(),
-                                      transitionDuration: Duration.zero,
-                                      reverseTransitionDuration: Duration.zero,
-                                    ),
-                                  );
+                                  // Navigator.pushReplacement(
+                                  //   context,
+                                  //   PageRouteBuilder(
+                                  //     pageBuilder:
+                                  //         (context, animation1, animation2) =>
+                                  //             KartuPelajar4(),
+                                  //     transitionDuration: Duration.zero,
+                                  //     reverseTransitionDuration: Duration.zero,
+                                  //   ),
+                                  // );
                                 },
                               ),
                             ],
@@ -358,7 +303,7 @@ class RaporMurid3 extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                "Ahmad Jourji Zaidan",
+                                "Semester 5",
                                 style: GoogleFonts.notoSans(
                                     fontSize: 14, fontWeight: FontWeight.w400),
                               ),
@@ -368,16 +313,16 @@ class RaporMurid3 extends StatelessWidget {
                                   width: 20,
                                 ),
                                 onTap: () {
-                                  Navigator.pushReplacement(
-                                    context,
-                                    PageRouteBuilder(
-                                      pageBuilder:
-                                          (context, animation1, animation2) =>
-                                              const RaporMurid4(),
-                                      transitionDuration: Duration.zero,
-                                      reverseTransitionDuration: Duration.zero,
-                                    ),
-                                  );
+                                  // Navigator.pushReplacement(
+                                  //   context,
+                                  //   PageRouteBuilder(
+                                  //     pageBuilder:
+                                  //         (context, animation1, animation2) =>
+                                  //             KartuPelajar4(),
+                                  //     transitionDuration: Duration.zero,
+                                  //     reverseTransitionDuration: Duration.zero,
+                                  //   ),
+                                  // );
                                 },
                               ),
                             ],
@@ -389,7 +334,7 @@ class RaporMurid3 extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                "Ahmad Jourji Zaidan",
+                                "Semester 6",
                                 style: GoogleFonts.notoSans(
                                     fontSize: 14, fontWeight: FontWeight.w400),
                               ),
@@ -399,302 +344,23 @@ class RaporMurid3 extends StatelessWidget {
                                   width: 20,
                                 ),
                                 onTap: () {
-                                  Navigator.pushReplacement(
-                                    context,
-                                    PageRouteBuilder(
-                                      pageBuilder:
-                                          (context, animation1, animation2) =>
-                                              const RaporMurid4(),
-                                      transitionDuration: Duration.zero,
-                                      reverseTransitionDuration: Duration.zero,
-                                    ),
-                                  );
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 25.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Ahmad Jourji Zaidan",
-                                style: GoogleFonts.notoSans(
-                                    fontSize: 14, fontWeight: FontWeight.w400),
-                              ),
-                              InkWell(
-                                child: Image.asset(
-                                  'assets/Arrow-R.png',
-                                  width: 20,
-                                ),
-                                onTap: () {
-                                  Navigator.pushReplacement(
-                                    context,
-                                    PageRouteBuilder(
-                                      pageBuilder:
-                                          (context, animation1, animation2) =>
-                                              const RaporMurid4(),
-                                      transitionDuration: Duration.zero,
-                                      reverseTransitionDuration: Duration.zero,
-                                    ),
-                                  );
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 25.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Ahmad Jourji Zaidan",
-                                style: GoogleFonts.notoSans(
-                                    fontSize: 14, fontWeight: FontWeight.w400),
-                              ),
-                              InkWell(
-                                child: Image.asset(
-                                  'assets/Arrow-R.png',
-                                  width: 20,
-                                ),
-                                onTap: () {
-                                  Navigator.pushReplacement(
-                                    context,
-                                    PageRouteBuilder(
-                                      pageBuilder:
-                                          (context, animation1, animation2) =>
-                                              const RaporMurid4(),
-                                      transitionDuration: Duration.zero,
-                                      reverseTransitionDuration: Duration.zero,
-                                    ),
-                                  );
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 25.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Ahmad Jourji Zaidan",
-                                style: GoogleFonts.notoSans(
-                                    fontSize: 14, fontWeight: FontWeight.w400),
-                              ),
-                              InkWell(
-                                child: Image.asset(
-                                  'assets/Arrow-R.png',
-                                  width: 20,
-                                ),
-                                onTap: () {
-                                  Navigator.pushReplacement(
-                                    context,
-                                    PageRouteBuilder(
-                                      pageBuilder:
-                                          (context, animation1, animation2) =>
-                                              const RaporMurid4(),
-                                      transitionDuration: Duration.zero,
-                                      reverseTransitionDuration: Duration.zero,
-                                    ),
-                                  );
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 25.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Ahmad Jourji Zaidan",
-                                style: GoogleFonts.notoSans(
-                                    fontSize: 14, fontWeight: FontWeight.w400),
-                              ),
-                              InkWell(
-                                child: Image.asset(
-                                  'assets/Arrow-R.png',
-                                  width: 20,
-                                ),
-                                onTap: () {
-                                  Navigator.pushReplacement(
-                                    context,
-                                    PageRouteBuilder(
-                                      pageBuilder:
-                                          (context, animation1, animation2) =>
-                                              const RaporMurid4(),
-                                      transitionDuration: Duration.zero,
-                                      reverseTransitionDuration: Duration.zero,
-                                    ),
-                                  );
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 25.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Ahmad Jourji Zaidan",
-                                style: GoogleFonts.notoSans(
-                                    fontSize: 14, fontWeight: FontWeight.w400),
-                              ),
-                              InkWell(
-                                child: Image.asset(
-                                  'assets/Arrow-R.png',
-                                  width: 20,
-                                ),
-                                onTap: () {
-                                  Navigator.pushReplacement(
-                                    context,
-                                    PageRouteBuilder(
-                                      pageBuilder:
-                                          (context, animation1, animation2) =>
-                                              const RaporMurid4(),
-                                      transitionDuration: Duration.zero,
-                                      reverseTransitionDuration: Duration.zero,
-                                    ),
-                                  );
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 25.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Ahmad Jourji Zaidan",
-                                style: GoogleFonts.notoSans(
-                                    fontSize: 14, fontWeight: FontWeight.w400),
-                              ),
-                              InkWell(
-                                child: Image.asset(
-                                  'assets/Arrow-R.png',
-                                  width: 20,
-                                ),
-                                onTap: () {
-                                  Navigator.pushReplacement(
-                                    context,
-                                    PageRouteBuilder(
-                                      pageBuilder:
-                                          (context, animation1, animation2) =>
-                                              const RaporMurid4(),
-                                      transitionDuration: Duration.zero,
-                                      reverseTransitionDuration: Duration.zero,
-                                    ),
-                                  );
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 25.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Ahmad Jourji Zaidan",
-                                style: GoogleFonts.notoSans(
-                                    fontSize: 14, fontWeight: FontWeight.w400),
-                              ),
-                              InkWell(
-                                child: Image.asset(
-                                  'assets/Arrow-R.png',
-                                  width: 20,
-                                ),
-                                onTap: () {
-                                  Navigator.pushReplacement(
-                                    context,
-                                    PageRouteBuilder(
-                                      pageBuilder:
-                                          (context, animation1, animation2) =>
-                                              const RaporMurid4(),
-                                      transitionDuration: Duration.zero,
-                                      reverseTransitionDuration: Duration.zero,
-                                    ),
-                                  );
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 25.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Ahmad Jourji Zaidan",
-                                style: GoogleFonts.notoSans(
-                                    fontSize: 14, fontWeight: FontWeight.w400),
-                              ),
-                              InkWell(
-                                child: Image.asset(
-                                  'assets/Arrow-R.png',
-                                  width: 20,
-                                ),
-                                onTap: () {
-                                  Navigator.pushReplacement(
-                                    context,
-                                    PageRouteBuilder(
-                                      pageBuilder:
-                                          (context, animation1, animation2) =>
-                                              const RaporMurid4(),
-                                      transitionDuration: Duration.zero,
-                                      reverseTransitionDuration: Duration.zero,
-                                    ),
-                                  );
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 25.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Ahmad Jourji Zaidan",
-                                style: GoogleFonts.notoSans(
-                                    fontSize: 14, fontWeight: FontWeight.w400),
-                              ),
-                              InkWell(
-                                child: Image.asset(
-                                  'assets/Arrow-R.png',
-                                  width: 20,
-                                ),
-                                onTap: () {
-                                  Navigator.pushReplacement(
-                                    context,
-                                    PageRouteBuilder(
-                                      pageBuilder:
-                                          (context, animation1, animation2) =>
-                                              const RaporMurid4(),
-                                      transitionDuration: Duration.zero,
-                                      reverseTransitionDuration: Duration.zero,
-                                    ),
-                                  );
+                                  // Navigator.pushReplacement(
+                                  //   context,
+                                  //   PageRouteBuilder(
+                                  //     pageBuilder:
+                                  //         (context, animation1, animation2) =>
+                                  //             KartuPelajar4(),
+                                  //     transitionDuration: Duration.zero,
+                                  //     reverseTransitionDuration: Duration.zero,
+                                  //   ),
+                                  // );
                                 },
                               ),
                             ],
                           ),
                         ),
                         const SizedBox(
-                          height: 24,
+                          height: 48,
                         ),
                       ],
                     ),
