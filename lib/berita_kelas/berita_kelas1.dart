@@ -218,7 +218,7 @@ class BeritaKelas1 extends StatelessWidget {
                                         PageRouteBuilder(
                                           pageBuilder: (context, animation1,
                                                   animation2) =>
-                                              const BeritaSekolah1(),
+                                              BeritaSekolah1(),
                                           transitionDuration: Duration.zero,
                                           reverseTransitionDuration:
                                               Duration.zero,

@@ -312,7 +312,7 @@ class _EditBeritaSekolahState extends State<EditBeritaSekolah> {
                                         PageRouteBuilder(
                                           pageBuilder: (context, animation1,
                                                   animation2) =>
-                                              const BeritaSekolah1(),
+                                              BeritaSekolah1(),
                                           transitionDuration: Duration.zero,
                                           reverseTransitionDuration:
                                               Duration.zero,
@@ -431,7 +431,7 @@ class _RoundedAlertBoxState extends State<RoundedAlertBox> {
                             context,
                             PageRouteBuilder(
                               pageBuilder: (context, animation1, animation2) =>
-                                  const BeritaSekolah1(),
+                                  BeritaSekolah1(),
                               transitionDuration: Duration.zero,
                               reverseTransitionDuration: Duration.zero,
                             ),
