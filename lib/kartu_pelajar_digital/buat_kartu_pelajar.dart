@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cekula/drawer.dart';
 import 'package:cekula/jadwal_kelas/jadwal_kelas2.dart';
-import 'package:cekula/kartu_pelajar_digital/kartu_pelajar3.dart';
+import 'package:cekula/kartu_pelajar_digital/kartu_pelajar2.dart';
 
 class BuatKartuPelajar extends StatelessWidget {
   const BuatKartuPelajar({Key? key}) : super(key: key);
@@ -325,7 +325,7 @@ class BuatKartuPelajar extends StatelessWidget {
                                         PageRouteBuilder(
                                           pageBuilder: (context, animation1,
                                                   animation2) =>
-                                              const KartuPelajar3(),
+                                              KartuPelajar2(),
                                           transitionDuration: Duration.zero,
                                           reverseTransitionDuration:
                                               Duration.zero,
@@ -444,7 +444,7 @@ class _RoundedAlertBoxState extends State<RoundedAlertBox> {
                             context,
                             PageRouteBuilder(
                               pageBuilder: (context, animation1, animation2) =>
-                                  const KartuPelajar3(),
+                                  KartuPelajar2(),
                               transitionDuration: Duration.zero,
                               reverseTransitionDuration: Duration.zero,
                             ),

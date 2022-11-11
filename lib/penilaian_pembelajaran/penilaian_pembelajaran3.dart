@@ -5,11 +5,34 @@ import 'package:cekula/penilaian_pembelajaran/buat_penilaian_pembelajaran.dart';
 import 'package:cekula/penilaian_pembelajaran/edit_penilaian_pembelajaran.dart';
 import 'package:cekula/penilaian_pembelajaran/penilaian_pembelajaran2.dart';
 import 'package:cekula/penilaian_pembelajaran/penilaian_pembelajaran4.dart';
-import 'package:cekula/penilaian_pembelajaran/penilaian_pembelajaran5.dart';
 
-class PenilaianPembelajaran3 extends StatelessWidget {
+class PenilaianPembelajaran3 extends StatefulWidget {
   const PenilaianPembelajaran3({Key? key}) : super(key: key);
 
+  @override
+  State<PenilaianPembelajaran3> createState() => _PenilaianPembelajaran3State();
+}
+
+class _PenilaianPembelajaran3State extends State<PenilaianPembelajaran3> {
+  String aktif = "ganjil";
+
+  void pilihGanjil() {
+    setState(() {
+      aktif = "ganjil";
+    });
+  }
+
+  void pilihGenap() {
+    setState(() {
+      aktif = "genap";
+    });
+  }
+
+  final List penilaian = [
+    "Nilai Tugas",
+    "Nilai Ujian Tengah Semester",
+    "Nilai Ujian Akhir Semester",
+  ];
   @override
   Widget build(BuildContext context) {
     final mediaQueryHeight = MediaQuery.of(context).size.height;
@@ -74,353 +97,163 @@ class PenilaianPembelajaran3 extends StatelessWidget {
                 Stack(
                   children: [
                     Flexible(
-                      child: Column(
-                        children: [
-                          Container(
-                            margin:
-                                EdgeInsets.only(top: bodyHeight * 0.0875 - 23),
-                            height: bodyHeight,
-                            padding: const EdgeInsets.only(left: 21, right: 21),
-                            width: mediaQueryWidth,
-                            decoration: const BoxDecoration(
-                              borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(20),
-                                  topRight: Radius.circular(20)),
-                              color: Colors.white,
-                            ),
-                            child: ListView(
-                              children: [
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      "Kelas 9A",
-                                      style: GoogleFonts.notoSans(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w600,
-                                          color: const Color(0xFF4D5569)),
-                                    ),
-                                    Row(
-                                      children: [
-                                        Image.asset(
-                                          'assets/mapel-indonesia.png',
-                                          width: 24,
-                                        ),
-                                        const SizedBox(
-                                          width: 10,
-                                        ),
-                                        Text(
-                                          "Bahasa Indonesia",
-                                          style: GoogleFonts.notoSans(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w400),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(
-                                  height: 25,
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 3.0),
-                                  child: Container(
-                                    width: mediaQueryWidth,
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(6),
-                                        color: Colors.white,
-                                        boxShadow: const [
-                                          BoxShadow(
-                                              color: Color.fromARGB(
-                                                  255, 237, 237, 237),
-                                              blurRadius: 6.0,
-                                              offset: Offset(0, 2)),
-                                        ]),
-                                    // color: Colors.red,
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 10.0),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Padding(
-                                            padding:
-                                                const EdgeInsets.only(top: 8.0),
-                                            child: InkWell(
-                                              child: Text(
-                                                "Nilai Tugas",
-                                                style: GoogleFonts.notoSans(
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.w600,
-                                                  color:
-                                                      const Color(0xFF4D5569),
-                                                ),
-                                              ),
-                                              onTap: () {
-                                                Navigator.pushReplacement(
-                                                  context,
-                                                  PageRouteBuilder(
-                                                    pageBuilder: (context,
-                                                            animation1,
-                                                            animation2) =>
-                                                        const PenilaianPembelajaran5(),
-                                                    transitionDuration:
-                                                        Duration.zero,
-                                                    reverseTransitionDuration:
-                                                        Duration.zero,
-                                                  ),
-                                                );
-                                              },
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                bottom: 6.0),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.end,
-                                              children: [
-                                                InkWell(
-                                                  child: Image.asset(
-                                                    'assets/Edit.png',
-                                                    width: 16,
-                                                  ),
-                                                  onTap: () {
-                                                    Navigator.pushReplacement(
-                                                      context,
-                                                      PageRouteBuilder(
-                                                        pageBuilder: (context,
-                                                                animation1,
-                                                                animation2) =>
-                                                            const EditPenilaianPembelajaran(),
-                                                        transitionDuration:
-                                                            Duration.zero,
-                                                        reverseTransitionDuration:
-                                                            Duration.zero,
-                                                      ),
-                                                    );
-                                                  },
-                                                ),
-                                                const SizedBox(
-                                                  width: 8,
-                                                ),
-                                                const RoundedAlertBox()
-                                              ],
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
+                      child: Container(
+                        margin: EdgeInsets.only(top: bodyHeight * 0.0875 - 23),
+                        height: bodyHeight,
+                        padding: const EdgeInsets.only(left: 21, right: 21),
+                        width: mediaQueryWidth,
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(20),
+                              topRight: Radius.circular(20)),
+                          color: Colors.white,
+                        ),
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(top: 25),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "Kelas 9A",
+                                    style: GoogleFonts.notoSans(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w600,
+                                        color: const Color(0xFF4D5569)),
                                   ),
-                                ),
-                                const SizedBox(
+                                  Row(
+                                    children: [
+                                      Image.asset(
+                                        'assets/mapel-indonesia.png',
+                                        width: 24,
+                                      ),
+                                      const SizedBox(
+                                        width: 10,
+                                      ),
+                                      Text(
+                                        "Bahasa Indonesia",
+                                        style: GoogleFonts.notoSans(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w400),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              height: bodyHeight * (1 - 0.0875 - 0.10625) - 23,
+                              padding: EdgeInsets.only(top: 25),
+                              child: ListView.separated(
+                                separatorBuilder: (context, index) => SizedBox(
                                   height: 10,
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 3.0),
-                                  child: Container(
-                                    width: mediaQueryWidth,
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(6),
-                                        color: Colors.white,
-                                        boxShadow: const [
-                                          BoxShadow(
-                                              color: Color.fromARGB(
-                                                  255, 237, 237, 237),
-                                              blurRadius: 6.0,
-                                              offset: Offset(0, 2)),
-                                        ]),
-                                    // color: Colors.red,
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 10.0),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Padding(
-                                            padding:
-                                                const EdgeInsets.only(top: 8.0),
-                                            child: InkWell(
-                                              child: Text(
-                                                "Nilai Ujian Tengah Semester",
-                                                style: GoogleFonts.notoSans(
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.w600,
-                                                  color:
-                                                      const Color(0xFF4D5569),
+                                padding: EdgeInsets.only(bottom: 100),
+                                itemCount: penilaian.length,
+                                itemBuilder: (context, index) {
+                                  return Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 3.0),
+                                    child: Container(
+                                      width: mediaQueryWidth,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(6),
+                                          color: Colors.white,
+                                          boxShadow: const [
+                                            BoxShadow(
+                                                color: Color.fromARGB(
+                                                    255, 237, 237, 237),
+                                                blurRadius: 6.0,
+                                                offset: Offset(0, 2)),
+                                          ]),
+                                      // color: Colors.red,
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 10.0),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  top: 8.0),
+                                              child: InkWell(
+                                                child: Text(
+                                                  penilaian[index],
+                                                  style: GoogleFonts.notoSans(
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.w600,
+                                                    color:
+                                                        const Color(0xFF4D5569),
+                                                  ),
                                                 ),
+                                                onTap: () {
+                                                  Navigator.pushReplacement(
+                                                    context,
+                                                    PageRouteBuilder(
+                                                      pageBuilder: (context,
+                                                              animation1,
+                                                              animation2) =>
+                                                          const PenilaianPembelajaran4(),
+                                                      transitionDuration:
+                                                          Duration.zero,
+                                                      reverseTransitionDuration:
+                                                          Duration.zero,
+                                                    ),
+                                                  );
+                                                },
                                               ),
-                                              onTap: () {
-                                                Navigator.pushReplacement(
-                                                  context,
-                                                  PageRouteBuilder(
-                                                    pageBuilder: (context,
-                                                            animation1,
-                                                            animation2) =>
-                                                        const PenilaianPembelajaran5(),
-                                                    transitionDuration:
-                                                        Duration.zero,
-                                                    reverseTransitionDuration:
-                                                        Duration.zero,
-                                                  ),
-                                                );
-                                              },
                                             ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                bottom: 6.0),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.end,
-                                              children: [
-                                                InkWell(
-                                                  child: Image.asset(
-                                                    'assets/Edit.png',
-                                                    width: 16,
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  bottom: 6.0),
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.end,
+                                                children: [
+                                                  InkWell(
+                                                    child: Image.asset(
+                                                      'assets/Edit.png',
+                                                      width: 16,
+                                                    ),
+                                                    onTap: () {
+                                                      Navigator.pushReplacement(
+                                                        context,
+                                                        PageRouteBuilder(
+                                                          pageBuilder: (context,
+                                                                  animation1,
+                                                                  animation2) =>
+                                                              EditPenilaianPembelajaran(),
+                                                          transitionDuration:
+                                                              Duration.zero,
+                                                          reverseTransitionDuration:
+                                                              Duration.zero,
+                                                        ),
+                                                      );
+                                                    },
                                                   ),
-                                                  onTap: () {
-                                                    Navigator.pushReplacement(
-                                                      context,
-                                                      PageRouteBuilder(
-                                                        pageBuilder: (context,
-                                                                animation1,
-                                                                animation2) =>
-                                                            const EditPenilaianPembelajaran(),
-                                                        transitionDuration:
-                                                            Duration.zero,
-                                                        reverseTransitionDuration:
-                                                            Duration.zero,
-                                                      ),
-                                                    );
-                                                  },
-                                                ),
-                                                const SizedBox(
-                                                  width: 8,
-                                                ),
-                                                const RoundedAlertBox()
-                                              ],
+                                                  const SizedBox(
+                                                    width: 8,
+                                                  ),
+                                                  const RoundedAlertBox()
+                                                ],
+                                              ),
                                             ),
-                                          ),
-                                        ],
+                                          ],
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 3.0),
-                                  child: Container(
-                                    width: mediaQueryWidth,
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(6),
-                                        color: Colors.white,
-                                        boxShadow: const [
-                                          BoxShadow(
-                                              color: Color.fromARGB(
-                                                  255, 237, 237, 237),
-                                              blurRadius: 6.0,
-                                              offset: Offset(0, 2)),
-                                        ]),
-                                    // color: Colors.red,
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 10.0),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Padding(
-                                            padding:
-                                                const EdgeInsets.only(top: 8.0),
-                                            child: InkWell(
-                                              child: Text(
-                                                "Nilai Ujian Akhir Semester",
-                                                style: GoogleFonts.notoSans(
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.w600,
-                                                  color:
-                                                      const Color(0xFF4D5569),
-                                                ),
-                                              ),
-                                              onTap: () {
-                                                Navigator.pushReplacement(
-                                                  context,
-                                                  PageRouteBuilder(
-                                                    pageBuilder: (context,
-                                                            animation1,
-                                                            animation2) =>
-                                                        const PenilaianPembelajaran5(),
-                                                    transitionDuration:
-                                                        Duration.zero,
-                                                    reverseTransitionDuration:
-                                                        Duration.zero,
-                                                  ),
-                                                );
-                                              },
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                bottom: 6.0),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.end,
-                                              children: [
-                                                InkWell(
-                                                  child: Image.asset(
-                                                    'assets/Edit.png',
-                                                    width: 16,
-                                                  ),
-                                                  onTap: () {
-                                                    Navigator.pushReplacement(
-                                                      context,
-                                                      PageRouteBuilder(
-                                                        pageBuilder: (context,
-                                                                animation1,
-                                                                animation2) =>
-                                                            const EditPenilaianPembelajaran(),
-                                                        transitionDuration:
-                                                            Duration.zero,
-                                                        reverseTransitionDuration:
-                                                            Duration.zero,
-                                                      ),
-                                                    );
-                                                  },
-                                                ),
-                                                const SizedBox(
-                                                  width: 8,
-                                                ),
-                                                const RoundedAlertBox()
-                                              ],
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(
-                                  height: 96,
-                                ),
-                              ],
+                                  );
+                                },
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ],
@@ -462,86 +295,98 @@ class PenilaianPembelajaran3 extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     InkWell(
-                                      child: Text(
-                                        "Ganjil",
-                                        style: GoogleFonts.notoSans(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w600),
-                                      ),
+                                      child: aktif == "ganjil"
+                                          ? Text(
+                                              "Ganjil",
+                                              style: GoogleFonts.notoSans(
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w600),
+                                            )
+                                          : Text(
+                                              "Ganjil",
+                                              style: GoogleFonts.notoSans(
+                                                  fontSize: 14),
+                                            ),
                                       onTap: () {
-                                        // Navigator.pushReplacement(
-                                        //   context,
-                                        //   PageRouteBuilder(
-                                        //     pageBuilder: (context, animation1,
-                                        //             animation2) =>
-                                        //         DaftarEkstra1(),
-                                        //     transitionDuration: Duration.zero,
-                                        //     reverseTransitionDuration:
-                                        //         Duration.zero,
-                                        //   ),
-                                        // );
+                                        pilihGanjil();
                                       },
                                     ),
-                                    Container(
-                                      margin: const EdgeInsets.only(top: 10),
-                                      height: 3,
-                                      width: mediaQueryWidth * 0.4,
-                                      decoration: const BoxDecoration(
-                                        borderRadius: BorderRadius.only(
-                                            topRight: Radius.circular(40),
-                                            topLeft: Radius.circular(40)),
-                                        gradient: LinearGradient(
-                                          begin: Alignment.topCenter,
-                                          end: Alignment.bottomCenter,
-                                          colors: <Color>[
-                                            Color(0xFF9FC3F9),
-                                            Color(0xFF83DBE0),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
+                                    aktif == "ganjil"
+                                        ? Container(
+                                            margin:
+                                                const EdgeInsets.only(top: 10),
+                                            height: 3,
+                                            width: mediaQueryWidth * 0.4,
+                                            decoration: const BoxDecoration(
+                                              borderRadius: BorderRadius.only(
+                                                  topRight: Radius.circular(40),
+                                                  topLeft: Radius.circular(40)),
+                                              gradient: LinearGradient(
+                                                begin: Alignment.topCenter,
+                                                end: Alignment.bottomCenter,
+                                                colors: <Color>[
+                                                  Color(0xFF9FC3F9),
+                                                  Color(0xFF83DBE0),
+                                                ],
+                                              ),
+                                            ),
+                                          )
+                                        : Container(
+                                            margin:
+                                                const EdgeInsets.only(top: 10),
+                                            height: 3,
+                                            width: mediaQueryWidth * 0.4,
+                                          )
                                   ],
                                 ),
                                 Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     InkWell(
-                                      child: Text("Genap",
-                                          style: GoogleFonts.notoSans(
-                                            fontSize: 14,
-                                          )),
+                                      child: aktif == "genap"
+                                          ? Text("Genap",
+                                              style: GoogleFonts.notoSans(
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w600))
+                                          : Text("Genap",
+                                              style: GoogleFonts.notoSans(
+                                                fontSize: 14,
+                                              )),
                                       onTap: () {
-                                        Navigator.pushReplacement(
-                                          context,
-                                          PageRouteBuilder(
-                                            pageBuilder: (context, animation1,
-                                                    animation2) =>
-                                                const PenilaianPembelajaran5(),
-                                            transitionDuration: Duration.zero,
-                                            reverseTransitionDuration:
-                                                Duration.zero,
-                                          ),
-                                        );
+                                        pilihGenap();
                                       },
                                     ),
-                                    Container(
-                                      margin: const EdgeInsets.only(top: 10),
-                                      height: 3,
-                                      width: mediaQueryWidth * 0.4,
-                                      decoration: const BoxDecoration(
-                                        borderRadius: BorderRadius.only(
-                                            topRight: Radius.circular(40),
-                                            topLeft: Radius.circular(40)),
-                                        // gradient: LinearGradient(
-                                        //   begin: Alignment.topCenter,
-                                        //   end: Alignment.bottomCenter,
-                                        //   colors: <Color>[
-                                        //     Color(0xFF9FC3F9),
-                                        //     Color(0xFF83DBE0),
-                                        //   ],
-                                        // ),
-                                      ),
-                                    ),
+                                    aktif == "genap"
+                                        ? Container(
+                                            margin:
+                                                const EdgeInsets.only(top: 10),
+                                            height: 3,
+                                            width: mediaQueryWidth * 0.4,
+                                            decoration: const BoxDecoration(
+                                              borderRadius: BorderRadius.only(
+                                                  topRight: Radius.circular(40),
+                                                  topLeft: Radius.circular(40)),
+                                              gradient: LinearGradient(
+                                                begin: Alignment.topCenter,
+                                                end: Alignment.bottomCenter,
+                                                colors: <Color>[
+                                                  Color(0xFF9FC3F9),
+                                                  Color(0xFF83DBE0),
+                                                ],
+                                              ),
+                                            ),
+                                          )
+                                        : Container(
+                                            margin:
+                                                const EdgeInsets.only(top: 10),
+                                            height: 3,
+                                            width: mediaQueryWidth * 0.4,
+                                            decoration: const BoxDecoration(
+                                              borderRadius: BorderRadius.only(
+                                                  topRight: Radius.circular(40),
+                                                  topLeft: Radius.circular(40)),
+                                            ),
+                                          )
                                   ],
                                 ),
                               ],
@@ -585,7 +430,7 @@ class PenilaianPembelajaran3 extends StatelessWidget {
                   context,
                   PageRouteBuilder(
                     pageBuilder: (context, animation1, animation2) =>
-                        const BuatPenilaianPembelajaran(),
+                        BuatPenilaianPembelajaran(),
                     transitionDuration: Duration.zero,
                     reverseTransitionDuration: Duration.zero,
                   ),
@@ -649,7 +494,7 @@ class _RoundedAlertBoxState extends State<RoundedAlertBox> {
                             context,
                             PageRouteBuilder(
                               pageBuilder: (context, animation1, animation2) =>
-                                  const PenilaianPembelajaran4(),
+                                  const PenilaianPembelajaran3(),
                               transitionDuration: Duration.zero,
                               reverseTransitionDuration: Duration.zero,
                             ),

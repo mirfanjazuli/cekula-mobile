@@ -1,11 +1,59 @@
+import 'package:cekula/kartu_pelajar_digital/kartu_pelajar2.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cekula/drawer.dart';
-import 'package:cekula/kartu_pelajar_digital/kartu_pelajar2.dart';
 
-class KartuPelajar1 extends StatelessWidget {
+class KartuPelajar1 extends StatefulWidget {
   const KartuPelajar1({Key? key}) : super(key: key);
 
+  @override
+  State<KartuPelajar1> createState() => _KartuPelajar1State();
+}
+
+class _KartuPelajar1State extends State<KartuPelajar1> {
+  int aktif = 0;
+
+  void showToastKelas7() {
+    setState(() {
+      aktif = 7;
+    });
+  }
+
+  void showToastKelas8() {
+    setState(() {
+      aktif = 8;
+    });
+  }
+
+  void showToastKelas9() {
+    setState(() {
+      aktif = 9;
+    });
+  }
+
+  final List image = [
+    "assets/Slide-3.png",
+    "assets/Slide-2.png",
+    "assets/Slide-1.png",
+  ];
+
+  final List kelas = [
+    "Kelas 7",
+    "Kelas 8",
+    "Kelas 9",
+  ];
+
+  final List show = [
+    7,
+    8,
+    9,
+  ];
+
+  final List subkelas = [
+    "A",
+    "B",
+    "C",
+  ];
   @override
   Widget build(BuildContext context) {
     final mediaQueryHeight = MediaQuery.of(context).size.height;
@@ -230,242 +278,248 @@ class KartuPelajar1 extends StatelessWidget {
                 Container(
                   color: Colors.white,
                   height: bodyHeight * 0.385,
-                  child: ListView(
+                  child: ListView.builder(
+                    padding: const EdgeInsets.only(right: 21),
                     scrollDirection: Axis.horizontal,
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 3.0, vertical: 10),
+                    itemCount: 3,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.only(
+                            left: 24.0, top: 10, bottom: 10),
                         child: InkWell(
-                          child: Container(
-                            margin: const EdgeInsets.only(left: 21),
-                            width: bodyHeight * 0.28,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Colors.white,
-                              boxShadow: const [
-                                BoxShadow(
-                                  color: Color.fromRGBO(202, 184, 184, 0.25),
-                                  blurRadius: 3.0,
-                                  offset: Offset(0.0, 2.0),
-                                ),
-                              ],
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 15.0, vertical: 18.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Center(
-                                    child: Image.asset(
-                                      'assets/Slide-1.png',
-                                      width: bodyHeight * 0.2,
-                                    ),
-                                  ),
-                                  Text(
-                                    'Kelas 9',
-                                    style: GoogleFonts.rubik(
-                                        fontWeight: FontWeight.w600,
-                                        color: const Color(0xFF4D5569),
-                                        fontSize: 14),
-                                  ),
-                                  Row(
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Image.asset(
-                                            'assets/Paper.png',
-                                            width: 13,
-                                          ),
-                                          const SizedBox(
-                                            width: 6,
-                                          ),
-                                          Text(
-                                            '3 Kelas',
-                                            style: GoogleFonts.rubik(
-                                                color: const Color(0xFF4D5569),
-                                                fontSize: 12),
-                                          ),
-                                        ],
+                          child: aktif == show[index]
+                              ? Container(
+                                  width: bodyHeight * 0.28,
+                                  decoration: BoxDecoration(
+                                    color: Color(0xFFEDF1F7),
+                                    borderRadius: BorderRadius.circular(10),
+                                    boxShadow: const [
+                                      BoxShadow(
+                                        color:
+                                            Color.fromRGBO(202, 184, 184, 0.25),
+                                        blurRadius: 3.0,
+                                        offset: Offset(0.0, 2.0),
                                       ),
                                     ],
                                   ),
-                                ],
-                              ),
-                            ),
-                          ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 15.0, vertical: 18.0),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Center(
+                                          child: Image.asset(
+                                            image[index],
+                                            width: bodyHeight * 0.2,
+                                          ),
+                                        ),
+                                        Text(
+                                          kelas[index],
+                                          style: GoogleFonts.rubik(
+                                              fontWeight: FontWeight.w600,
+                                              color: const Color(0xFF4D5569),
+                                              fontSize: 14),
+                                        ),
+                                        Row(
+                                          children: [
+                                            Row(
+                                              children: [
+                                                Image.asset(
+                                                  'assets/Paper.png',
+                                                  width: 13,
+                                                ),
+                                                const SizedBox(
+                                                  width: 6,
+                                                ),
+                                                Text(
+                                                  '3 Kelas',
+                                                  style: GoogleFonts.rubik(
+                                                      color: const Color(
+                                                          0xFF4D5569),
+                                                      fontSize: 12),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                )
+                              : Container(
+                                  width: bodyHeight * 0.28,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(10),
+                                    boxShadow: const [
+                                      BoxShadow(
+                                        color:
+                                            Color.fromRGBO(202, 184, 184, 0.25),
+                                        blurRadius: 3.0,
+                                        offset: Offset(0.0, 2.0),
+                                      ),
+                                    ],
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 15.0, vertical: 18.0),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Center(
+                                          child: Image.asset(
+                                            image[index],
+                                            width: bodyHeight * 0.2,
+                                          ),
+                                        ),
+                                        Text(
+                                          kelas[index],
+                                          style: GoogleFonts.rubik(
+                                              fontWeight: FontWeight.w600,
+                                              color: const Color(0xFF4D5569),
+                                              fontSize: 14),
+                                        ),
+                                        Row(
+                                          children: [
+                                            Row(
+                                              children: [
+                                                Image.asset(
+                                                  'assets/Paper.png',
+                                                  width: 13,
+                                                ),
+                                                const SizedBox(
+                                                  width: 6,
+                                                ),
+                                                Text(
+                                                  '3 Kelas',
+                                                  style: GoogleFonts.rubik(
+                                                      color: const Color(
+                                                          0xFF4D5569),
+                                                      fontSize: 12),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
                           onTap: () {
-                            Navigator.pushReplacement(
-                              context,
-                              PageRouteBuilder(
-                                pageBuilder:
-                                    (context, animation1, animation2) =>
-                                        const KartuPelajar2(),
-                                transitionDuration: Duration.zero,
-                                reverseTransitionDuration: Duration.zero,
-                              ),
-                            );
+                            index == 0
+                                ? showToastKelas7()
+                                : index == 1
+                                    ? showToastKelas8()
+                                    : showToastKelas9();
                           },
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 3.0, vertical: 10),
-                        child: Container(
-                          margin: const EdgeInsets.only(left: 21),
-                          width: bodyHeight * 0.28,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.white,
-                            boxShadow: const [
-                              BoxShadow(
-                                color: Color.fromRGBO(202, 184, 184, 0.25),
-                                blurRadius: 3.0,
-                                offset: Offset(0.0, 2.0),
-                              ),
-                            ],
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 15.0, vertical: 18.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Center(
-                                  child: Image.asset(
-                                    'assets/Slide-2.png',
-                                    width: bodyHeight * 0.2,
-                                  ),
-                                ),
-                                Text(
-                                  'Kelas 8',
-                                  style: GoogleFonts.rubik(
-                                      fontWeight: FontWeight.w600,
-                                      color: const Color(0xFF4D5569),
-                                      fontSize: 14),
-                                ),
-                                Row(
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Image.asset(
-                                          'assets/Paper.png',
-                                          width: 13,
-                                        ),
-                                        const SizedBox(
-                                          width: 6,
-                                        ),
-                                        Text(
-                                          '3 Kelas',
-                                          style: GoogleFonts.rubik(
-                                              color: const Color(0xFF4D5569),
-                                              fontSize: 12),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 3.0, vertical: 10),
-                        child: Container(
-                          margin: const EdgeInsets.only(left: 21),
-                          width: bodyHeight * 0.28,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.white,
-                            boxShadow: const [
-                              BoxShadow(
-                                color: Color.fromRGBO(202, 184, 184, 0.25),
-                                blurRadius: 3.0,
-                                offset: Offset(0.0, 2.0),
-                              ),
-                            ],
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 15.0, vertical: 18.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Center(
-                                  child: Image.asset(
-                                    'assets/Slide-3.png',
-                                    width: bodyHeight * 0.2,
-                                  ),
-                                ),
-                                Text(
-                                  'Kelas 7',
-                                  style: GoogleFonts.rubik(
-                                      fontWeight: FontWeight.w600,
-                                      color: const Color(0xFF4D5569),
-                                      fontSize: 14),
-                                ),
-                                Row(
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Image.asset(
-                                          'assets/Paper.png',
-                                          width: 13,
-                                        ),
-                                        const SizedBox(
-                                          width: 6,
-                                        ),
-                                        Text(
-                                          '3 Kelas',
-                                          style: GoogleFonts.rubik(
-                                              color: const Color(0xFF4D5569),
-                                              fontSize: 12),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 21,
-                      )
-                    ],
+                      );
+                    },
                   ),
                 ),
                 Flexible(
-                  child: SizedBox(
-                    width: mediaQueryWidth,
-                    // color: Colors.amber,
-                    child: Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.asset(
-                            'assets/Bertanya.png',
-                            width: 150,
+                  child: aktif == 0
+                      ? Container(
+                          width: mediaQueryWidth,
+                          color: Colors.white,
+                          child: Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.asset(
+                                  'assets/Bertanya.png',
+                                  width: 150,
+                                ),
+                                Text(
+                                  "Pilih kelas terlebih dahulu",
+                                  style: GoogleFonts.notoSans(
+                                      color: const Color(0xFF797F8F),
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w400),
+                                )
+                              ],
+                            ),
                           ),
-                          Text(
-                            "Pilih kelas terlebih dahulu",
-                            style: GoogleFonts.notoSans(
-                                color: const Color(0xFF797F8F),
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
+                        )
+                      : Container(
+                          padding:
+                              EdgeInsets.only(left: 24.0, right: 24, top: 15),
+                          color: Colors.white,
+                          width: mediaQueryWidth,
+                          height: bodyHeight * 0.3025,
+                          child: ListView.separated(
+                            separatorBuilder: (context, index) => SizedBox(
+                              height: mediaQueryHeight * 0.025,
+                            ),
+                            itemCount: 3,
+                            itemBuilder: (context, index) {
+                              return Container(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 16),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(6),
+                                    color: Colors.white,
+                                    boxShadow: const [
+                                      BoxShadow(
+                                          color: Color.fromARGB(
+                                              255, 237, 237, 237),
+                                          blurRadius: 6.0,
+                                          offset: Offset(0, 2)),
+                                    ]),
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 10.0, right: 15.0),
+                                  child: Column(
+                                    children: [
+                                      InkWell(
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Container(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 10),
+                                              child: Text(
+                                                "Kelas ${aktif}${subkelas[index]}",
+                                                style: TextStyle(
+                                                    fontSize: 14,
+                                                    fontWeight:
+                                                        FontWeight.w600),
+                                              ),
+                                            ),
+                                            const Icon(Icons.arrow_forward_ios,
+                                                size: 20),
+                                          ],
+                                        ),
+                                        onTap: () {
+                                          Navigator.pushReplacement(
+                                            context,
+                                            PageRouteBuilder(
+                                              pageBuilder: (context, animation1,
+                                                      animation2) =>
+                                                  KartuPelajar2(),
+                                              transitionDuration: Duration.zero,
+                                              reverseTransitionDuration:
+                                                  Duration.zero,
+                                            ),
+                                          );
+                                        },
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
                 ),
               ],
             ),
