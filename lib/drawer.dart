@@ -1,3 +1,8 @@
+import 'package:cekula/laporan_data_murid/laporan_data_murid1.dart';
+import 'package:cekula/laporan_keuangan/laporan_keuangan1.dart';
+import 'package:cekula/laporan_presensi_murid/laporan_presensi_murid1.dart';
+import 'package:cekula/laporan_presensi_pegawai/laporan_presensi_pegawai1.dart';
+import 'package:cekula/presensi_murid/presensi_murid1.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cekula/berita_kelas/berita_kelas1.dart';
@@ -507,16 +512,16 @@ class _DrawerViewState extends State<DrawerView> {
                                   fontSize: 12, fontWeight: FontWeight.w400),
                             ),
                             onTap: () {
-                              // Navigator.pushReplacement(
-                              //   context,
-                              //   PageRouteBuilder(
-                              //     pageBuilder:
-                              //         (context, animation1, animation2) =>
-                              //             BeritaKelas1(),
-                              //     transitionDuration: Duration.zero,
-                              //     reverseTransitionDuration: Duration.zero,
-                              //   ),
-                              // );
+                              Navigator.pushReplacement(
+                                context,
+                                PageRouteBuilder(
+                                  pageBuilder:
+                                      (context, animation1, animation2) =>
+                                          PresensiMurid1(),
+                                  transitionDuration: Duration.zero,
+                                  reverseTransitionDuration: Duration.zero,
+                                ),
+                              );
                             },
                           ),
                         ]),
@@ -1108,16 +1113,16 @@ class _DrawerViewState extends State<DrawerView> {
                                   fontSize: 12, fontWeight: FontWeight.w400),
                             ),
                             onTap: () {
-                              // Navigator.pushReplacement(
-                              //   context,
-                              //   PageRouteBuilder(
-                              //     pageBuilder:
-                              //         (context, animation1, animation2) =>
-                              //             RevBuatJadwalKelas(),
-                              //     transitionDuration: Duration.zero,
-                              //     reverseTransitionDuration: Duration.zero,
-                              //   ),
-                              // );
+                              Navigator.pushReplacement(
+                                context,
+                                PageRouteBuilder(
+                                  pageBuilder:
+                                      (context, animation1, animation2) =>
+                                          LaporanPresensiPegawai1(),
+                                  transitionDuration: Duration.zero,
+                                  reverseTransitionDuration: Duration.zero,
+                                ),
+                              );
                             },
                           ),
                           SizedBox(
@@ -1130,16 +1135,16 @@ class _DrawerViewState extends State<DrawerView> {
                                   fontSize: 12, fontWeight: FontWeight.w400),
                             ),
                             onTap: () {
-                              // Navigator.pushReplacement(
-                              //   context,
-                              //   PageRouteBuilder(
-                              //     pageBuilder:
-                              //         (context, animation1, animation2) =>
-                              //             EditJadwalSekolah(),
-                              //     transitionDuration: Duration.zero,
-                              //     reverseTransitionDuration: Duration.zero,
-                              //   ),
-                              // );
+                              Navigator.pushReplacement(
+                                context,
+                                PageRouteBuilder(
+                                  pageBuilder:
+                                      (context, animation1, animation2) =>
+                                          LaporanPresensiMurid1(),
+                                  transitionDuration: Duration.zero,
+                                  reverseTransitionDuration: Duration.zero,
+                                ),
+                              );
                             },
                           ),
                           SizedBox(
@@ -1152,16 +1157,16 @@ class _DrawerViewState extends State<DrawerView> {
                                   fontSize: 12, fontWeight: FontWeight.w400),
                             ),
                             onTap: () {
-                              // Navigator.pushReplacement(
-                              //   context,
-                              //   PageRouteBuilder(
-                              //     pageBuilder:
-                              //         (context, animation1, animation2) =>
-                              //             RaporMurid1(),
-                              //     transitionDuration: Duration.zero,
-                              //     reverseTransitionDuration: Duration.zero,
-                              //   ),
-                              // );
+                              Navigator.pushReplacement(
+                                context,
+                                PageRouteBuilder(
+                                  pageBuilder:
+                                      (context, animation1, animation2) =>
+                                          LaporanDataMurid1(),
+                                  transitionDuration: Duration.zero,
+                                  reverseTransitionDuration: Duration.zero,
+                                ),
+                              );
                             },
                           ),
                           SizedBox(
@@ -1174,16 +1179,16 @@ class _DrawerViewState extends State<DrawerView> {
                                   fontSize: 12, fontWeight: FontWeight.w400),
                             ),
                             onTap: () {
-                              // Navigator.pushReplacement(
-                              //   context,
-                              //   PageRouteBuilder(
-                              //     pageBuilder:
-                              //         (context, animation1, animation2) =>
-                              //             PenilaianPembelajaran1(),
-                              //     transitionDuration: Duration.zero,
-                              //     reverseTransitionDuration: Duration.zero,
-                              //   ),
-                              // );
+                              Navigator.pushReplacement(
+                                context,
+                                PageRouteBuilder(
+                                  pageBuilder:
+                                      (context, animation1, animation2) =>
+                                          LaporanKeuangan1(),
+                                  transitionDuration: Duration.zero,
+                                  reverseTransitionDuration: Duration.zero,
+                                ),
+                              );
                             },
                           ),
                           SizedBox(

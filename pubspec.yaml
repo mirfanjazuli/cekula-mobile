@@ -38,6 +38,7 @@ dependencies:
   custom_radio_grouped_button: any
   rflutter_alert: ^2.0.2
   http: ^0.13.4
+  image_picker: ^0.8.3
 
 dev_dependencies:
   flutter_test:
@@ -79,12 +80,16 @@ flutter:
     - assets/Profile.png
     - assets/Calendar.png
     - assets/Arrow-R.png
+    - assets/Arrow-R-Circle.png
     - assets/Arrow-U.png
     - assets/Arrow-D.png
     - assets/Kalender.png
     - assets/Upload.png
+    - assets/download.png
     - assets/Search.png
     - assets/Camera.png
+    - assets/Camera-2.png
+    - assets/face-camera.png
     - assets/Profil.png
     - assets/Image.png
     - assets/berita-sekolah-1.png
@@ -129,6 +134,7 @@ flutter:
     - assets/logo.png
     - assets/bottom.png
     - assets/ppdb.png
+    - assets/Keuangan.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
