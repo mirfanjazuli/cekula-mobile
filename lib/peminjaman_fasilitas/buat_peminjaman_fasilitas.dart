@@ -1,5 +1,6 @@
 import 'package:cekula/peminjaman_fasilitas/peminjaman_fasilitas1.dart';
 import 'package:cekula/radio/radio_fasilitas.dart';
+import 'package:cekula/radio/radio_ruangan.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cekula/drawer.dart';
@@ -17,6 +18,20 @@ class BuatPeminjamanFasilitas extends StatefulWidget {
 }
 
 class _BuatPeminjamanFasilitasState extends State<BuatPeminjamanFasilitas> {
+  String aktif = 'barang';
+
+  void pilihBarang() {
+    setState(() {
+      aktif = 'barang';
+    });
+  }
+
+  void pilihRuangan() {
+    setState(() {
+      aktif = 'ruangan';
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final mediaQueryHeight = MediaQuery.of(context).size.height;
@@ -49,7 +64,7 @@ class _BuatPeminjamanFasilitasState extends State<BuatPeminjamanFasilitas> {
             SingleChildScrollView(
               child: Container(
                 margin: EdgeInsets.only(
-                  top: bodyHeight * 0.10625 + 20,
+                  top: bodyHeight * 0.10625 + bodyHeight * 0.0875,
                 ),
                 color: Colors.white,
                 child: Column(
@@ -58,13 +73,13 @@ class _BuatPeminjamanFasilitasState extends State<BuatPeminjamanFasilitas> {
                   children: [
                     Container(
                       margin: const EdgeInsets.symmetric(horizontal: 24),
-                      height: bodyHeight * (1 - 0.10625) - 87 - paddingHeight,
+                      height: bodyHeight -
+                          (bodyHeight * 0.10625 + bodyHeight * 0.0875) -
+                          39 -
+                          48,
                       color: Colors.white,
                       child: ListView(
                         children: [
-                          const SizedBox(
-                            height: 10,
-                          ),
                           Text(
                             "Pilih Fasilitas",
                             style: GoogleFonts.notoSans(
@@ -75,10 +90,15 @@ class _BuatPeminjamanFasilitasState extends State<BuatPeminjamanFasilitas> {
                           const SizedBox(
                             height: 10,
                           ),
-                          SizedBox(
-                            height: 58,
-                            child: RadioFasilitas(),
-                          ),
+                          aktif == 'barang'
+                              ? SizedBox(
+                                  height: 58,
+                                  child: RadioFasilitas(),
+                                )
+                              : SizedBox(
+                                  height: 92,
+                                  child: RadioRuangan(),
+                                ),
                           const SizedBox(
                             height: 15,
                           ),
@@ -308,75 +328,155 @@ class _BuatPeminjamanFasilitasState extends State<BuatPeminjamanFasilitas> {
                 SizedBox(
                   height: bodyHeight * 0.13125,
                   width: mediaQueryWidth,
-                  child: Stack(
-                    children: [
-                      AppBar(
-                        automaticallyImplyLeading: false,
-                        leadingWidth: 20,
-                        toolbarHeight: bodyHeight * 0.10625,
-                        backgroundColor: Colors.white,
-                        elevation: 0.0,
-                        title: Padding(
-                          padding: const EdgeInsets.only(top: 20.0),
-                          child: Row(
-                            children: [
-                              Builder(builder: (context) {
-                                return IconButton(
-                                    onPressed: () {
-                                      Navigator.pushReplacement(
-                                        context,
-                                        PageRouteBuilder(
-                                          pageBuilder: (context, animation1,
-                                                  animation2) =>
-                                              const PeminjamanFasilitas1(),
-                                          transitionDuration: Duration.zero,
-                                          reverseTransitionDuration:
-                                              Duration.zero,
-                                        ),
-                                      );
-                                    },
-                                    icon: const Icon(Icons.arrow_back));
-                              }),
-                              Text(
-                                "Peminjaman Fasilitas",
-                                style: GoogleFonts.rubik(
-                                    fontSize: 20, fontWeight: FontWeight.w600),
-                              ),
-                            ],
+                  child: AppBar(
+                    automaticallyImplyLeading: false,
+                    leadingWidth: 20,
+                    toolbarHeight: bodyHeight * 0.10625,
+                    backgroundColor: Colors.white,
+                    elevation: 0.0,
+                    title: Padding(
+                      padding: const EdgeInsets.only(top: 20.0),
+                      child: Row(
+                        children: [
+                          Builder(builder: (context) {
+                            return IconButton(
+                                onPressed: () {
+                                  Navigator.pushReplacement(
+                                    context,
+                                    PageRouteBuilder(
+                                      pageBuilder:
+                                          (context, animation1, animation2) =>
+                                              PeminjamanFasilitas1(),
+                                      transitionDuration: Duration.zero,
+                                      reverseTransitionDuration: Duration.zero,
+                                    ),
+                                  );
+                                },
+                                icon: const Icon(Icons.arrow_back));
+                          }),
+                          Text(
+                            "Peminjaman Fasilitas",
+                            style: GoogleFonts.rubik(
+                                fontSize: 20, fontWeight: FontWeight.w600),
                           ),
-                        ),
-                        flexibleSpace: Container(
-                          width: mediaQueryWidth,
-                          decoration: const BoxDecoration(
-                            gradient: LinearGradient(
-                              begin: Alignment.centerLeft,
-                              end: Alignment.centerRight,
-                              colors: <Color>[
-                                Color(0xFF9FC3F9),
-                                Color(0xFF83DBE0),
-                              ],
-                            ),
-                          ),
+                        ],
+                      ),
+                    ),
+                    flexibleSpace: Container(
+                      width: mediaQueryWidth,
+                      decoration: const BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.centerLeft,
+                          end: Alignment.centerRight,
+                          colors: <Color>[
+                            Color(0xFF9FC3F9),
+                            Color(0xFF83DBE0),
+                          ],
                         ),
                       ),
-                    ],
+                    ),
                   ),
                 ),
               ],
             ),
             Positioned(
-                top: bodyHeight * 0.10625 - 1,
-                child: Container(
-                  width: mediaQueryWidth,
-                  height:
-                      (bodyHeight * 0.13125) - (bodyHeight * 0.10625 - 1) + 1,
-                  decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(20),
-                        topRight: Radius.circular(20)),
-                    color: Colors.white,
+              top: bodyHeight * 0.10625 - 1,
+              child: Container(
+                padding: const EdgeInsets.only(top: 10),
+                width: mediaQueryWidth,
+                height: bodyHeight * 0.0875,
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(20),
+                      topRight: Radius.circular(20)),
+                  color: Colors.white,
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          InkWell(
+                            child: Text(
+                              "Barang",
+                              style: GoogleFonts.notoSans(
+                                  fontSize: 14,
+                                  fontWeight: aktif == 'barang'
+                                      ? FontWeight.w600
+                                      : FontWeight.normal),
+                            ),
+                            onTap: () {
+                              pilihBarang();
+                            },
+                          ),
+                          Container(
+                            margin: const EdgeInsets.only(top: 10),
+                            height: 3,
+                            width: mediaQueryWidth * 0.4,
+                            decoration: aktif == 'barang'
+                                ? BoxDecoration(
+                                    borderRadius: BorderRadius.only(
+                                        topRight: Radius.circular(40),
+                                        topLeft: Radius.circular(40)),
+                                    gradient: LinearGradient(
+                                      begin: Alignment.topCenter,
+                                      end: Alignment.bottomCenter,
+                                      colors: <Color>[
+                                        Color(0xFF9FC3F9),
+                                        Color(0xFF83DBE0),
+                                      ],
+                                    ),
+                                  )
+                                : BoxDecoration(),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          InkWell(
+                            child: Text(
+                              "Ruangan",
+                              style: GoogleFonts.notoSans(
+                                  fontSize: 14,
+                                  fontWeight: aktif == 'ruangan'
+                                      ? FontWeight.w600
+                                      : FontWeight.normal),
+                            ),
+                            onTap: () {
+                              pilihRuangan();
+                            },
+                          ),
+                          Container(
+                            margin: const EdgeInsets.only(top: 10),
+                            height: 3,
+                            width: mediaQueryWidth * 0.4,
+                            decoration: aktif == 'ruangan'
+                                ? BoxDecoration(
+                                    borderRadius: BorderRadius.only(
+                                        topRight: Radius.circular(40),
+                                        topLeft: Radius.circular(40)),
+                                    gradient: LinearGradient(
+                                      begin: Alignment.topCenter,
+                                      end: Alignment.bottomCenter,
+                                      colors: <Color>[
+                                        Color(0xFF9FC3F9),
+                                        Color(0xFF83DBE0),
+                                      ],
+                                    ),
+                                  )
+                                : BoxDecoration(),
+                          ),
+                        ],
+                      )
+                    ],
                   ),
-                )),
+                ),
+              ),
+            ),
           ],
         ),
       ),
@@ -396,24 +496,32 @@ class _RoundedAlertBoxState extends State<RoundedAlertBox> {
   Widget build(BuildContext context) {
     final mediaQueryWidth = MediaQuery.of(context).size.width;
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
-      width: mediaQueryWidth,
-      height: 39,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(5),
-        gradient: const LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [Color(0xFF9FC3F9), Color(0xFF83DBE0)],
+      color: Colors.white,
+      height: 39 + 24 + 24,
+      child: Center(
+        child: Container(
+          margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 0),
+          width: mediaQueryWidth,
+          height: 39,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(5),
+            gradient: const LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [Color(0xFF9FC3F9), Color(0xFF83DBE0)],
+            ),
+          ),
+          child: MaterialButton(
+            child: Text(
+              'Simpan Peminjaman',
+              style: GoogleFonts.notoSans(
+                  color: Colors.white,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600),
+            ),
+            onPressed: openAlertBox,
+          ),
         ),
-      ),
-      child: MaterialButton(
-        child: Text(
-          'Simpan Peminjaman',
-          style: GoogleFonts.notoSans(
-              color: Colors.white, fontSize: 14, fontWeight: FontWeight.w600),
-        ),
-        onPressed: openAlertBox,
       ),
     );
   }

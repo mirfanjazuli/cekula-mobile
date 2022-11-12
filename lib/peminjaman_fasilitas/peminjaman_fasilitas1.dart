@@ -1,11 +1,79 @@
 import 'package:cekula/peminjaman_fasilitas/buat_peminjaman_fasilitas.dart';
 import 'package:cekula/peminjaman_fasilitas/edit_peminjaman_fasilitas.dart';
+import 'package:cekula/peminjaman_fasilitas/riwayat_peminjaman.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cekula/drawer.dart';
 
-class PeminjamanFasilitas1 extends StatelessWidget {
-  const PeminjamanFasilitas1({Key? key}) : super(key: key);
+class PeminjamanFasilitas1 extends StatefulWidget {
+  PeminjamanFasilitas1({Key? key}) : super(key: key);
+
+  @override
+  State<PeminjamanFasilitas1> createState() => _PeminjamanFasilitas1State();
+}
+
+class _PeminjamanFasilitas1State extends State<PeminjamanFasilitas1> {
+  String aktif = 'barang';
+
+  void pilihBarang() {
+    setState(() {
+      aktif = 'barang';
+    });
+  }
+
+  void pilihRuangan() {
+    setState(() {
+      aktif = 'ruangan';
+    });
+  }
+
+  final List nama = [
+    "Ahmad Jourji Zaidan",
+    "Arsenio Hamas Syahid",
+    "Daryl Mahardikasiandi",
+    "Dini Anjani",
+    "Muhammad Irfan Jazuli",
+  ];
+
+  final List tanggal = [
+    "02/08/2022",
+    "22/11/2022",
+    "04/11/2022",
+    "22/11/2022",
+    "04/11/2022",
+  ];
+
+  final List jumlahBarang = [
+    "1",
+    "1",
+    "2",
+    "1",
+    "3",
+  ];
+
+  final List namaBarang = [
+    "Bola Basket",
+    "Bola Voli",
+    "Bola Sepak",
+    "Net Voli",
+    "Proyektor",
+  ];
+
+  final List kode = [
+    "BB240001",
+    "BV208923",
+    "BV208924",
+    "BV203465",
+    "BV256924",
+  ];
+
+  final List status = [
+    true,
+    false,
+    true,
+    false,
+    false,
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -19,13 +87,12 @@ class PeminjamanFasilitas1 extends StatelessWidget {
         children: [
           AppBar(
             automaticallyImplyLeading: false,
+            leadingWidth: 20,
             toolbarHeight: bodyHeight * 0.10625,
             backgroundColor: const Color(0xFF9FC3F9),
             elevation: 0.0,
             title: Padding(
-              padding: const EdgeInsets.only(
-                top: 20.0,
-              ),
+              padding: const EdgeInsets.only(top: 20.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -53,15 +120,15 @@ class PeminjamanFasilitas1 extends StatelessWidget {
                         width: 24,
                       ),
                       onTap: () {
-                        // Navigator.pushReplacement(
-                        //   context,
-                        //   PageRouteBuilder(
-                        //     pageBuilder: (context, animation1, animation2) =>
-                        //         const PeminjamanFasilitas1(),
-                        //     transitionDuration: Duration.zero,
-                        //     reverseTransitionDuration: Duration.zero,
-                        //   ),
-                        // );
+                        Navigator.pushReplacement(
+                          context,
+                          PageRouteBuilder(
+                            pageBuilder: (context, animation1, animation2) =>
+                                RiwayatPeminjaman(),
+                            transitionDuration: Duration.zero,
+                            reverseTransitionDuration: Duration.zero,
+                          ),
+                        );
                       },
                     ),
                   ),
@@ -89,174 +156,197 @@ class PeminjamanFasilitas1 extends StatelessWidget {
                 Stack(
                   children: [
                     Flexible(
-                      child: Column(
-                        children: [
-                          Container(
-                            margin: EdgeInsets.only(
-                              top: bodyHeight * 0.0875 - 23 + 60,
-                            ),
-                            height: bodyHeight * (1 - 0.10625 - 0.0875) + 50,
-                            width: mediaQueryWidth,
-                            color: Colors.white,
-                            child: ListView(children: [
-                              Container(
-                                margin: EdgeInsets.symmetric(horizontal: 24),
-                                width: mediaQueryWidth,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(6),
-                                    color: Colors.white,
-                                    boxShadow: const [
-                                      BoxShadow(
-                                          color: Color.fromARGB(
-                                              255, 237, 237, 237),
-                                          blurRadius: 6.0,
-                                          offset: Offset(0, 2)),
-                                    ]),
-                                // color: Colors.red,
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 10.0),
-                                  child: Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(top: 8.0),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              "Edwin Fatkhur Rozi",
-                                              style: GoogleFonts.notoSans(
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w600,
-                                                color: const Color(0xFF4D5569),
-                                              ),
+                      child: Container(
+                        margin: EdgeInsets.only(
+                          top: bodyHeight * 0.0875 - 23,
+                        ),
+                        height: bodyHeight * (1 - 0.10625 - 0.0875) + 50,
+                        width: mediaQueryWidth,
+                        color: Colors.white,
+                        child: ListView.separated(
+                          separatorBuilder: (context, index) => SizedBox(
+                            height: 24,
+                          ),
+                          padding: const EdgeInsets.only(top: 25, bottom: 124),
+                          itemCount: nama.length,
+                          itemBuilder: (context, index) {
+                            return Container(
+                              margin: EdgeInsets.symmetric(horizontal: 24),
+                              width: mediaQueryWidth,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(6),
+                                  color: Colors.white,
+                                  boxShadow: const [
+                                    BoxShadow(
+                                        color:
+                                            Color.fromARGB(255, 237, 237, 237),
+                                        blurRadius: 6.0,
+                                        offset: Offset(0, 2)),
+                                  ]),
+                              // color: Colors.red,
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 10.0),
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 8.0),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            nama[index],
+                                            style: GoogleFonts.notoSans(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w600,
+                                              color: const Color(0xFF4D5569),
                                             ),
-                                            Text(
-                                              "1",
-                                              style: GoogleFonts.notoSans(
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w600,
-                                                color: const Color(0xFF4D5569),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(top: 4.0),
-                                        child: Text(
-                                          "02/08/2022",
-                                          style: GoogleFonts.notoSans(
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w400,
-                                            color: const Color(0xFF4D5569),
                                           ),
+                                          Text(
+                                            jumlahBarang[index],
+                                            style: GoogleFonts.notoSans(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w600,
+                                              color: const Color(0xFF4D5569),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 4.0),
+                                      child: Text(
+                                        tanggal[index],
+                                        style: GoogleFonts.notoSans(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w400,
+                                          color: const Color(0xFF4D5569),
                                         ),
                                       ),
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(top: 4.0),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              "Bola Basket",
-                                              style: GoogleFonts.notoSans(
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.w400,
-                                                color: const Color(0xFF4D5569),
-                                              ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 4.0),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            namaBarang[index],
+                                            style: GoogleFonts.notoSans(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w400,
+                                              color: const Color(0xFF4D5569),
                                             ),
-                                            Container(
-                                              height: 24,
-                                              width: 125,
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(3),
-                                                color: Color(0xFFE9FFE1),
-                                              ),
-                                              child: Center(
-                                                child: Text(
-                                                  "Sudah Dikembalikan",
-                                                  style: GoogleFonts.notoSans(
-                                                    fontSize: 12,
-                                                    fontWeight: FontWeight.w600,
-                                                    color:
-                                                        const Color(0xFF73D552),
+                                          ),
+                                          status[index] == true
+                                              ? Container(
+                                                  height: 24,
+                                                  width: 130,
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            3),
+                                                    color: Color(0xFFE9FFE1),
                                                   ),
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            top: 16.0, bottom: 8.0),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              "BB24001",
-                                              style: GoogleFonts.notoSans(
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w600,
-                                                color: const Color(0xFFA9C9FA),
-                                              ),
-                                            ),
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.end,
-                                              children: [
-                                                InkWell(
-                                                  child: Image.asset(
-                                                    'assets/Edit.png',
-                                                    width: 16,
-                                                  ),
-                                                  onTap: () {
-                                                    Navigator.pushReplacement(
-                                                      context,
-                                                      PageRouteBuilder(
-                                                        pageBuilder: (context,
-                                                                animation1,
-                                                                animation2) =>
-                                                            const EditPeminjamanFasilitas(),
-                                                        transitionDuration:
-                                                            Duration.zero,
-                                                        reverseTransitionDuration:
-                                                            Duration.zero,
+                                                  child: Center(
+                                                    child: Text(
+                                                      "Sudah Dikembalikan",
+                                                      style:
+                                                          GoogleFonts.notoSans(
+                                                        fontSize: 12,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        color: const Color(
+                                                            0xFF73D552),
                                                       ),
-                                                    );
-                                                  },
+                                                    ),
+                                                  ),
+                                                )
+                                              : Container(
+                                                  height: 24,
+                                                  width: 130,
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            3),
+                                                    color: Color(0xFFFDE1D5),
+                                                  ),
+                                                  child: Center(
+                                                    child: Text(
+                                                      "Belum Dikembalikan",
+                                                      style:
+                                                          GoogleFonts.notoSans(
+                                                        fontSize: 12,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        color: const Color(
+                                                            0xFFED65622),
+                                                      ),
+                                                    ),
+                                                  ),
                                                 ),
-                                                const SizedBox(
-                                                  width: 8,
-                                                ),
-                                                const RoundedAlertBox()
-                                              ],
-                                            ),
-                                          ],
-                                        ),
+                                        ],
                                       ),
-                                    ],
-                                  ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          top: 16.0, bottom: 8.0),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            kode[index],
+                                            style: GoogleFonts.notoSans(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w600,
+                                              color: const Color(0xFFA9C9FA),
+                                            ),
+                                          ),
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.end,
+                                            children: [
+                                              InkWell(
+                                                child: Image.asset(
+                                                  'assets/Edit.png',
+                                                  width: 16,
+                                                ),
+                                                onTap: () {
+                                                  Navigator.pushReplacement(
+                                                    context,
+                                                    PageRouteBuilder(
+                                                      pageBuilder: (context,
+                                                              animation1,
+                                                              animation2) =>
+                                                          const EditPeminjamanFasilitas(),
+                                                      transitionDuration:
+                                                          Duration.zero,
+                                                      reverseTransitionDuration:
+                                                          Duration.zero,
+                                                    ),
+                                                  );
+                                                },
+                                              ),
+                                              const SizedBox(
+                                                width: 8,
+                                              ),
+                                              const RoundedAlertBox()
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
-                              const SizedBox(
-                                height: 172,
-                              )
-                            ]),
-                          ),
-                        ],
+                            );
+                          },
+                        ),
                       ),
                     ),
                   ],
@@ -280,7 +370,7 @@ class PeminjamanFasilitas1 extends StatelessWidget {
                     Container(
                       padding: const EdgeInsets.only(top: 10),
                       width: mediaQueryWidth,
-                      height: bodyHeight * 0.0875 + 60,
+                      height: bodyHeight * 0.0875,
                       decoration: const BoxDecoration(
                         borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(20),
@@ -289,149 +379,85 @@ class PeminjamanFasilitas1 extends StatelessWidget {
                       ),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                        child: Column(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    InkWell(
-                                      child: Text(
-                                        "Barang",
-                                        style: GoogleFonts.notoSans(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w600),
-                                      ),
-                                      onTap: () {
-                                        // Navigator.pushReplacement(
-                                        //   context,
-                                        //   PageRouteBuilder(
-                                        //     pageBuilder: (context, animation1,
-                                        //             animation2) =>
-                                        //         const DaftarEkstra1(),
-                                        //     transitionDuration: Duration.zero,
-                                        //     reverseTransitionDuration:
-                                        //         Duration.zero,
-                                        //   ),
-                                        // );
-                                      },
-                                    ),
-                                    Container(
-                                      margin: const EdgeInsets.only(top: 10),
-                                      height: 3,
-                                      width: mediaQueryWidth * 0.4,
-                                      decoration: const BoxDecoration(
-                                        borderRadius: BorderRadius.only(
-                                            topRight: Radius.circular(40),
-                                            topLeft: Radius.circular(40)),
-                                        gradient: LinearGradient(
-                                          begin: Alignment.topCenter,
-                                          end: Alignment.bottomCenter,
-                                          colors: <Color>[
-                                            Color(0xFF9FC3F9),
-                                            Color(0xFF83DBE0),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ],
+                                InkWell(
+                                  child: Text(
+                                    "Barang",
+                                    style: GoogleFonts.notoSans(
+                                        fontSize: 14,
+                                        fontWeight: aktif == 'barang'
+                                            ? FontWeight.w600
+                                            : FontWeight.normal),
+                                  ),
+                                  onTap: () {
+                                    pilihBarang();
+                                  },
                                 ),
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    InkWell(
-                                      child: Text("Ruangan",
-                                          style: GoogleFonts.notoSans(
-                                              fontSize: 14)),
-                                      onTap: () {
-                                        // Navigator.pushReplacement(
-                                        //   context,
-                                        //   // PageRouteBuilder(
-                                        //   //   pageBuilder: (context, animation1,
-                                        //   //           animation2) =>
-                                        //   //       JadwalKelas1(),
-                                        //   //   transitionDuration: Duration.zero,
-                                        //   //   reverseTransitionDuration:
-                                        //   //       Duration.zero,
-                                        //   // ),
-                                        // );
-                                      },
-                                    ),
-                                    Container(
-                                      margin: const EdgeInsets.only(top: 10),
-                                      height: 3,
-                                      width: mediaQueryWidth * 0.4,
-                                      decoration: const BoxDecoration(
-                                        borderRadius: BorderRadius.only(
-                                            topRight: Radius.circular(40),
-                                            topLeft: Radius.circular(40)),
-                                        // gradient: LinearGradient(
-                                        //   begin: Alignment.topCenter,
-                                        //   end: Alignment.bottomCenter,
-                                        //   colors: <Color>[
-                                        //     Color(0xFF9FC3F9),
-                                        //     Color(0xFF83DBE0),
-                                        //   ],
-                                        // ),
-                                      ),
-                                    ),
-                                  ],
+                                Container(
+                                  margin: const EdgeInsets.only(top: 10),
+                                  height: 3,
+                                  width: mediaQueryWidth * 0.4,
+                                  decoration: aktif == 'barang'
+                                      ? BoxDecoration(
+                                          borderRadius: BorderRadius.only(
+                                              topRight: Radius.circular(40),
+                                              topLeft: Radius.circular(40)),
+                                          gradient: LinearGradient(
+                                            begin: Alignment.topCenter,
+                                            end: Alignment.bottomCenter,
+                                            colors: <Color>[
+                                              Color(0xFF9FC3F9),
+                                              Color(0xFF83DBE0),
+                                            ],
+                                          ),
+                                        )
+                                      : BoxDecoration(),
                                 ),
                               ],
                             ),
-
-                            //Seacrh
-                            // Container(
-                            //   margin:  const EdgeInsets.symmetric(vertical: 20),
-                            //   height: 40,
-                            //   width: 312,
-                            //   decoration: BoxDecoration(
-                            //       color: const Color(0xFFEDF1F7),
-                            //       borderRadius: BorderRadius.circular(10)),
-                            // ),
-                            // TextField(
-                            //   // controller: searchController,
-                            //   decoration: InputDecoration(
-                            //     hintText: 'Cari nama murid',
-                            //     contentpadding:  const EdgeInsets.fromLTRB(
-                            //         20.0, 15.0, 20.0, 15.0),
-                            //   ),
-                            // ),
-                            Container(
-                              alignment: Alignment.center,
-                              margin: const EdgeInsets.only(top: 20),
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 10),
-                              height: 40,
-                              decoration: BoxDecoration(
-                                color: const Color(0xFFEDF1F7),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: Row(
-                                children: <Widget>[
-                                  Expanded(
-                                    child: TextField(
-                                      onChanged: (value) {},
-                                      decoration: InputDecoration(
-                                        hintText: "Cari nama peminjam",
-                                        hintStyle: GoogleFonts.notoSans(
-                                            color: const Color(0xFFD2D4DA),
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w400),
-                                        enabledBorder: InputBorder.none,
-                                        focusedBorder: InputBorder.none,
-                                      ),
-                                    ),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                InkWell(
+                                  child: Text(
+                                    "Ruangan",
+                                    style: GoogleFonts.notoSans(
+                                        fontSize: 14,
+                                        fontWeight: aktif == 'ruangan'
+                                            ? FontWeight.w600
+                                            : FontWeight.normal),
                                   ),
-                                  Image.asset(
-                                    'assets/Search.png',
-                                    width: 20,
-                                  ),
-                                ],
-                              ),
-                            ),
+                                  onTap: () {
+                                    pilihRuangan();
+                                  },
+                                ),
+                                Container(
+                                  margin: const EdgeInsets.only(top: 10),
+                                  height: 3,
+                                  width: mediaQueryWidth * 0.4,
+                                  decoration: aktif == 'ruangan'
+                                      ? BoxDecoration(
+                                          borderRadius: BorderRadius.only(
+                                              topRight: Radius.circular(40),
+                                              topLeft: Radius.circular(40)),
+                                          gradient: LinearGradient(
+                                            begin: Alignment.topCenter,
+                                            end: Alignment.bottomCenter,
+                                            colors: <Color>[
+                                              Color(0xFF9FC3F9),
+                                              Color(0xFF83DBE0),
+                                            ],
+                                          ),
+                                        )
+                                      : BoxDecoration(),
+                                ),
+                              ],
+                            )
                           ],
                         ),
                       ),
@@ -518,7 +544,6 @@ class _RoundedAlertBoxState extends State<RoundedAlertBox> {
             content: SizedBox(
               width: 290,
               height: 295,
-              // color: Colors.amber,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -535,7 +560,7 @@ class _RoundedAlertBoxState extends State<RoundedAlertBox> {
                             context,
                             PageRouteBuilder(
                               pageBuilder: (context, animation1, animation2) =>
-                                  const PeminjamanFasilitas1(),
+                                  PeminjamanFasilitas1(),
                               transitionDuration: Duration.zero,
                               reverseTransitionDuration: Duration.zero,
                             ),
@@ -555,7 +580,7 @@ class _RoundedAlertBoxState extends State<RoundedAlertBox> {
                     height: 10,
                   ),
                   Text(
-                    "Apakah Yakin Fasilitas\nSudah Dikembalikan?",
+                    "Yakin Ingin Menghapus?",
                     style: GoogleFonts.notoSans(
                         fontSize: 16, fontWeight: FontWeight.w600),
                     textAlign: TextAlign.center,
@@ -570,7 +595,6 @@ class _RoundedAlertBoxState extends State<RoundedAlertBox> {
                       child: const Text('Ya'),
                       style: OutlinedButton.styleFrom(
                         primary: const Color(0xFF9FC3F9),
-                        // backgroundColor: Colors.teal,
                         side: const BorderSide(
                             color: Color(0xFF9FC3F9), width: 1),
                       ),
