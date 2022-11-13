@@ -1,25 +1,10 @@
+import 'package:cekula/produk_koperasi/produk_koperasi1.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cekula/drawer.dart';
-import 'package:cekula/jadwal_sekolah/jadwal_sekolah1.dart';
 
-class EditJadwalSekolah extends StatefulWidget {
-  const EditJadwalSekolah({Key? key}) : super(key: key);
-
-  @override
-  State<EditJadwalSekolah> createState() => _EditJadwalSekolahState();
-}
-
-class _EditJadwalSekolahState extends State<EditJadwalSekolah> {
-  final TextEditingController _hurufcontroller = TextEditingController();
-
-  int _charHuruf = 0;
-
-  _onChangedHuruf(String value) {
-    setState(() {
-      _charHuruf = value.split(" ").length;
-    });
-  }
+class EditProdukKoperasi extends StatelessWidget {
+  const EditProdukKoperasi({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -58,16 +43,57 @@ class _EditJadwalSekolahState extends State<EditJadwalSekolah> {
                           const SizedBox(
                             height: 10,
                           ),
-                          Image.asset(
-                            'assets/sampul-jadwal.png',
+                          Container(
+                            height: 99,
+                            width: mediaQueryWidth,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5),
+                              gradient: const LinearGradient(
+                                begin: Alignment.centerLeft,
+                                end: Alignment.centerRight,
+                                colors: <Color>[
+                                  Color(0xFFc1d4ed),
+                                  Color(0xFFb5dee1),
+                                ],
+                              ),
+                            ),
+                            child: Stack(
+                              children: <Widget>[
+                                Center(
+                                  child: Image.asset(
+                                    "assets/Image.png",
+                                    width: 50,
+                                  ),
+                                ),
+                                Positioned(
+                                  bottom: 6,
+                                  right: 3,
+                                  child: Container(
+                                    height: 20,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(29.6),
+                                      color: const Color(0xFF69AFB3),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 7.0),
+                                      child: Image.asset(
+                                        "assets/Camera.png",
+                                        width: 11,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
+
                           const SizedBox(
                             height: 18,
                           ),
-
                           //Judul Jadwal
                           Text(
-                            "Judul Jadwal",
+                            "Nama Produk",
                             style: GoogleFonts.notoSans(
                                 fontSize: 12,
                                 fontWeight: FontWeight.w600,
@@ -85,7 +111,7 @@ class _EditJadwalSekolahState extends State<EditJadwalSekolah> {
                               padding:
                                   const EdgeInsets.only(left: 10.0, bottom: 7),
                               child: TextFormField(
-                                initialValue: "Kegiatan Tengah Semester",
+                                initialValue: "Buku Tulis",
                                 decoration: const InputDecoration(
                                   border: InputBorder.none,
                                   // hintText: 'Masukkan nomor identitas pegawai',
@@ -100,55 +126,8 @@ class _EditJadwalSekolahState extends State<EditJadwalSekolah> {
                           const SizedBox(
                             height: 10,
                           ),
-
-                          //Tanggal Pelaksanaan
                           Text(
-                            "Tanggal Pelaksanaan",
-                            style: GoogleFonts.notoSans(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w600,
-                                color: const Color(0xFF4D5569)),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-
-                          Container(
-                            height: 44,
-                            padding: const EdgeInsets.only(left: 10),
-                            decoration: BoxDecoration(
-                                color: const Color(0xFFedf1f7),
-                                borderRadius: BorderRadius.circular(5)),
-                            child: Center(
-                              child: TextFormField(
-                                initialValue: "15/09/2022",
-                                decoration: InputDecoration(
-                                  // hintText: 'HH/BB/TT',
-                                  hintStyle: GoogleFonts.notoSans(
-                                      color: const Color(0xFFA6AAB4)),
-                                  suffixIcon: Padding(
-                                    padding: const EdgeInsets.all(12.0),
-                                    child: Image.asset(
-                                      'assets/Calendar.png',
-                                      width: 24,
-                                    ),
-                                  ),
-                                  border: InputBorder.none,
-                                ),
-                                style: GoogleFonts.notoSans(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w400,
-                                    color: const Color(0xFF4D5569)),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-
-                          //Selesai Pelaksanaan
-                          Text(
-                            "Selesai Pelaksanaan",
+                            "Harga Produk",
                             style: GoogleFonts.notoSans(
                                 fontSize: 12,
                                 fontWeight: FontWeight.w600,
@@ -158,72 +137,53 @@ class _EditJadwalSekolahState extends State<EditJadwalSekolah> {
                             height: 10,
                           ),
                           Container(
-                            height: 44,
-                            padding: const EdgeInsets.only(left: 10),
-                            decoration: BoxDecoration(
-                                color: const Color(0xFFedf1f7),
-                                borderRadius: BorderRadius.circular(5)),
-                            child: Center(
-                              child: TextFormField(
-                                initialValue: "15/09/2022",
-                                decoration: InputDecoration(
-                                  // hintText: 'HH/BB/TT',
-                                  hintStyle: GoogleFonts.notoSans(
-                                      color: const Color(0xFFA6AAB4)),
-                                  suffixIcon: Padding(
-                                    padding: const EdgeInsets.all(12.0),
-                                    child: Image.asset(
-                                      'assets/Calendar.png',
-                                      width: 24,
-                                    ),
-                                  ),
-                                  border: InputBorder.none,
-                                ),
-                                style: GoogleFonts.notoSans(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w400,
-                                    color: const Color(0xFF4D5569)),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-
-                          //Deskripsi Jadwal
-                          Text(
-                            "Selesai Pelaksanaan",
-                            style: GoogleFonts.notoSans(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w600,
-                                color: const Color(0xFF4D5569)),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Container(
-                            margin: const EdgeInsets.only(bottom: 20),
+                            height: 36,
                             decoration: BoxDecoration(
                                 color: const Color(0xFFedf1f7),
                                 borderRadius: BorderRadius.circular(5)),
                             child: Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 10.0, right: 10.0, bottom: 10.0),
+                              padding:
+                                  const EdgeInsets.only(left: 10.0, bottom: 7),
                               child: TextFormField(
-                                controller:
-                                    _hurufcontroller, //Tambahkan Controller
-                                onChanged: _onChangedHuruf, //Tambahkan Fuction
-                                // maxLength: 25, //batas char max yang bisa diinputkan
-                                // initialValue: "15/09/2022",
-                                decoration: InputDecoration(
+                                initialValue: "Rp 2.000",
+                                decoration: const InputDecoration(
                                   border: InputBorder.none,
-                                  counterText:
-                                      '$_charHuruf/25', //Untuk menampilkan hitungan
-
-                                  // hintText: 'Masukkan deskripsi jadwal',
+                                  // hintText: 'Masukkan nomor identitas pegawai',
                                 ),
-                                minLines: 1,
-                                maxLines: 5,
+                                style: GoogleFonts.notoSans(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w400,
+                                    color: const Color(0xFF4D5569)),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            "Jumlah Stok",
+                            style: GoogleFonts.notoSans(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600,
+                                color: const Color(0xFF4D5569)),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Container(
+                            height: 36,
+                            decoration: BoxDecoration(
+                                color: const Color(0xFFedf1f7),
+                                borderRadius: BorderRadius.circular(5)),
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.only(left: 10.0, bottom: 7),
+                              child: TextFormField(
+                                initialValue: "12",
+                                decoration: const InputDecoration(
+                                  border: InputBorder.none,
+                                  // hintText: 'Masukkan nomor identitas pegawai',
+                                ),
                                 style: GoogleFonts.notoSans(
                                     fontSize: 12,
                                     fontWeight: FontWeight.w400,
@@ -267,7 +227,7 @@ class _EditJadwalSekolahState extends State<EditJadwalSekolah> {
                                         PageRouteBuilder(
                                           pageBuilder: (context, animation1,
                                                   animation2) =>
-                                              JadwalSekolah1(),
+                                              ProdukKoperasi1(),
                                           transitionDuration: Duration.zero,
                                           reverseTransitionDuration:
                                               Duration.zero,
@@ -277,7 +237,7 @@ class _EditJadwalSekolahState extends State<EditJadwalSekolah> {
                                     icon: const Icon(Icons.arrow_back));
                               }),
                               Text(
-                                "Edit Jadwal Sekolah",
+                                "Edit Detail Produk",
                                 style: GoogleFonts.rubik(
                                     fontSize: 20, fontWeight: FontWeight.w600),
                               ),
@@ -348,7 +308,7 @@ class _RoundedAlertBoxState extends State<RoundedAlertBox> {
       ),
       child: MaterialButton(
         child: Text(
-          'Simpan Perubahan',
+          'Simpan Data',
           style: GoogleFonts.notoSans(
               color: Colors.white, fontSize: 14, fontWeight: FontWeight.w600),
         ),
@@ -386,7 +346,7 @@ class _RoundedAlertBoxState extends State<RoundedAlertBox> {
                             context,
                             PageRouteBuilder(
                               pageBuilder: (context, animation1, animation2) =>
-                                  JadwalSekolah1(),
+                                  ProdukKoperasi1(),
                               transitionDuration: Duration.zero,
                               reverseTransitionDuration: Duration.zero,
                             ),
@@ -406,7 +366,7 @@ class _RoundedAlertBoxState extends State<RoundedAlertBox> {
                     height: 10,
                   ),
                   Text(
-                    "Jadwal Anda Berhasil Diubah",
+                    "Data Detail Produk\nBerhasil Disimpan",
                     style: GoogleFonts.notoSans(
                         fontSize: 16, fontWeight: FontWeight.w600),
                     textAlign: TextAlign.center,
@@ -415,7 +375,7 @@ class _RoundedAlertBoxState extends State<RoundedAlertBox> {
                     height: 10,
                   ),
                   const Text(
-                    "Silahkan kembali ke\nhalaman jadwal sekolah",
+                    "Silahkan kembali ke halaman\nproduk koperasi",
                     style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w400,

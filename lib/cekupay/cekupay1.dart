@@ -1,3 +1,5 @@
+import 'package:cekula/pembelian/pembelian1.dart';
+import 'package:cekula/produk_koperasi/produk_koperasi1.dart';
 import 'package:cekula/cekupay/bayar_cekupay.dart';
 import 'package:cekula/cekupay/cekupay2.dart';
 import 'package:cekula/cekupay/topup_cekupay.dart';
@@ -5,31 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cekula/drawer.dart';
 
-class Cekupay1 extends StatefulWidget {
-  @override
-  State<Cekupay1> createState() => _Cekupay1State();
-}
-
-class _Cekupay1State extends State<Cekupay1> {
-  String aktif = "Cekupay";
-
-  void pilihCekupay() {
-    setState(() {
-      aktif = "Cekupay";
-    });
-  }
-
-  void pilihPembelian() {
-    setState(() {
-      aktif = "Pembelian";
-    });
-  }
-
-  void pilihPengambilan() {
-    setState(() {
-      aktif = "Pengambilan";
-    });
-  }
+class Cekupay1 extends StatelessWidget {
+  Cekupay1({Key? key}) : super(key: key);
 
   final List jenisTransaksi = [
     "Top Up",
@@ -90,18 +69,43 @@ class _Cekupay1State extends State<Cekupay1> {
             title: Padding(
               padding: const EdgeInsets.only(top: 20.0),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Builder(builder: (context) {
-                    return IconButton(
-                        onPressed: () {
-                          Scaffold.of(context).openDrawer();
-                        },
-                        icon: const Icon(Icons.menu));
-                  }),
-                  Text(
-                    "Koperasi",
-                    style: GoogleFonts.rubik(
-                        fontSize: 20, fontWeight: FontWeight.w600),
+                  Row(
+                    children: [
+                      Builder(builder: (context) {
+                        return IconButton(
+                            onPressed: () {
+                              Scaffold.of(context).openDrawer();
+                            },
+                            icon: const Icon(Icons.menu));
+                      }),
+                      Text(
+                        "Koperasi",
+                        style: GoogleFonts.rubik(
+                            fontSize: 20, fontWeight: FontWeight.w600),
+                      ),
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 10),
+                    child: InkWell(
+                      child: Image.asset(
+                        'assets/Bag.png',
+                        width: 24,
+                      ),
+                      onTap: () {
+                        Navigator.pushReplacement(
+                          context,
+                          PageRouteBuilder(
+                            pageBuilder: (context, animation1, animation2) =>
+                                ProdukKoperasi1(),
+                            transitionDuration: Duration.zero,
+                            reverseTransitionDuration: Duration.zero,
+                          ),
+                        );
+                      },
+                    ),
                   ),
                 ],
               ),
@@ -316,32 +320,38 @@ class _Cekupay1State extends State<Cekupay1> {
                                       child: Text("Cekupay",
                                           style: GoogleFonts.notoSans(
                                               fontSize: 14,
-                                              fontWeight: aktif == "Cekupay"
-                                                  ? FontWeight.w600
-                                                  : FontWeight.normal)),
+                                              fontWeight: FontWeight.w600)),
                                       onTap: () {
-                                        pilihCekupay();
+                                        // Navigator.pushReplacement(
+                                        //   context,
+                                        //   PageRouteBuilder(
+                                        //     pageBuilder: (context, animation1,
+                                        //             animation2) =>
+                                        //         Pembelian1(),
+                                        //     transitionDuration: Duration.zero,
+                                        //     reverseTransitionDuration:
+                                        //         Duration.zero,
+                                        //   ),
+                                        // );
                                       },
                                     ),
                                     Container(
                                       margin: const EdgeInsets.only(top: 10),
                                       height: 3,
                                       width: (mediaQueryWidth - 48) * 1 / 3,
-                                      decoration: aktif == "Cekupay"
-                                          ? BoxDecoration(
-                                              borderRadius: BorderRadius.only(
-                                                  topRight: Radius.circular(40),
-                                                  topLeft: Radius.circular(40)),
-                                              gradient: LinearGradient(
-                                                begin: Alignment.topCenter,
-                                                end: Alignment.bottomCenter,
-                                                colors: <Color>[
-                                                  const Color(0xFF9FC3F9),
-                                                  const Color(0xFF83DBE0),
-                                                ],
-                                              ),
-                                            )
-                                          : BoxDecoration(),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.only(
+                                            topRight: Radius.circular(40),
+                                            topLeft: Radius.circular(40)),
+                                        gradient: LinearGradient(
+                                          begin: Alignment.topCenter,
+                                          end: Alignment.bottomCenter,
+                                          colors: <Color>[
+                                            const Color(0xFF9FC3F9),
+                                            const Color(0xFF83DBE0),
+                                          ],
+                                        ),
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -351,34 +361,39 @@ class _Cekupay1State extends State<Cekupay1> {
                                     InkWell(
                                       child: Text("Pembelian",
                                           style: GoogleFonts.notoSans(
-                                              fontSize: 14,
-                                              fontWeight: aktif == "Pembelian"
-                                                  ? FontWeight.w600
-                                                  : FontWeight.normal)),
+                                            fontSize: 14,
+                                          )),
                                       onTap: () {
-                                        pilihPembelian();
+                                        Navigator.pushReplacement(
+                                          context,
+                                          PageRouteBuilder(
+                                            pageBuilder: (context, animation1,
+                                                    animation2) =>
+                                                Pembelian1(),
+                                            transitionDuration: Duration.zero,
+                                            reverseTransitionDuration:
+                                                Duration.zero,
+                                          ),
+                                        );
                                       },
                                     ),
                                     Container(
-                                      margin: const EdgeInsets.only(top: 10),
-                                      height: 3,
-                                      width: (mediaQueryWidth - 48) * 1 / 3,
-                                      decoration: aktif == "Pembelian"
-                                          ? BoxDecoration(
-                                              borderRadius: BorderRadius.only(
-                                                  topRight: Radius.circular(40),
-                                                  topLeft: Radius.circular(40)),
-                                              gradient: LinearGradient(
-                                                begin: Alignment.topCenter,
-                                                end: Alignment.bottomCenter,
-                                                colors: <Color>[
-                                                  const Color(0xFF9FC3F9),
-                                                  const Color(0xFF83DBE0),
-                                                ],
-                                              ),
-                                            )
-                                          : BoxDecoration(),
-                                    ),
+                                        margin: const EdgeInsets.only(top: 10),
+                                        height: 3,
+                                        width: (mediaQueryWidth - 48) * 1 / 3,
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.only(
+                                              topRight: Radius.circular(40),
+                                              topLeft: Radius.circular(40)),
+                                          // gradient: LinearGradient(
+                                          //   begin: Alignment.topCenter,
+                                          //   end: Alignment.bottomCenter,
+                                          //   colors: <Color>[
+                                          //     const Color(0xFF9FC3F9),
+                                          //     const Color(0xFF83DBE0),
+                                          //   ],
+                                          // ),
+                                        )),
                                   ],
                                 ),
                                 Column(
@@ -387,33 +402,39 @@ class _Cekupay1State extends State<Cekupay1> {
                                     InkWell(
                                       child: Text("Pengambilan",
                                           style: GoogleFonts.notoSans(
-                                              fontSize: 14,
-                                              fontWeight: aktif == "Pengambilan"
-                                                  ? FontWeight.w600
-                                                  : FontWeight.normal)),
+                                            fontSize: 14,
+                                          )),
                                       onTap: () {
-                                        pilihPengambilan();
+                                        // Navigator.pushReplacement(
+                                        //   context,
+                                        //   PageRouteBuilder(
+                                        //     pageBuilder: (context, animation1,
+                                        //             animation2) =>
+                                        //         Pembelian1(),
+                                        //     transitionDuration: Duration.zero,
+                                        //     reverseTransitionDuration:
+                                        //         Duration.zero,
+                                        //   ),
+                                        // );
                                       },
                                     ),
                                     Container(
                                       margin: const EdgeInsets.only(top: 10),
                                       height: 3,
                                       width: (mediaQueryWidth - 48) * 1 / 3,
-                                      decoration: aktif == "Pengambilan"
-                                          ? BoxDecoration(
-                                              borderRadius: BorderRadius.only(
-                                                  topRight: Radius.circular(40),
-                                                  topLeft: Radius.circular(40)),
-                                              gradient: LinearGradient(
-                                                begin: Alignment.topCenter,
-                                                end: Alignment.bottomCenter,
-                                                colors: <Color>[
-                                                  const Color(0xFF9FC3F9),
-                                                  const Color(0xFF83DBE0),
-                                                ],
-                                              ),
-                                            )
-                                          : BoxDecoration(),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.only(
+                                            topRight: Radius.circular(40),
+                                            topLeft: Radius.circular(40)),
+                                        // gradient: LinearGradient(
+                                        //   begin: Alignment.topCenter,
+                                        //   end: Alignment.bottomCenter,
+                                        //   colors: <Color>[
+                                        //     const Color(0xFF9FC3F9),
+                                        //     const Color(0xFF83DBE0),
+                                        //   ],
+                                        // ),
+                                      ),
                                     ),
                                   ],
                                 )

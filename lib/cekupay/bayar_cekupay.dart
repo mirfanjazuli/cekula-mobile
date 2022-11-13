@@ -292,7 +292,7 @@ class _RoundedAlertBoxState extends State<RoundedAlertBox> {
                             context,
                             PageRouteBuilder(
                               pageBuilder: (context, animation1, animation2) =>
-                                  DendaKeterlambatan1(),
+                                  Cekupay1(),
                               transitionDuration: Duration.zero,
                               reverseTransitionDuration: Duration.zero,
                             ),
@@ -312,7 +312,7 @@ class _RoundedAlertBoxState extends State<RoundedAlertBox> {
                     height: 10,
                   ),
                   Text(
-                    "Posting Jadwal Berhasil",
+                    "Pembayaran Koperasi\ntelah berhasil",
                     style: GoogleFonts.notoSans(
                         fontSize: 16, fontWeight: FontWeight.w600),
                     textAlign: TextAlign.center,
@@ -321,7 +321,7 @@ class _RoundedAlertBoxState extends State<RoundedAlertBox> {
                     height: 10,
                   ),
                   const Text(
-                    "Silahkan kembali ke\nhalaman jadwal sekolah",
+                    "Silahkan kembali ke halaman\nKoperasi",
                     style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w400,

@@ -1,4 +1,5 @@
 import 'package:cekula/cekupay/bayar_cekupay.dart';
+import 'package:cekula/cekupay/cekupay1.dart';
 import 'package:cekula/cekupay/cekupay2.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -419,15 +420,15 @@ class _RoundedAlertBoxState extends State<RoundedAlertBox> {
                           width: 16,
                         ),
                         onTap: () {
-                          // Navigator.pushReplacement(
-                          //   context,
-                          //   PageRouteBuilder(
-                          //     pageBuilder: (context, animation1, animation2) =>
-                          //         JadwalSekolah1(),
-                          //     transitionDuration: Duration.zero,
-                          //     reverseTransitionDuration: Duration.zero,
-                          //   ),
-                          // );
+                          Navigator.pushReplacement(
+                            context,
+                            PageRouteBuilder(
+                              pageBuilder: (context, animation1, animation2) =>
+                                  Cekupay1(),
+                              transitionDuration: Duration.zero,
+                              reverseTransitionDuration: Duration.zero,
+                            ),
+                          );
                         },
                       ),
                     ],
@@ -443,7 +444,7 @@ class _RoundedAlertBoxState extends State<RoundedAlertBox> {
                     height: 10,
                   ),
                   Text(
-                    "Posting Jadwal Berhasil",
+                    "Top Up saldo Cekupay\ntelah berhasil",
                     style: GoogleFonts.notoSans(
                         fontSize: 16, fontWeight: FontWeight.w600),
                     textAlign: TextAlign.center,
@@ -452,7 +453,7 @@ class _RoundedAlertBoxState extends State<RoundedAlertBox> {
                     height: 10,
                   ),
                   const Text(
-                    "Silahkan kembali ke\nhalaman jadwal sekolah",
+                    "Silahkan kembali ke halaman\nKoperasi",
                     style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w400,

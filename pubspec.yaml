@@ -109,6 +109,7 @@ flutter:
     - assets/icon-keluar.png
     - assets/bg-kartu-pelajar.png
     - assets/History.png
+    - assets/Bag.png
     - assets/alert-jadwal.png
     - assets/alert-yakin.png
     - assets/jadwal-upacara.png
@@ -149,6 +150,7 @@ flutter:
     - assets/Buku-Gambar.png
     - assets/Galeri.png
     - assets/Flash.png
+    - assets/Perisai.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

@@ -1,17 +1,13 @@
+import 'package:cekula/cekupay/cekupay1.dart';
 import 'package:cekula/drawer.dart';
-import 'package:cekula/peminjaman_buku/buat_peminjaman_buku.dart';
-import 'package:cekula/peminjaman_buku/edit_peminjaman_buku.dart';
-import 'package:cekula/peminjaman_buku/perpustakaan1.dart';
-import 'package:cekula/peminjaman_buku/riwayat_peminjaman_buku1.dart';
+import 'package:cekula/produk_koperasi/buat_produk_koperasi.dart';
+import 'package:cekula/produk_koperasi/edit_produk_koperasi.dart';
 import 'package:cekula/sumbang_buku/buat_sumbang_buku.dart';
-import 'package:cekula/sumbang_buku/edit_sumbang_buku.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../jadwal_sekolah/buat_jadwal_sekolah.dart';
-
-class A1 extends StatelessWidget {
-  A1({Key? key}) : super(key: key);
+class ProdukKoperasi1 extends StatelessWidget {
+  ProdukKoperasi1({Key? key}) : super(key: key);
 
   final List image = [
     "assets/Buku-Tulis.png",
@@ -110,16 +106,16 @@ class A1 extends StatelessWidget {
                       Builder(builder: (context) {
                         return IconButton(
                             onPressed: () {
-                              // Navigator.pushReplacement(
-                              //   context,
-                              //   PageRouteBuilder(
-                              //     pageBuilder:
-                              //         (context, animation1, animation2) =>
-                              //             Perpustakaan1(),
-                              //     transitionDuration: Duration.zero,
-                              //     reverseTransitionDuration: Duration.zero,
-                              //   ),
-                              // );
+                              Navigator.pushReplacement(
+                                context,
+                                PageRouteBuilder(
+                                  pageBuilder:
+                                      (context, animation1, animation2) =>
+                                          Cekupay1(),
+                                  transitionDuration: Duration.zero,
+                                  reverseTransitionDuration: Duration.zero,
+                                ),
+                              );
                             },
                             icon: const Icon(Icons.arrow_back));
                       }),
@@ -258,19 +254,19 @@ class A1 extends StatelessWidget {
                                                 color: Color(0xFF4D5569),
                                               ),
                                               onTap: () {
-                                                // Navigator.pushReplacement(
-                                                //   context,
-                                                //   PageRouteBuilder(
-                                                //     pageBuilder: (context,
-                                                //             animation1,
-                                                //             animation2) =>
-                                                //         const EditPeminjamanFasilitas(),
-                                                //     transitionDuration:
-                                                //         Duration.zero,
-                                                //     reverseTransitionDuration:
-                                                //         Duration.zero,
-                                                //   ),
-                                                // );
+                                                Navigator.pushReplacement(
+                                                  context,
+                                                  PageRouteBuilder(
+                                                    pageBuilder: (context,
+                                                            animation1,
+                                                            animation2) =>
+                                                        const EditProdukKoperasi(),
+                                                    transitionDuration:
+                                                        Duration.zero,
+                                                    reverseTransitionDuration:
+                                                        Duration.zero,
+                                                  ),
+                                                );
                                               },
                                             ),
                                             const SizedBox(
@@ -321,7 +317,7 @@ class A1 extends StatelessWidget {
                     context,
                     PageRouteBuilder(
                       pageBuilder: (context, animation1, animation2) =>
-                          BuatSumbangBuku(),
+                          BuatProdukKoperasi(),
                       transitionDuration: Duration.zero,
                       reverseTransitionDuration: Duration.zero,
                     ),
@@ -381,15 +377,15 @@ class _RoundedAlertBoxState extends State<RoundedAlertBox> {
                           width: 16,
                         ),
                         onTap: () {
-                          // Navigator.pushReplacement(
-                          //   context,
-                          //   PageRouteBuilder(
-                          //     pageBuilder: (context, animation1, animation2) =>
-                          //         SumbangBuku1(),
-                          //     transitionDuration: Duration.zero,
-                          //     reverseTransitionDuration: Duration.zero,
-                          //   ),
-                          // );
+                          Navigator.pushReplacement(
+                            context,
+                            PageRouteBuilder(
+                              pageBuilder: (context, animation1, animation2) =>
+                                  ProdukKoperasi1(),
+                              transitionDuration: Duration.zero,
+                              reverseTransitionDuration: Duration.zero,
+                            ),
+                          );
                         },
                       ),
                     ],
@@ -405,13 +401,13 @@ class _RoundedAlertBoxState extends State<RoundedAlertBox> {
                     height: 10,
                   ),
                   Text(
-                    "Yakin Ingin Menghapus?",
+                    "Yakin Ingin Menghapus\nDetail Produk?",
                     style: GoogleFonts.notoSans(
                         fontSize: 16, fontWeight: FontWeight.w600),
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(
-                    height: 50,
+                    height: 28,
                   ),
                   SizedBox(
                     width: 219,
@@ -423,7 +419,17 @@ class _RoundedAlertBoxState extends State<RoundedAlertBox> {
                         side: const BorderSide(
                             color: Color(0xFF9FC3F9), width: 1),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushReplacement(
+                          context,
+                          PageRouteBuilder(
+                            pageBuilder: (context, animation1, animation2) =>
+                                ProdukKoperasi1(),
+                            transitionDuration: Duration.zero,
+                            reverseTransitionDuration: Duration.zero,
+                          ),
+                        );
+                      },
                     ),
                   )
                 ],
