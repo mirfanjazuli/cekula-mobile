@@ -71,6 +71,8 @@ flutter:
     - assets/Slide-3.png
     - assets/Plus.png
     - assets/Plus-2.png
+    - assets/Plus-mini.png
+    - assets/Bayar.png
     - assets/Bertanya.png
     - assets/Paper.png
     - assets/jadwal-sekolah.png
@@ -125,8 +127,6 @@ flutter:
     - assets/sampul-jadwal.png
     - assets/sampul-pramuka.png
     - assets/Line.png
-    - assets/appbar.png
-    - assets/appbar2.png
     - assets/Exit.png
     - assets/sampul-berita-1.png
     - assets/sampul-jadwal-1.png
@@ -135,6 +135,20 @@ flutter:
     - assets/bottom.png
     - assets/ppdb.png
     - assets/Keuangan.png
+    - assets/Barcode.png
+    - assets/Perpustakaan.png
+    - assets/Buku-Tulis.png
+    - assets/Sabuk.png
+    - assets/Dasi.png
+    - assets/Topi.png
+    - assets/Stabilo.png
+    - assets/Stipo.png
+    - assets/Penghapus.png
+    - assets/Pulpen.png
+    - assets/Pensil.png
+    - assets/Buku-Gambar.png
+    - assets/Galeri.png
+    - assets/Flash.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
