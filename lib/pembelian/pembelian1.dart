@@ -1,4 +1,5 @@
 import 'package:cekula/cekupay/cekupay1.dart';
+import 'package:cekula/pembelian/buat_pembelian.dart';
 import 'package:cekula/produk_koperasi/produk_koperasi1.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -569,15 +570,15 @@ class Pembelian1 extends StatelessWidget {
                     ),
                   ),
                   onTap: () {
-                    // Navigator.pushReplacement(
-                    //   context,
-                    //   PageRouteBuilder(
-                    //     pageBuilder: (context, animation1, animation2) =>
-                    //         const BuatJadwalSekolah(),
-                    //     transitionDuration: Duration.zero,
-                    //     reverseTransitionDuration: Duration.zero,
-                    //   ),
-                    // );
+                    Navigator.pushReplacement(
+                      context,
+                      PageRouteBuilder(
+                        pageBuilder: (context, animation1, animation2) =>
+                            BuatPembelian(),
+                        transitionDuration: Duration.zero,
+                        reverseTransitionDuration: Duration.zero,
+                      ),
+                    );
                   },
                 ),
               ],
