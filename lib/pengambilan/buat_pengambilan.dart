@@ -1,19 +1,14 @@
+import 'package:cekula/peminjaman_buku/peminjaman_buku1.dart';
+import 'package:cekula/pengambilan/pengambilan.dart';
+import 'package:cekula/radio/radio_jenis_kelamin.dart';
+import 'package:cekula/radio/radio_pengambilan.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:cekula/data_mutasi_murid/data_mutasi_murid1.dart';
 import 'package:cekula/drawer.dart';
+import 'package:cekula/jadwal_sekolah/jadwal_sekolah1.dart';
 
-class BuatDataMutasiMurid extends StatelessWidget {
-  BuatDataMutasiMurid({Key? key}) : super(key: key);
-  List<String> suggestons = [
-    "Andhika Setiabudi",
-    "Augusta Satrianto",
-    "Balqis Yunanda",
-    "Beni Mulyadi",
-    "Bintang Sasya",
-    "Bima Tantala",
-    "Budiono Arya"
-  ];
+class BuatPengambilan extends StatelessWidget {
+  const BuatPengambilan({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -63,136 +58,95 @@ class BuatDataMutasiMurid extends StatelessWidget {
                             height: 10,
                           ),
                           Container(
+                            height: 40,
                             decoration: BoxDecoration(
                                 color: const Color(0xFFedf1f7),
                                 borderRadius: BorderRadius.circular(5)),
-                            height: 40,
-                            child: RawAutocomplete(
-                              optionsBuilder:
-                                  (TextEditingValue textEditingValue) {
-                                if (textEditingValue.text == '') {
-                                  return const Iterable<String>.empty();
-                                } else {
-                                  List<String> matches = <String>[];
-                                  matches.addAll(suggestons);
-
-                                  matches.retainWhere((s) {
-                                    return s.toLowerCase().contains(
-                                        textEditingValue.text.toLowerCase());
-                                  });
-                                  return matches;
-                                }
-                              },
-                              onSelected: (String selection) {
-                                print('You just selected $selection');
-                              },
-                              fieldViewBuilder: (BuildContext context,
-                                  TextEditingController textEditingController,
-                                  FocusNode focusNode,
-                                  VoidCallback onFieldSubmitted) {
-                                return Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 10.0, bottom: 3),
-                                  child: TextField(
-                                    style: GoogleFonts.notoSans(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w400,
-                                        color: Color(0xFF4D5569)),
-                                    decoration: InputDecoration(
+                            child: Center(
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 10.0, bottom: 4),
+                                child: TextFormField(
+                                  decoration: InputDecoration(
                                       border: InputBorder.none,
-                                      hintText: 'Pilih nama murid',
+                                      hintText: 'Masukkan nama murid',
                                       hintStyle: GoogleFonts.notoSans(
-                                          color: const Color(0xFFA6AAB4),
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w400),
-                                    ),
-                                    controller: textEditingController,
-                                    focusNode: focusNode,
-                                    onSubmitted: (String value) {},
-                                  ),
-                                );
-                              },
-                              optionsViewBuilder: (BuildContext context,
-                                  void Function(String) onSelected,
-                                  Iterable<String> options) {
-                                return Column(
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 5),
-                                      child: Material(
-                                          child: Column(
-                                        children: [
-                                          Column(
-                                            children: [
-                                              Container(
-                                                  padding: EdgeInsets.symmetric(
-                                                      horizontal: 10,
-                                                      vertical: 14),
-                                                  decoration: BoxDecoration(
-                                                    color: Color(0xFFF7F9FC),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10),
-                                                    boxShadow: const [
-                                                      BoxShadow(
-                                                        color: Color.fromARGB(
-                                                            60, 142, 142, 142),
-                                                        blurRadius: 3.0,
-                                                        offset:
-                                                            Offset(0.0, 3.0),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  margin: EdgeInsets.only(
-                                                      right: 48),
-                                                  child: SingleChildScrollView(
-                                                      child: Column(
-                                                    children:
-                                                        options.map((opt) {
-                                                      return InkWell(
-                                                          onTap: () {
-                                                            onSelected(opt);
-                                                          },
-                                                          child: Container(
-                                                              margin: EdgeInsets
-                                                                  .symmetric(
-                                                                      vertical:
-                                                                          5),
-                                                              child: Row(
-                                                                mainAxisAlignment:
-                                                                    MainAxisAlignment
-                                                                        .start,
-                                                                children: [
-                                                                  Text(
-                                                                    opt,
-                                                                    style: GoogleFonts.notoSans(
-                                                                        fontSize:
-                                                                            12,
-                                                                        fontWeight:
-                                                                            FontWeight
-                                                                                .w400,
-                                                                        color: Color(
-                                                                            0xFF4D5569)),
-                                                                  ),
-                                                                ],
-                                                              )));
-                                                    }).toList(),
-                                                  ))),
-                                            ],
-                                          ),
-                                        ],
-                                      )),
-                                    ),
-                                  ],
-                                );
-                              },
+                                          color: const Color(0xFFA6AAB4))),
+                                  style: GoogleFonts.notoSans(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w400),
+                                ),
+                              ),
                             ),
                           ),
                           const SizedBox(
                             height: 15,
                           ),
                           Text(
-                            "Tanggal Mutasi",
+                            "No. Id Murid",
+                            style: GoogleFonts.notoSans(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600,
+                                color: const Color(0xFF4D5569)),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Container(
+                            height: 40,
+                            decoration: BoxDecoration(
+                                color: const Color(0xFFedf1f7),
+                                borderRadius: BorderRadius.circular(5)),
+                            child: Center(
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 10.0, bottom: 4),
+                                child: TextFormField(
+                                  decoration: InputDecoration(
+                                      border: InputBorder.none,
+                                      hintText: 'Masukkan no.id murid',
+                                      hintStyle: GoogleFonts.notoSans(
+                                          color: const Color(0xFFA6AAB4))),
+                                  style: GoogleFonts.notoSans(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w400),
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 15,
+                          ),
+                          Text(
+                            "Jenis Kelamin",
+                            style: GoogleFonts.notoSans(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600,
+                                color: const Color(0xFF4D5569)),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Container(height: 24, child: RadioJenisKelamin()),
+                          const SizedBox(
+                            height: 15,
+                          ),
+                          Text(
+                            "Pilihan Pengambilan",
+                            style: GoogleFonts.notoSans(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600,
+                                color: const Color(0xFF4D5569)),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Container(height: 24, child: RadioPengambilan()),
+                          const SizedBox(
+                            height: 15,
+                          ),
+                          Text(
+                            "Tanggal Pengambilan",
                             style: GoogleFonts.notoSans(
                                 fontSize: 12,
                                 fontWeight: FontWeight.w600,
@@ -236,112 +190,6 @@ class BuatDataMutasiMurid extends StatelessWidget {
                           const SizedBox(
                             height: 15,
                           ),
-                          Text(
-                            "Sekolah Tujuan",
-                            style: GoogleFonts.notoSans(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w600,
-                                color: const Color(0xFF4D5569)),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Container(
-                            height: 40,
-                            decoration: BoxDecoration(
-                                color: const Color(0xFFedf1f7),
-                                borderRadius: BorderRadius.circular(5)),
-                            child: Center(
-                              child: Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 10.0, bottom: 4),
-                                child: TextFormField(
-                                  decoration: InputDecoration(
-                                      border: InputBorder.none,
-                                      hintText: 'Masukkan sekolah tujuan murid',
-                                      hintStyle: GoogleFonts.notoSans(
-                                          color: const Color(0xFFA6AAB4))),
-                                  style: GoogleFonts.notoSans(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w400),
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 15,
-                          ),
-                          Text(
-                            "Alamat Sekolah Tujuan",
-                            style: GoogleFonts.notoSans(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w600,
-                                color: const Color(0xFF4D5569)),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Container(
-                            height: 40,
-                            decoration: BoxDecoration(
-                                color: const Color(0xFFedf1f7),
-                                borderRadius: BorderRadius.circular(5)),
-                            child: Center(
-                              child: Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 10.0, bottom: 4),
-                                child: TextFormField(
-                                  decoration: InputDecoration(
-                                      border: InputBorder.none,
-                                      hintText:
-                                          'Masukkan alamat sekolah tujuan',
-                                      hintStyle: GoogleFonts.notoSans(
-                                          color: const Color(0xFFA6AAB4))),
-                                  style: GoogleFonts.notoSans(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w400),
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 15,
-                          ),
-                          Text(
-                            "Nama Wali Murid",
-                            style: GoogleFonts.notoSans(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w600,
-                                color: const Color(0xFF4D5569)),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Container(
-                            height: 40,
-                            decoration: BoxDecoration(
-                                color: const Color(0xFFedf1f7),
-                                borderRadius: BorderRadius.circular(5)),
-                            child: Center(
-                              child: Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 10.0, bottom: 4),
-                                child: TextFormField(
-                                  decoration: InputDecoration(
-                                      border: InputBorder.none,
-                                      hintText: 'Masukkan nama wali murid',
-                                      hintStyle: GoogleFonts.notoSans(
-                                          color: const Color(0xFFA6AAB4))),
-                                  style: GoogleFonts.notoSans(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w400),
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 15,
-                          )
                         ],
                       ),
                     ),
@@ -375,7 +223,7 @@ class BuatDataMutasiMurid extends StatelessWidget {
                                         PageRouteBuilder(
                                           pageBuilder: (context, animation1,
                                                   animation2) =>
-                                              const DataMutasiMurid1(),
+                                              PeminjamanBuku1(),
                                           transitionDuration: Duration.zero,
                                           reverseTransitionDuration:
                                               Duration.zero,
@@ -385,7 +233,7 @@ class BuatDataMutasiMurid extends StatelessWidget {
                                     icon: const Icon(Icons.arrow_back));
                               }),
                               Text(
-                                "Buat Data Mutasi Murid",
+                                "Buat Data Pengambilan",
                                 style: GoogleFonts.rubik(
                                     fontSize: 20, fontWeight: FontWeight.w600),
                               ),
@@ -456,7 +304,7 @@ class _RoundedAlertBoxState extends State<RoundedAlertBox> {
       ),
       child: MaterialButton(
         child: Text(
-          'Simpan Data Mutasi',
+          'Buat Data Pengambilan',
           style: GoogleFonts.notoSans(
               color: Colors.white, fontSize: 14, fontWeight: FontWeight.w600),
         ),
@@ -494,7 +342,7 @@ class _RoundedAlertBoxState extends State<RoundedAlertBox> {
                             context,
                             PageRouteBuilder(
                               pageBuilder: (context, animation1, animation2) =>
-                                  const DataMutasiMurid1(),
+                                  Pengambilan1(),
                               transitionDuration: Duration.zero,
                               reverseTransitionDuration: Duration.zero,
                             ),
@@ -514,7 +362,7 @@ class _RoundedAlertBoxState extends State<RoundedAlertBox> {
                     height: 10,
                   ),
                   Text(
-                    "Data Mutasi Murid\nBerhasil Disimpan",
+                    "Data Pengambilan\nBerhasil Dibuat",
                     style: GoogleFonts.notoSans(
                         fontSize: 16, fontWeight: FontWeight.w600),
                     textAlign: TextAlign.center,
@@ -523,7 +371,7 @@ class _RoundedAlertBoxState extends State<RoundedAlertBox> {
                     height: 10,
                   ),
                   const Text(
-                    "Silahkan kembali ke halaman\ndata mutasi murid",
+                    "Silahkan kembali ke halaman\nKoperasi",
                     style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w400,

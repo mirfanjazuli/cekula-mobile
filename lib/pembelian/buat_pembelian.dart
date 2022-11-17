@@ -1,3 +1,4 @@
+import 'package:cekula/pembelian/konfirmasi_pembayaran.dart';
 import 'package:cekula/pembelian/pembelian1.dart';
 import 'package:cekula/peminjaman_buku/peminjaman_buku1.dart';
 import 'package:flutter/material.dart';
@@ -308,7 +309,18 @@ class _BuatPembelianState extends State<BuatPembelian> {
                                     fontSize: 14,
                                     fontWeight: FontWeight.w600),
                               ),
-                              onPressed: openAlertBox,
+                              onPressed: () {
+                                Navigator.pushReplacement(
+                                  context,
+                                  PageRouteBuilder(
+                                    pageBuilder:
+                                        (context, animation1, animation2) =>
+                                            KonfirmasiPembayaran(),
+                                    transitionDuration: Duration.zero,
+                                    reverseTransitionDuration: Duration.zero,
+                                  ),
+                                );
+                              },
                             ),
                           ),
                         ],
@@ -405,77 +417,5 @@ class _BuatPembelianState extends State<BuatPembelian> {
       //   ),
       // ),
     );
-  }
-
-  openAlertBox() {
-    return showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(10.0))),
-            contentPadding: const EdgeInsets.only(
-                top: 11.0, right: 12, bottom: 11, left: 12),
-            content: SizedBox(
-              width: 290,
-              height: 295,
-              // color: Colors.amber,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: <Widget>[
-                      InkWell(
-                        child: Image.asset(
-                          "assets/Exit.png",
-                          width: 16,
-                        ),
-                        onTap: () {
-                          Navigator.pushReplacement(
-                            context,
-                            PageRouteBuilder(
-                              pageBuilder: (context, animation1, animation2) =>
-                                  JadwalSekolah1(),
-                              transitionDuration: Duration.zero,
-                              reverseTransitionDuration: Duration.zero,
-                            ),
-                          );
-                        },
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  Image.asset(
-                    "assets/alert-jadwal.png",
-                    width: 90,
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    "Posting Jadwal Berhasil",
-                    style: GoogleFonts.notoSans(
-                        fontSize: 16, fontWeight: FontWeight.w600),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  const Text(
-                    "Silahkan kembali ke\nhalaman jadwal sekolah",
-                    style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                        color: Color(0xFF797F8F)),
-                    textAlign: TextAlign.center,
-                  ),
-                ],
-              ),
-            ),
-          );
-        });
   }
 }

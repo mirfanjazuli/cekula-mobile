@@ -2,6 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cekula/drawer.dart';
 import 'package:cekula/jadwal_sekolah/jadwal_sekolah1.dart';
+import 'package:intl/intl.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
+import 'dart:math';
+
+import 'package:flutter/services.dart';
 
 class BuatJadwalSekolah extends StatefulWidget {
   const BuatJadwalSekolah({Key? key}) : super(key: key);
@@ -11,6 +17,22 @@ class BuatJadwalSekolah extends StatefulWidget {
 }
 
 class _BuatJadwalSekolahState extends State<BuatJadwalSekolah> {
+  File? image;
+
+  Future pickImage() async {
+    try {
+      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+
+      if (image == null) return;
+
+      final imageTemp = File(image.path);
+
+      setState(() => this.image = imageTemp);
+    } on PlatformException catch (e) {
+      print('Failed to pick image: $e');
+    }
+  }
+
   final TextEditingController _hurufcontroller = TextEditingController();
 
   int _charHuruf = 0;
@@ -21,7 +43,15 @@ class _BuatJadwalSekolahState extends State<BuatJadwalSekolah> {
     });
   }
 
+  TextEditingController dateinputmulai = TextEditingController();
+  TextEditingController dateinputselesai = TextEditingController();
   @override
+  void initState() {
+    dateinputmulai.text = "";
+    dateinputselesai.text = "";
+    super.initState();
+  }
+
   Widget build(BuildContext context) {
     final mediaQueryHeight = MediaQuery.of(context).size.height;
     final mediaQueryWidth = MediaQuery.of(context).size.width;
@@ -59,7 +89,7 @@ class _BuatJadwalSekolahState extends State<BuatJadwalSekolah> {
                             height: 10,
                           ),
                           Container(
-                            height: 99,
+                            height: 142,
                             width: mediaQueryWidth,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(5),
@@ -72,39 +102,85 @@ class _BuatJadwalSekolahState extends State<BuatJadwalSekolah> {
                                 ],
                               ),
                             ),
-                            child: Stack(
-                              children: <Widget>[
-                                Center(
-                                  child: Image.asset(
-                                    "assets/Profile.png",
-                                    width: 75,
-                                  ),
-                                ),
-                                Positioned(
-                                  bottom: 6,
-                                  right: 3,
-                                  child: Container(
-                                    height: 20,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(29.6),
-                                      color: const Color(0xFF69AFB3),
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 7.0),
-                                      child: Image.asset(
-                                        "assets/Camera.png",
-                                        width: 11,
+                            child: image != null
+                                ? Stack(
+                                    children: [
+                                      ClipRRect(
+                                        borderRadius: BorderRadius.circular(5),
+                                        child: Image.file(
+                                          image!,
+                                          width: mediaQueryWidth,
+                                          height: 142,
+                                          fit: BoxFit.cover,
+                                        ),
                                       ),
-                                    ),
+                                      Positioned(
+                                        bottom: 6,
+                                        right: 3,
+                                        child: InkWell(
+                                          child: Container(
+                                            height: 20,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(29.6),
+                                              color: const Color(0xFF69AFB3),
+                                            ),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 7.0),
+                                              child: Image.asset(
+                                                "assets/Camera.png",
+                                                width: 11,
+                                              ),
+                                            ),
+                                          ),
+                                          onTap: () {
+                                            pickImage();
+                                          },
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                                : Stack(
+                                    children: <Widget>[
+                                      Center(
+                                        child: Image.asset(
+                                          "assets/Image.png",
+                                          width: 70,
+                                        ),
+                                      ),
+                                      Positioned(
+                                        bottom: 6,
+                                        right: 3,
+                                        child: InkWell(
+                                          child: Container(
+                                            height: 20,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(29.6),
+                                              color: const Color(0xFF69AFB3),
+                                            ),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 7.0),
+                                              child: Image.asset(
+                                                "assets/Camera.png",
+                                                width: 11,
+                                              ),
+                                            ),
+                                          ),
+                                          onTap: () {
+                                            pickImage();
+                                          },
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                ),
-                              ],
-                            ),
                           ),
-
-                          const SizedBox(
-                            height: 18,
+                          SizedBox(
+                            height: 15,
                           ),
                           //Judul Jadwal
                           Text(
@@ -155,14 +231,14 @@ class _BuatJadwalSekolahState extends State<BuatJadwalSekolah> {
                           ),
 
                           Container(
-                            height: 44,
-                            padding: const EdgeInsets.only(left: 10),
-                            decoration: BoxDecoration(
-                                color: const Color(0xFFedf1f7),
-                                borderRadius: BorderRadius.circular(5)),
-                            child: Center(
-                              child: TextFormField(
-                                // initialValue: "15/09/2022",
+                              height: 44,
+                              padding: const EdgeInsets.only(left: 10),
+                              decoration: BoxDecoration(
+                                  color: const Color(0xFFedf1f7),
+                                  borderRadius: BorderRadius.circular(5)),
+                              child: Center(
+                                  child: TextFormField(
+                                controller: dateinputmulai,
                                 decoration: InputDecoration(
                                   hintText: 'HH/BB/TT',
                                   hintStyle: GoogleFonts.notoSans(
@@ -178,9 +254,29 @@ class _BuatJadwalSekolahState extends State<BuatJadwalSekolah> {
                                 ),
                                 style: GoogleFonts.notoSans(
                                     fontSize: 12, fontWeight: FontWeight.w400),
-                              ),
-                            ),
-                          ),
+                                readOnly: true,
+                                onTap: () async {
+                                  DateTime? pickedDate = await showDatePicker(
+                                      context: context,
+                                      initialDate: DateTime.now(),
+                                      firstDate: DateTime(2000),
+                                      lastDate: DateTime(2101));
+
+                                  if (pickedDate != null) {
+                                    print(pickedDate);
+                                    String formattedDate =
+                                        DateFormat('dd-MM-yy')
+                                            .format(pickedDate);
+                                    print(formattedDate);
+
+                                    setState(() {
+                                      dateinputmulai.text = formattedDate;
+                                    });
+                                  } else {
+                                    print("Date is not selected");
+                                  }
+                                },
+                              ))),
                           const SizedBox(
                             height: 10,
                           ),
@@ -197,14 +293,14 @@ class _BuatJadwalSekolahState extends State<BuatJadwalSekolah> {
                             height: 10,
                           ),
                           Container(
-                            height: 44,
-                            padding: const EdgeInsets.only(left: 10),
-                            decoration: BoxDecoration(
-                                color: const Color(0xFFedf1f7),
-                                borderRadius: BorderRadius.circular(5)),
-                            child: Center(
-                              child: TextFormField(
-                                // initialValue: "15/09/2022",
+                              height: 44,
+                              padding: const EdgeInsets.only(left: 10),
+                              decoration: BoxDecoration(
+                                  color: const Color(0xFFedf1f7),
+                                  borderRadius: BorderRadius.circular(5)),
+                              child: Center(
+                                  child: TextFormField(
+                                controller: dateinputselesai,
                                 decoration: InputDecoration(
                                   hintText: 'HH/BB/TT',
                                   hintStyle: GoogleFonts.notoSans(
@@ -220,9 +316,29 @@ class _BuatJadwalSekolahState extends State<BuatJadwalSekolah> {
                                 ),
                                 style: GoogleFonts.notoSans(
                                     fontSize: 12, fontWeight: FontWeight.w400),
-                              ),
-                            ),
-                          ),
+                                readOnly: true,
+                                onTap: () async {
+                                  DateTime? pickedDate = await showDatePicker(
+                                      context: context,
+                                      initialDate: DateTime.now(),
+                                      firstDate: DateTime(2000),
+                                      lastDate: DateTime(2101));
+
+                                  if (pickedDate != null) {
+                                    print(pickedDate);
+                                    String formattedDate =
+                                        DateFormat('dd-MM-yy')
+                                            .format(pickedDate);
+                                    print(formattedDate);
+
+                                    setState(() {
+                                      dateinputselesai.text = formattedDate;
+                                    });
+                                  } else {
+                                    print("Date is not selected");
+                                  }
+                                },
+                              ))),
                           const SizedBox(
                             height: 10,
                           ),

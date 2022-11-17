@@ -1,10 +1,20 @@
+import 'package:cekula/keuangan/keuangan1.dart';
+import 'package:cekula/radio/keuangan/radio_kelas_a.dart';
+import 'package:cekula/radio/keuangan/radio_kelas_h.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cekula/data_mutasi_murid/data_mutasi_murid1.dart';
 import 'package:cekula/drawer.dart';
+import 'package:intl/intl.dart';
 
-class BuatDataMutasiMurid extends StatelessWidget {
-  BuatDataMutasiMurid({Key? key}) : super(key: key);
+class PembayaranSeragam extends StatefulWidget {
+  PembayaranSeragam({Key? key}) : super(key: key);
+
+  @override
+  State<PembayaranSeragam> createState() => _PembayaranSeragamState();
+}
+
+class _PembayaranSeragamState extends State<PembayaranSeragam> {
   List<String> suggestons = [
     "Andhika Setiabudi",
     "Augusta Satrianto",
@@ -15,7 +25,13 @@ class BuatDataMutasiMurid extends StatelessWidget {
     "Budiono Arya"
   ];
 
+  TextEditingController dateinput = TextEditingController();
   @override
+  void initState() {
+    dateinput.text = "";
+    super.initState();
+  }
+
   Widget build(BuildContext context) {
     final mediaQueryHeight = MediaQuery.of(context).size.height;
     final mediaQueryWidth = MediaQuery.of(context).size.width;
@@ -202,42 +218,81 @@ class BuatDataMutasiMurid extends StatelessWidget {
                             height: 10,
                           ),
                           Container(
-                            height: 40,
-                            padding: const EdgeInsets.only(left: 10),
-                            decoration: BoxDecoration(
-                                color: const Color(0xFFedf1f7),
-                                borderRadius: BorderRadius.circular(5)),
-                            child: Center(
-                              child: Padding(
-                                padding: const EdgeInsets.only(bottom: 4.0),
-                                child: TextFormField(
-                                  // initialValue: "15/09/2022",
-                                  decoration: InputDecoration(
-                                    hintText: 'HH/BB/TT',
-                                    hintStyle: GoogleFonts.notoSans(
-                                        color: const Color(0xFFA6AAB4)),
-                                    suffixIcon: Padding(
-                                      padding: const EdgeInsets.only(
-                                          bottom: 5, top: 9),
-                                      child: Image.asset(
-                                        'assets/Calendar.png',
-                                        width: 24,
-                                      ),
+                              height: 44,
+                              padding: const EdgeInsets.only(left: 10),
+                              decoration: BoxDecoration(
+                                  color: const Color(0xFFedf1f7),
+                                  borderRadius: BorderRadius.circular(5)),
+                              child: Center(
+                                  child: TextFormField(
+                                // controller: dateinputmulai,
+                                decoration: InputDecoration(
+                                  hintText: 'HH/BB/TT',
+                                  hintStyle: GoogleFonts.notoSans(
+                                      color: const Color(0xFFA6AAB4)),
+                                  suffixIcon: Padding(
+                                    padding: const EdgeInsets.all(10.0),
+                                    child: Image.asset(
+                                      'assets/Calendar.png',
+                                      width: 24,
                                     ),
-                                    border: InputBorder.none,
                                   ),
-                                  style: GoogleFonts.notoSans(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w400),
+                                  border: InputBorder.none,
                                 ),
-                              ),
-                            ),
+                                style: GoogleFonts.notoSans(
+                                    fontSize: 12, fontWeight: FontWeight.w400),
+                                readOnly: true,
+                                onTap: () async {
+                                  DateTime? pickedDate = await showDatePicker(
+                                      context: context,
+                                      initialDate: DateTime.now(),
+                                      firstDate: DateTime(2000),
+                                      lastDate: DateTime(2101));
+
+                                  if (pickedDate != null) {
+                                    print(pickedDate);
+                                    String formattedDate =
+                                        DateFormat('dd-MM-yy')
+                                            .format(pickedDate);
+                                    print(formattedDate);
+
+                                    setState(() {
+                                      dateinput.text = formattedDate;
+                                    });
+                                  } else {
+                                    print("Date is not selected");
+                                  }
+                                },
+                              ))),
+                          const SizedBox(
+                            height: 15,
+                          ),
+                          Text(
+                            "Pilih Kelas",
+                            style: GoogleFonts.notoSans(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600,
+                                color: const Color(0xFF4D5569)),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Container(
+                            height: 24,
+                            child: RadioKeuanganKelasA(),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Container(
+                            height: 24,
+                            child: RadioKeuanganKelasH(),
                           ),
                           const SizedBox(
                             height: 15,
                           ),
                           Text(
-                            "Sekolah Tujuan",
+                            "Jumlah Pembayaran",
                             style: GoogleFonts.notoSans(
                                 fontSize: 12,
                                 fontWeight: FontWeight.w600,
@@ -258,43 +313,7 @@ class BuatDataMutasiMurid extends StatelessWidget {
                                 child: TextFormField(
                                   decoration: InputDecoration(
                                       border: InputBorder.none,
-                                      hintText: 'Masukkan sekolah tujuan murid',
-                                      hintStyle: GoogleFonts.notoSans(
-                                          color: const Color(0xFFA6AAB4))),
-                                  style: GoogleFonts.notoSans(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w400),
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 15,
-                          ),
-                          Text(
-                            "Alamat Sekolah Tujuan",
-                            style: GoogleFonts.notoSans(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w600,
-                                color: const Color(0xFF4D5569)),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Container(
-                            height: 40,
-                            decoration: BoxDecoration(
-                                color: const Color(0xFFedf1f7),
-                                borderRadius: BorderRadius.circular(5)),
-                            child: Center(
-                              child: Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 10.0, bottom: 4),
-                                child: TextFormField(
-                                  decoration: InputDecoration(
-                                      border: InputBorder.none,
-                                      hintText:
-                                          'Masukkan alamat sekolah tujuan',
+                                      hintText: 'Rp 500.000',
                                       hintStyle: GoogleFonts.notoSans(
                                           color: const Color(0xFFA6AAB4))),
                                   style: GoogleFonts.notoSans(
@@ -375,7 +394,7 @@ class BuatDataMutasiMurid extends StatelessWidget {
                                         PageRouteBuilder(
                                           pageBuilder: (context, animation1,
                                                   animation2) =>
-                                              const DataMutasiMurid1(),
+                                              Keuangan1(),
                                           transitionDuration: Duration.zero,
                                           reverseTransitionDuration:
                                               Duration.zero,
@@ -385,7 +404,7 @@ class BuatDataMutasiMurid extends StatelessWidget {
                                     icon: const Icon(Icons.arrow_back));
                               }),
                               Text(
-                                "Buat Data Mutasi Murid",
+                                "Pembayaran Seragam",
                                 style: GoogleFonts.rubik(
                                     fontSize: 20, fontWeight: FontWeight.w600),
                               ),

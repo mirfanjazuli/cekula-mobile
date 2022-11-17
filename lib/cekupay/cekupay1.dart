@@ -1,4 +1,5 @@
 import 'package:cekula/pembelian/pembelian1.dart';
+import 'package:cekula/pengambilan/pengambilan.dart';
 import 'package:cekula/produk_koperasi/produk_koperasi1.dart';
 import 'package:cekula/cekupay/bayar_cekupay.dart';
 import 'package:cekula/cekupay/cekupay2.dart';
@@ -405,17 +406,17 @@ class Cekupay1 extends StatelessWidget {
                                             fontSize: 14,
                                           )),
                                       onTap: () {
-                                        // Navigator.pushReplacement(
-                                        //   context,
-                                        //   PageRouteBuilder(
-                                        //     pageBuilder: (context, animation1,
-                                        //             animation2) =>
-                                        //         Pembelian1(),
-                                        //     transitionDuration: Duration.zero,
-                                        //     reverseTransitionDuration:
-                                        //         Duration.zero,
-                                        //   ),
-                                        // );
+                                        Navigator.pushReplacement(
+                                          context,
+                                          PageRouteBuilder(
+                                            pageBuilder: (context, animation1,
+                                                    animation2) =>
+                                                Pengambilan1(),
+                                            transitionDuration: Duration.zero,
+                                            reverseTransitionDuration:
+                                                Duration.zero,
+                                          ),
+                                        );
                                       },
                                     ),
                                     Container(

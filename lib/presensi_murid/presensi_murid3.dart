@@ -182,7 +182,7 @@ class _PresensiMurid3State extends State<PresensiMurid3> {
                       children: [
                         Container(
                           width: 265,
-                          height: 265,
+                          height: 353,
                           decoration: BoxDecoration(
                               color: image != null
                                   ? Color(0xFF9FC3F9)
@@ -201,7 +201,7 @@ class _PresensiMurid3State extends State<PresensiMurid3> {
                                       child: Image.file(
                                         image!,
                                         width: 259,
-                                        height: 259,
+                                        height: 347,
                                         fit: BoxFit.cover,
                                       ),
                                     )

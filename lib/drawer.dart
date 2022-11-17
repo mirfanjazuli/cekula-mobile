@@ -1,9 +1,12 @@
 import 'package:cekula/cekupay/cekupay1.dart';
+import 'package:cekula/kantin/kantin1.dart';
+import 'package:cekula/keuangan/keuangan1.dart';
 import 'package:cekula/laporan_data_murid/laporan_data_murid1.dart';
 import 'package:cekula/laporan_keuangan/laporan_keuangan1.dart';
 import 'package:cekula/laporan_presensi_murid/laporan_presensi_murid1.dart';
 import 'package:cekula/laporan_presensi_pegawai/laporan_presensi_pegawai1.dart';
 import 'package:cekula/laporan_transaksi/laporan_transaksi1.dart';
+import 'package:cekula/login_page.dart';
 import 'package:cekula/peminjaman_buku/perpustakaan1.dart';
 import 'package:cekula/presensi_murid/presensi_murid1.dart';
 import 'package:flutter/material.dart';
@@ -708,16 +711,16 @@ class _DrawerViewState extends State<DrawerView> {
                                   fontSize: 12, fontWeight: FontWeight.w400),
                             ),
                             onTap: () {
-                              // Navigator.pushReplacement(
-                              //   context,
-                              //   PageRouteBuilder(
-                              //     pageBuilder:
-                              //         (context, animation1, animation2) =>
-                              //             JadwalSekolah1(),
-                              //     transitionDuration: Duration.zero,
-                              //     reverseTransitionDuration: Duration.zero,
-                              //   ),
-                              // );
+                              Navigator.pushReplacement(
+                                context,
+                                PageRouteBuilder(
+                                  pageBuilder:
+                                      (context, animation1, animation2) =>
+                                          Keuangan1(),
+                                  transitionDuration: Duration.zero,
+                                  reverseTransitionDuration: Duration.zero,
+                                ),
+                              );
                             },
                           ),
                           SizedBox(
@@ -919,10 +922,24 @@ class _DrawerViewState extends State<DrawerView> {
                           SizedBox(
                             height: mediaQueryHeight * 0.01,
                           ),
-                          Text(
-                            "Kantin",
-                            style: GoogleFonts.notoSans(
-                                fontSize: 12, fontWeight: FontWeight.w400),
+                          InkWell(
+                            child: Text(
+                              "Kantin",
+                              style: GoogleFonts.notoSans(
+                                  fontSize: 12, fontWeight: FontWeight.w400),
+                            ),
+                            onTap: () {
+                              Navigator.pushReplacement(
+                                context,
+                                PageRouteBuilder(
+                                  pageBuilder:
+                                      (context, animation1, animation2) =>
+                                          DatePicker(),
+                                  transitionDuration: Duration.zero,
+                                  reverseTransitionDuration: Duration.zero,
+                                ),
+                              );
+                            },
                           ),
                           SizedBox(
                             height: mediaQueryHeight * 0.01,
@@ -1262,12 +1279,25 @@ class _DrawerViewState extends State<DrawerView> {
                       SizedBox(
                         width: 8,
                       ),
-                      Text(
-                        "Keluar",
-                        style: GoogleFonts.rubik(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
-                            color: Color(0xFFED6562)),
+                      InkWell(
+                        child: Text(
+                          "Keluar",
+                          style: GoogleFonts.rubik(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                              color: Color(0xFFED6562)),
+                        ),
+                        onTap: () {
+                          Navigator.pushReplacement(
+                            context,
+                            PageRouteBuilder(
+                              pageBuilder: (context, animation1, animation2) =>
+                                  LoginPage(),
+                              transitionDuration: Duration.zero,
+                              reverseTransitionDuration: Duration.zero,
+                            ),
+                          );
+                        },
                       ),
                     ],
                   ),

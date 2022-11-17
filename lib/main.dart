@@ -14,8 +14,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-            backgroundColor: Colors.white,
-            scaffoldBackgroundColor: Colors.white),
+            backgroundColor: Color(0xFFFBFBFB),
+            scaffoldBackgroundColor: Color(0xFFFBFBFB)),
         home: LoginPage());
   }
 }

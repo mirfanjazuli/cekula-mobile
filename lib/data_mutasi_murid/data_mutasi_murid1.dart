@@ -416,7 +416,7 @@ class DataMutasiMurid1 extends StatelessWidget {
                   context,
                   PageRouteBuilder(
                     pageBuilder: (context, animation1, animation2) =>
-                        const BuatDataMutasiMurid(),
+                        BuatDataMutasiMurid(),
                     transitionDuration: Duration.zero,
                     reverseTransitionDuration: Duration.zero,
                   ),

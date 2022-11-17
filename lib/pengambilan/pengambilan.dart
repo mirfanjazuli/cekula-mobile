@@ -1,21 +1,14 @@
 import 'package:cekula/cekupay/cekupay1.dart';
 import 'package:cekula/pembelian/buat_pembelian.dart';
-import 'package:cekula/pengambilan/pengambilan.dart';
+import 'package:cekula/pembelian/pembelian1.dart';
+import 'package:cekula/pengambilan/buat_pengambilan.dart';
 import 'package:cekula/produk_koperasi/produk_koperasi1.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cekula/drawer.dart';
 
-class Pembelian1 extends StatelessWidget {
-  Pembelian1({Key? key}) : super(key: key);
-
-  final List idTransaksi = [
-    "#0000000001",
-    "#0000000002",
-    "#0000000003",
-    "#0000000004",
-    "#0000000005",
-  ];
+class Pengambilan1 extends StatelessWidget {
+  Pengambilan1({Key? key}) : super(key: key);
 
   final List nama = [
     "Ahmad Jourji Zaidan",
@@ -33,28 +26,20 @@ class Pembelian1 extends StatelessWidget {
     "201984562",
   ];
 
-  final List harga = [
-    "Rp 5.000,-",
-    "Rp 8.000,-",
-    "Rp 10.000,-",
-    "Rp 12.000,-",
-    "Rp 7.500,-",
-  ];
-
   final List namaBarang = [
     "Buku",
-    "Topi",
-    "Sabuk",
-    "Dasi",
-    "Pensil",
+    "Buku",
+    "Seragam",
+    "Buku",
+    "Seragam",
   ];
 
-  final List jumlahBarang = [
-    "1",
-    "2",
-    "1",
-    "2",
-    "1",
+  final List tanggal = [
+    "24 Oktober 2022",
+    "25 Oktober 2022",
+    "26 Oktober 2022",
+    "27 Oktober 2022",
+    "28 Oktober 2022",
   ];
 
   @override
@@ -175,141 +160,86 @@ class Pembelian1 extends StatelessWidget {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(top: 10.0),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Row(
-                                              children: [
-                                                Image.asset(
-                                                  "assets/Perisai.png",
-                                                  width: 20,
-                                                ),
-                                                SizedBox(
-                                                  width: 4,
-                                                ),
-                                                Text(
-                                                  "Id Transaksi",
-                                                  style: GoogleFonts.notoSans(
-                                                    fontSize: 12,
-                                                    fontWeight: FontWeight.w600,
-                                                    color:
-                                                        const Color(0xFF4D5569),
-                                                  ),
-                                                ),
-                                              ],
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            nama[index],
+                                            style: GoogleFonts.notoSans(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w600,
+                                              color: const Color(0xFF4D5569),
                                             ),
-                                            Text(
-                                              idTransaksi[index],
+                                          ),
+                                          Text(
+                                            idNama[index],
+                                            style: GoogleFonts.notoSans(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w400,
+                                              color: const Color(0xFFA6AAB4),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Divider(
+                                        height: 8,
+                                        thickness: 1,
+                                        color: Color(0xFFD2D4DA),
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            "Pilihan pengambilan",
+                                            style: GoogleFonts.notoSans(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w400,
+                                              color: const Color(0xFF4D5569),
+                                            ),
+                                          ),
+                                          Container(
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: 10, vertical: 4),
+                                            decoration: BoxDecoration(
+                                              border: Border.all(
+                                                  width: 1.0,
+                                                  color: Color(0xFF9FC3F9)),
+                                              borderRadius:
+                                                  const BorderRadius.all(
+                                                      Radius.circular(6.0)),
+                                            ),
+                                            child: Text(
+                                              namaBarang[index],
                                               style: GoogleFonts.notoSans(
                                                 fontSize: 12,
                                                 fontWeight: FontWeight.w400,
                                                 color: const Color(0xFFA6AAB4),
                                               ),
                                             ),
-                                          ],
-                                        ),
+                                          ),
+                                        ],
                                       ),
                                       Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            vertical: 10),
-                                        child: Container(
-                                          height: 1,
-                                          width: mediaQueryWidth,
-                                          color: Color(0xFFD2D4DA),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(bottom: 10),
+                                        padding: const EdgeInsets.only(top: 8),
                                         child: Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
                                           children: [
                                             Text(
-                                              nama[index],
-                                              style: GoogleFonts.notoSans(
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.w600,
-                                                color: const Color(0xFF4D5569),
-                                              ),
-                                            ),
-                                            Text(
-                                              idNama[index],
+                                              "Tanggal Pengambilan",
                                               style: GoogleFonts.notoSans(
                                                 fontSize: 12,
                                                 fontWeight: FontWeight.w400,
-                                                color: const Color(0xFFA6AAB4),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      Container(
-                                        width: mediaQueryWidth,
-                                        color: Colors.white,
-                                        child: ListView.separated(
-                                            physics: BouncingScrollPhysics(),
-                                            separatorBuilder:
-                                                (context, index) => SizedBox(
-                                                      height: 4,
-                                                    ),
-                                            padding: EdgeInsets.only(top: 0),
-                                            shrinkWrap: true,
-                                            itemCount: namaBarang.length,
-                                            itemBuilder: (context, index) {
-                                              return Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Text(
-                                                    namaBarang[index],
-                                                    style: GoogleFonts.notoSans(
-                                                      fontSize: 12,
-                                                      fontWeight:
-                                                          FontWeight.w400,
-                                                      color: const Color(
-                                                          0xFF4D5569),
-                                                    ),
-                                                  ),
-                                                  Text(
-                                                    "${jumlahBarang[index]} barang",
-                                                    style: GoogleFonts.notoSans(
-                                                      fontSize: 12,
-                                                      fontWeight:
-                                                          FontWeight.w400,
-                                                      color: const Color(
-                                                          0xFFA6AAB4),
-                                                    ),
-                                                  ),
-                                                ],
-                                              );
-                                              ;
-                                            }),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(top: 6),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              "Jumlah Pembayaran",
-                                              style: GoogleFonts.notoSans(
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.w600,
                                                 color: const Color(0xFF4D5569),
                                               ),
                                             ),
                                             Text(
-                                              harga[index],
+                                              tanggal[index],
                                               style: GoogleFonts.notoSans(
                                                 fontSize: 12,
-                                                fontWeight: FontWeight.w600,
+                                                fontWeight: FontWeight.w400,
                                                 color: const Color(0xFF9FC3F9),
                                               ),
                                             ),
@@ -318,7 +248,7 @@ class Pembelian1 extends StatelessWidget {
                                       ),
                                       Padding(
                                         padding: const EdgeInsets.only(
-                                            top: 6.0, bottom: 8.0),
+                                            top: 5.0, bottom: 7.0),
                                         child: Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.end,
@@ -452,21 +382,20 @@ class Pembelian1 extends StatelessWidget {
                               children: [
                                 InkWell(
                                   child: Text("Pembelian",
-                                      style: GoogleFonts.notoSans(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w600)),
+                                      style:
+                                          GoogleFonts.notoSans(fontSize: 14)),
                                   onTap: () {
-                                    // Navigator.pushReplacement(
-                                    //   context,
-                                    //   PageRouteBuilder(
-                                    //     pageBuilder:
-                                    //         (context, animation1, animation2) =>
-                                    //             Pembelian1(),
-                                    //     transitionDuration: Duration.zero,
-                                    //     reverseTransitionDuration:
-                                    //         Duration.zero,
-                                    //   ),
-                                    // );
+                                    Navigator.pushReplacement(
+                                      context,
+                                      PageRouteBuilder(
+                                        pageBuilder:
+                                            (context, animation1, animation2) =>
+                                                Pembelian1(),
+                                        transitionDuration: Duration.zero,
+                                        reverseTransitionDuration:
+                                            Duration.zero,
+                                      ),
+                                    );
                                   },
                                 ),
                                 Container(
@@ -477,14 +406,14 @@ class Pembelian1 extends StatelessWidget {
                                       borderRadius: BorderRadius.only(
                                           topRight: Radius.circular(40),
                                           topLeft: Radius.circular(40)),
-                                      gradient: LinearGradient(
-                                        begin: Alignment.topCenter,
-                                        end: Alignment.bottomCenter,
-                                        colors: <Color>[
-                                          const Color(0xFF9FC3F9),
-                                          const Color(0xFF83DBE0),
-                                        ],
-                                      ),
+                                      // gradient: LinearGradient(
+                                      //   begin: Alignment.topCenter,
+                                      //   end: Alignment.bottomCenter,
+                                      //   colors: <Color>[
+                                      //     const Color(0xFF9FC3F9),
+                                      //     const Color(0xFF83DBE0),
+                                      //   ],
+                                      // ),
                                     )),
                               ],
                             ),
@@ -494,20 +423,20 @@ class Pembelian1 extends StatelessWidget {
                                 InkWell(
                                   child: Text("Pengambilan",
                                       style: GoogleFonts.notoSans(
-                                        fontSize: 14,
-                                      )),
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w600)),
                                   onTap: () {
-                                    Navigator.pushReplacement(
-                                      context,
-                                      PageRouteBuilder(
-                                        pageBuilder:
-                                            (context, animation1, animation2) =>
-                                                Pengambilan1(),
-                                        transitionDuration: Duration.zero,
-                                        reverseTransitionDuration:
-                                            Duration.zero,
-                                      ),
-                                    );
+                                    // Navigator.pushReplacement(
+                                    //   context,
+                                    //   PageRouteBuilder(
+                                    //     pageBuilder: (context, animation1,
+                                    //             animation2) =>
+                                    //         Pembelian1(),
+                                    //     transitionDuration: Duration.zero,
+                                    //     reverseTransitionDuration:
+                                    //         Duration.zero,
+                                    //   ),
+                                    // );
                                   },
                                 ),
                                 Container(
@@ -518,14 +447,14 @@ class Pembelian1 extends StatelessWidget {
                                     borderRadius: BorderRadius.only(
                                         topRight: Radius.circular(40),
                                         topLeft: Radius.circular(40)),
-                                    // gradient: LinearGradient(
-                                    //   begin: Alignment.topCenter,
-                                    //   end: Alignment.bottomCenter,
-                                    //   colors: <Color>[
-                                    //     const Color(0xFF9FC3F9),
-                                    //     const Color(0xFF83DBE0),
-                                    //   ],
-                                    // ),
+                                    gradient: LinearGradient(
+                                      begin: Alignment.topCenter,
+                                      end: Alignment.bottomCenter,
+                                      colors: <Color>[
+                                        const Color(0xFF9FC3F9),
+                                        const Color(0xFF83DBE0),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ],
@@ -575,7 +504,7 @@ class Pembelian1 extends StatelessWidget {
                       context,
                       PageRouteBuilder(
                         pageBuilder: (context, animation1, animation2) =>
-                            BuatPembelian(),
+                            BuatPengambilan(),
                         transitionDuration: Duration.zero,
                         reverseTransitionDuration: Duration.zero,
                       ),

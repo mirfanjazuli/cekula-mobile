@@ -1,17 +1,19 @@
 import 'package:cekula/denda_keterlambatan/denda_keterlambatan1.dart';
 import 'package:cekula/drawer.dart';
+import 'package:cekula/keuangan/pembayaran_seragam.dart';
 import 'package:cekula/peminjaman_buku/peminjaman_buku1.dart';
 import 'package:cekula/sumbang_buku/sumbang_buku1.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class Perpustakaan1 extends StatelessWidget {
-  Perpustakaan1({Key? key}) : super(key: key);
+class Keuangan1 extends StatelessWidget {
+  Keuangan1({Key? key}) : super(key: key);
 
   final List laporan = [
-    "Peminjaman & Pengembalian Buku",
-    "Denda Keterlambatan & Hilang",
-    "Sumbang Buku",
+    "Pembayaran Seragam",
+    "Pembayaran Buku",
+    "Pembayaran SPP",
+    "Keuangan Murid"
   ];
 
   @override
@@ -55,18 +57,44 @@ class Perpustakaan1 extends StatelessWidget {
                 title: Padding(
                   padding: const EdgeInsets.only(top: 20.0),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Builder(builder: (context) {
-                        return IconButton(
-                            onPressed: () {
-                              Scaffold.of(context).openDrawer();
-                            },
-                            icon: const Icon(Icons.menu));
-                      }),
-                      Text(
-                        "Perpustakaan",
-                        style: GoogleFonts.rubik(
-                            fontSize: 20, fontWeight: FontWeight.w600),
+                      Row(
+                        children: [
+                          Builder(builder: (context) {
+                            return IconButton(
+                                onPressed: () {
+                                  Scaffold.of(context).openDrawer();
+                                },
+                                icon: const Icon(Icons.menu));
+                          }),
+                          Text(
+                            "Keuangan Administrasi",
+                            style: GoogleFonts.rubik(
+                                fontSize: 20, fontWeight: FontWeight.w600),
+                          ),
+                        ],
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 10),
+                        child: InkWell(
+                          child: Image.asset(
+                            'assets/History.png',
+                            width: 24,
+                          ),
+                          onTap: () {
+                            // Navigator.pushReplacement(
+                            //   context,
+                            //   PageRouteBuilder(
+                            //     pageBuilder:
+                            //         (context, animation1, animation2) =>
+                            //             RiwayatPeminjaman(),
+                            //     transitionDuration: Duration.zero,
+                            //     reverseTransitionDuration: Duration.zero,
+                            //   ),
+                            // );
+                          },
+                        ),
                       ),
                     ],
                   ),
@@ -122,10 +150,11 @@ class Perpustakaan1 extends StatelessWidget {
                   ],
                 ),
                 Container(
-                  padding: EdgeInsets.only(left: 24.0, right: 24, top: 15),
+                  padding: EdgeInsets.only(left: 24.0, right: 24, top: 0),
+                  margin: EdgeInsets.only(top: 15),
                   color: Colors.white,
                   width: mediaQueryWidth,
-                  height: bodyHeight * 0.32,
+                  height: 276,
                   child: ListView.separated(
                     separatorBuilder: (context, index) => SizedBox(
                       height: mediaQueryHeight * 0.025,
@@ -176,9 +205,8 @@ class Perpustakaan1 extends StatelessWidget {
                             context,
                             PageRouteBuilder(
                               pageBuilder: (context, animation1, animation2) =>
-                                  laporan[index] ==
-                                          "Peminjaman & Pengembalian Buku"
-                                      ? PeminjamanBuku1()
+                                  laporan[index] == "Pembayaran Seragam"
+                                      ? PembayaranSeragam()
                                       : laporan[index] ==
                                               "Denda Keterlambatan & Hilang"
                                           ? DendaKeterlambatan1()
@@ -197,11 +225,11 @@ class Perpustakaan1 extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Image.asset(
-                      "assets/Perpustakaan.png",
-                      width: 210,
+                      "assets/Keuangan.png",
+                      width: 184,
                     ),
                     Text(
-                      "Pilih menu perpustakaan terlebih dahulu",
+                      "Pilih pembayaran anda.",
                       style: GoogleFonts.notoSans(
                           fontSize: 12,
                           fontWeight: FontWeight.w400,
