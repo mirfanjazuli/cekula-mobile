@@ -1,24 +1,19 @@
 import 'package:cekula/drawer.dart';
 import 'package:cekula/presensi_murid/presensi_murid1.dart';
 import 'package:cekula/presensi_murid/presensi_murid3.dart';
+import 'package:cekula/presensi_pegawai/presensi_pegawai2.dart';
 import 'package:cekula/rapor_murid/rapor_murid1.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cekula/rapor_murid/rapor_murid3.dart';
 
-class PresensiMurid2 extends StatelessWidget {
-  PresensiMurid2({Key? key}) : super(key: key);
+class PresensiPegawai1 extends StatelessWidget {
+  PresensiPegawai1({Key? key}) : super(key: key);
 
   final List presensi = [
     "Hadir",
     "Izin",
     "Sakit",
-  ];
-
-  final List jenisPresensi = [
-    "Hadir : memakai seragam, tidak memakai helm, dan tidak memakai masker",
-    "Izin : Bukti tempat dan alasan izin",
-    "Sakit : Bukti surat keterangan dokter"
   ];
 
   @override
@@ -66,21 +61,12 @@ class PresensiMurid2 extends StatelessWidget {
                       Builder(builder: (context) {
                         return IconButton(
                             onPressed: () {
-                              Navigator.pushReplacement(
-                                context,
-                                PageRouteBuilder(
-                                  pageBuilder:
-                                      (context, animation1, animation2) =>
-                                          PresensiMurid1(),
-                                  transitionDuration: Duration.zero,
-                                  reverseTransitionDuration: Duration.zero,
-                                ),
-                              );
+                              Scaffold.of(context).openDrawer();
                             },
-                            icon: const Icon(Icons.arrow_back));
+                            icon: const Icon(Icons.menu));
                       }),
                       Text(
-                        "Presensi Murid",
+                        "Presensi Pegawai",
                         style: GoogleFonts.rubik(
                             fontSize: 20, fontWeight: FontWeight.w600),
                       ),
@@ -194,9 +180,7 @@ class PresensiMurid2 extends StatelessWidget {
                               PageRouteBuilder(
                                 pageBuilder:
                                     (context, animation1, animation2) =>
-                                        PresensiMurid3(
-                                  jenisPresensi: jenisPresensi[index],
-                                ),
+                                        PresensiPegawai2(),
                                 transitionDuration: Duration.zero,
                                 reverseTransitionDuration: Duration.zero,
                               ),

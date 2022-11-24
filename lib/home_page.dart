@@ -1,3 +1,4 @@
+import 'package:cekula/berita_sekolah/berita_sekolah1.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cekula/drawer.dart';
@@ -172,16 +173,16 @@ class _HomePageState extends State<HomePage> {
                                 color: Color(0xFF9FC3F9)),
                           ),
                           onTap: () {
-                            // Navigator.pushReplacement(
-                            //   context,
-                            //   PageRouteBuilder(
-                            //     pageBuilder:
-                            //         (context, animation1, animation2) =>
-                            //             const BeritaSekolah1(),
-                            //     transitionDuration: Duration.zero,
-                            //     reverseTransitionDuration: Duration.zero,
-                            //   ),
-                            // );
+                            Navigator.push(
+                              context,
+                              PageRouteBuilder(
+                                pageBuilder:
+                                    (context, animation1, animation2) =>
+                                        const BeritaSekolah1(),
+                                transitionDuration: Duration.zero,
+                                reverseTransitionDuration: Duration.zero,
+                              ),
+                            );
                           },
                         )
                       ],
@@ -357,7 +358,7 @@ class _HomePageState extends State<HomePage> {
                                 color: const Color(0xFF9FC3F9)),
                           ),
                           onTap: () {
-                            Navigator.pushReplacement(
+                            Navigator.push(
                               context,
                               PageRouteBuilder(
                                 pageBuilder:

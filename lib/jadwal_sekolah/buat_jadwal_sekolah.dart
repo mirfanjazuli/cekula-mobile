@@ -184,33 +184,41 @@ class _BuatJadwalSekolahState extends State<BuatJadwalSekolah> {
                           ),
                           //Judul Jadwal
                           Text(
-                            "Judul Jadwal",
+                            "Nama Lengkap",
                             style: GoogleFonts.notoSans(
+                                color: Color(0xFF4D5569),
                                 fontSize: 12,
-                                fontWeight: FontWeight.w600,
-                                color: const Color(0xFF4D5569)),
+                                fontWeight: FontWeight.w600),
                           ),
-                          const SizedBox(
+                          SizedBox(
                             height: 10,
                           ),
                           Container(
-                            height: 36,
+                            height: 40,
+                            padding: const EdgeInsets.only(left: 10),
                             decoration: BoxDecoration(
                                 color: const Color(0xFFedf1f7),
                                 borderRadius: BorderRadius.circular(5)),
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 10.0, bottom: 2),
-                              child: TextFormField(
-                                // initialValue: "Ekstrakurikuler Pramuka",
-                                decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  hintText: 'Masukkan judul jadwal',
-                                  hintStyle: GoogleFonts.notoSans(
-                                      color: const Color(0xFFA6AAB4)),
+                            child: Center(
+                              child: Padding(
+                                padding: const EdgeInsets.only(bottom: 4),
+                                child: TextFormField(
+                                  // controller: controllerNamaLengkap,
+                                  decoration: InputDecoration(
+                                    // contentPadding: EdgeInsets.only(bottom: 8),
+                                    hintText: 'Masukkan nama lengkap',
+                                    hintStyle: GoogleFonts.notoSans(
+                                      color: const Color(0xFFA6AAB4),
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                    border: InputBorder.none,
+                                  ),
+                                  style: GoogleFonts.notoSans(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w400,
+                                      color: Color(0xFF4D5569)),
                                 ),
-                                style: GoogleFonts.notoSans(
-                                    fontSize: 12, fontWeight: FontWeight.w400),
                               ),
                             ),
                           ),
@@ -231,51 +239,57 @@ class _BuatJadwalSekolahState extends State<BuatJadwalSekolah> {
                           ),
 
                           Container(
-                              height: 44,
+                              height: 40,
                               padding: const EdgeInsets.only(left: 10),
                               decoration: BoxDecoration(
                                   color: const Color(0xFFedf1f7),
                                   borderRadius: BorderRadius.circular(5)),
                               child: Center(
-                                  child: TextFormField(
-                                controller: dateinputmulai,
-                                decoration: InputDecoration(
-                                  hintText: 'HH/BB/TT',
-                                  hintStyle: GoogleFonts.notoSans(
-                                      color: const Color(0xFFA6AAB4)),
-                                  suffixIcon: Padding(
-                                    padding: const EdgeInsets.all(10.0),
-                                    child: Image.asset(
-                                      'assets/Calendar.png',
-                                      width: 24,
+                                  child: Padding(
+                                padding: const EdgeInsets.only(bottom: 0),
+                                child: TextFormField(
+                                  // controller: controllerTanggalLahir,
+                                  decoration: InputDecoration(
+                                    hintText: 'HH/BB/TT',
+                                    hintStyle: GoogleFonts.notoSans(
+                                        color: const Color(0xFFA6AAB4)),
+                                    suffixIcon: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 10),
+                                      child: Image.asset(
+                                        'assets/Calendar.png',
+                                        width: 24,
+                                      ),
                                     ),
+                                    border: InputBorder.none,
                                   ),
-                                  border: InputBorder.none,
+                                  style: GoogleFonts.notoSans(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w400,
+                                      color: Color(0xFF4D5569)),
+                                  readOnly: true,
+                                  onTap: () async {
+                                    DateTime? pickedDate = await showDatePicker(
+                                        context: context,
+                                        initialDate: DateTime.now(),
+                                        firstDate: DateTime(2000),
+                                        lastDate: DateTime(2101));
+
+                                    if (pickedDate != null) {
+                                      print(pickedDate);
+                                      String formattedDate =
+                                          DateFormat('dd-MM-yy')
+                                              .format(pickedDate);
+                                      print(formattedDate);
+
+                                      setState(() {
+                                        // controllerTanggalLahir.text = formattedDate;
+                                      });
+                                    } else {
+                                      print("Date is not selected");
+                                    }
+                                  },
                                 ),
-                                style: GoogleFonts.notoSans(
-                                    fontSize: 12, fontWeight: FontWeight.w400),
-                                readOnly: true,
-                                onTap: () async {
-                                  DateTime? pickedDate = await showDatePicker(
-                                      context: context,
-                                      initialDate: DateTime.now(),
-                                      firstDate: DateTime(2000),
-                                      lastDate: DateTime(2101));
-
-                                  if (pickedDate != null) {
-                                    print(pickedDate);
-                                    String formattedDate =
-                                        DateFormat('dd-MM-yy')
-                                            .format(pickedDate);
-                                    print(formattedDate);
-
-                                    setState(() {
-                                      dateinputmulai.text = formattedDate;
-                                    });
-                                  } else {
-                                    print("Date is not selected");
-                                  }
-                                },
                               ))),
                           const SizedBox(
                             height: 10,
@@ -387,7 +401,30 @@ class _BuatJadwalSekolahState extends State<BuatJadwalSekolah> {
                         ],
                       ),
                     ),
-                    const RoundedAlertBox(),
+                    Container(
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 24, vertical: 24),
+                      width: mediaQueryWidth,
+                      height: 39,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        gradient: const LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [Color(0xFF9FC3F9), Color(0xFF83DBE0)],
+                        ),
+                      ),
+                      child: MaterialButton(
+                        child: Text(
+                          'Posting Jadwal',
+                          style: GoogleFonts.notoSans(
+                              color: Colors.white,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600),
+                        ),
+                        onPressed: openAlertBox,
+                      ),
+                    )
                   ],
                 ),
               ),
@@ -468,41 +505,6 @@ class _BuatJadwalSekolahState extends State<BuatJadwalSekolah> {
                 )),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class RoundedAlertBox extends StatefulWidget {
-  const RoundedAlertBox({Key? key}) : super(key: key);
-
-  @override
-  _RoundedAlertBoxState createState() => _RoundedAlertBoxState();
-}
-
-class _RoundedAlertBoxState extends State<RoundedAlertBox> {
-  @override
-  Widget build(BuildContext context) {
-    final mediaQueryWidth = MediaQuery.of(context).size.width;
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
-      width: mediaQueryWidth,
-      height: 39,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(5),
-        gradient: const LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [Color(0xFF9FC3F9), Color(0xFF83DBE0)],
-        ),
-      ),
-      child: MaterialButton(
-        child: Text(
-          'Posting Jadwal',
-          style: GoogleFonts.notoSans(
-              color: Colors.white, fontSize: 14, fontWeight: FontWeight.w600),
-        ),
-        onPressed: openAlertBox,
       ),
     );
   }

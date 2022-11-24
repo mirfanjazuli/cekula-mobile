@@ -1,25 +1,15 @@
+import 'package:cekula/denda_keterlambatan/denda_keterlambatan1.dart';
 import 'package:cekula/drawer.dart';
-import 'package:cekula/presensi_murid/presensi_murid1.dart';
-import 'package:cekula/presensi_murid/presensi_murid3.dart';
-import 'package:cekula/rapor_murid/rapor_murid1.dart';
+import 'package:cekula/keuangan/pembayaran_cekupa.dart';
+import 'package:cekula/keuangan/pembayaran_seragam.dart';
+import 'package:cekula/keuangan/transfer_bank.dart';
+import 'package:cekula/peminjaman_buku/peminjaman_buku1.dart';
+import 'package:cekula/sumbang_buku/sumbang_buku1.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:cekula/rapor_murid/rapor_murid3.dart';
 
-class PresensiMurid2 extends StatelessWidget {
-  PresensiMurid2({Key? key}) : super(key: key);
-
-  final List presensi = [
-    "Hadir",
-    "Izin",
-    "Sakit",
-  ];
-
-  final List jenisPresensi = [
-    "Hadir : memakai seragam, tidak memakai helm, dan tidak memakai masker",
-    "Izin : Bukti tempat dan alasan izin",
-    "Sakit : Bukti surat keterangan dokter"
-  ];
+class JenisPembayaran extends StatelessWidget {
+  JenisPembayaran({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +61,7 @@ class PresensiMurid2 extends StatelessWidget {
                                 PageRouteBuilder(
                                   pageBuilder:
                                       (context, animation1, animation2) =>
-                                          PresensiMurid1(),
+                                          PembayaranSeragam(),
                                   transitionDuration: Duration.zero,
                                   reverseTransitionDuration: Duration.zero,
                                 ),
@@ -80,7 +70,7 @@ class PresensiMurid2 extends StatelessWidget {
                             icon: const Icon(Icons.arrow_back));
                       }),
                       Text(
-                        "Presensi Murid",
+                        "Pilih Jenis Pembayaran",
                         style: GoogleFonts.rubik(
                             fontSize: 20, fontWeight: FontWeight.w600),
                       ),
@@ -137,56 +127,29 @@ class PresensiMurid2 extends StatelessWidget {
                     ),
                   ],
                 ),
-                Flexible(
-                  child: Container(
-                    padding: EdgeInsets.only(left: 24.0, right: 24, top: 15),
+                Container(
+                    padding: EdgeInsets.only(left: 24.0, right: 24, top: 0),
+                    margin: EdgeInsets.only(top: 5),
                     color: Colors.white,
                     width: mediaQueryWidth,
-                    height: bodyHeight * 0.3025,
-                    child: ListView.separated(
-                      separatorBuilder: (context, index) => SizedBox(
-                        height: mediaQueryHeight * 0.025,
-                      ),
-                      itemCount: presensi.length,
-                      itemBuilder: (context, index) {
-                        return InkWell(
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(vertical: 16),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(6),
-                                color: Colors.white,
-                                boxShadow: const [
-                                  BoxShadow(
-                                      color: Color.fromARGB(255, 237, 237, 237),
-                                      blurRadius: 6.0,
-                                      offset: Offset(0, 2)),
-                                ]),
-                            child: Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 10.0, right: 15.0),
-                              child: Column(
-                                children: [
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Container(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 10),
-                                        child: Text(
-                                          presensi[index],
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w600),
-                                        ),
-                                      ),
-                                      const Icon(Icons.arrow_forward_ios,
-                                          size: 20),
-                                    ],
-                                  )
-                                ],
+                    child: Column(
+                      children: [
+                        InkWell(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 10),
+                                child: Text(
+                                  'Transfer Bank',
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w600),
+                                ),
                               ),
-                            ),
+                              const Icon(Icons.arrow_forward_ios, size: 20),
+                            ],
                           ),
                           onTap: () {
                             Navigator.pushReplacement(
@@ -194,19 +157,68 @@ class PresensiMurid2 extends StatelessWidget {
                               PageRouteBuilder(
                                 pageBuilder:
                                     (context, animation1, animation2) =>
-                                        PresensiMurid3(
-                                  jenisPresensi: jenisPresensi[index],
-                                ),
+                                        TransferBank(),
                                 transitionDuration: Duration.zero,
                                 reverseTransitionDuration: Duration.zero,
                               ),
                             );
                           },
-                        );
-                      },
+                        ),
+                        SizedBox(
+                          height: mediaQueryHeight * 0.04625,
+                        ),
+                        InkWell(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 10),
+                                child: Text(
+                                  'Cekupay',
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                              ),
+                              const Icon(Icons.arrow_forward_ios, size: 20),
+                            ],
+                          ),
+                          onTap: () {
+                            Navigator.pushReplacement(
+                              context,
+                              PageRouteBuilder(
+                                pageBuilder:
+                                    (context, animation1, animation2) =>
+                                        PembayaranCekupay(),
+                                transitionDuration: Duration.zero,
+                                reverseTransitionDuration: Duration.zero,
+                              ),
+                            );
+                          },
+                        ),
+                      ],
+                    )),
+                Expanded(
+                    child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      height: 150,
                     ),
-                  ),
-                ),
+                    Image.asset(
+                      "assets/Keuangan.png",
+                      width: 184,
+                    ),
+                    Text(
+                      "Pilih pembayaran anda.",
+                      style: GoogleFonts.notoSans(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400,
+                          color: Color(0xFF797f8F)),
+                    )
+                  ],
+                ))
               ],
             ),
           ],

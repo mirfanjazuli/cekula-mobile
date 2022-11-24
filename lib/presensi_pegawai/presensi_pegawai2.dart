@@ -1,7 +1,8 @@
 import 'package:cekula/drawer.dart';
 import 'package:cekula/presensi_murid/presensi_murid1.dart';
-import 'package:cekula/presensi_murid/presensi_murid2.dart';
 import 'package:cekula/presensi_murid/presensi_murid4.dart';
+import 'package:cekula/presensi_pegawai/presensi_pegawai1.dart';
+import 'package:cekula/presensi_pegawai/presensi_pegawai3.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:io';
@@ -11,14 +12,14 @@ import 'package:image_picker/image_picker.dart';
 
 import 'package:flutter/services.dart';
 
-class PresensiMurid3 extends StatefulWidget {
-  PresensiMurid3({Key? key, required this.jenisPresensi}) : super(key: key);
-  String jenisPresensi;
+class PresensiPegawai2 extends StatefulWidget {
+  const PresensiPegawai2({Key? key}) : super(key: key);
+
   @override
-  State<PresensiMurid3> createState() => _PresensiMurid3State();
+  State<PresensiPegawai2> createState() => _PresensiPegawai2State();
 }
 
-class _PresensiMurid3State extends State<PresensiMurid3> {
+class _PresensiPegawai2State extends State<PresensiPegawai2> {
   File? image;
 
   Future pickImage() async {
@@ -99,7 +100,7 @@ class _PresensiMurid3State extends State<PresensiMurid3> {
                                 PageRouteBuilder(
                                   pageBuilder:
                                       (context, animation1, animation2) =>
-                                          PresensiMurid2(),
+                                          PresensiPegawai1(),
                                   transitionDuration: Duration.zero,
                                   reverseTransitionDuration: Duration.zero,
                                 ),
@@ -108,7 +109,7 @@ class _PresensiMurid3State extends State<PresensiMurid3> {
                             icon: const Icon(Icons.arrow_back));
                       }),
                       Text(
-                        "Presensi Murid",
+                        "Presensi Pegawai",
                         style: GoogleFonts.rubik(
                             fontSize: 20, fontWeight: FontWeight.w600),
                       ),
@@ -165,16 +166,13 @@ class _PresensiMurid3State extends State<PresensiMurid3> {
                     ),
                   ],
                 ),
-                Container(
-                  width: mediaQueryWidth - 48,
-                  child: Text(
-                    widget.jenisPresensi,
-                    style: GoogleFonts.notoSans(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: Color(0xFFE2313D)),
-                    textAlign: TextAlign.center,
-                  ),
+                Text(
+                  "Hadir : memakai seragam,\ntidak memakai helm, dan tidak\nmemakai masker",
+                  style: GoogleFonts.notoSans(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                      color: Color(0xFFE2313D)),
+                  textAlign: TextAlign.center,
                 ),
                 Expanded(
                   child: Container(
@@ -351,7 +349,7 @@ class _PresensiMurid3State extends State<PresensiMurid3> {
                             context,
                             PageRouteBuilder(
                               pageBuilder: (context, animation1, animation2) =>
-                                  PresensiMurid4(),
+                                  PresensiPegawai3(),
                               transitionDuration: Duration.zero,
                               reverseTransitionDuration: Duration.zero,
                             ),
@@ -380,7 +378,7 @@ class _PresensiMurid3State extends State<PresensiMurid3> {
                     height: 10,
                   ),
                   const Text(
-                    "Silahkan kembali ke\nhalaman presensi murid",
+                    "Silahkan kembali ke\nhalaman presensi pegawai",
                     style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w400,

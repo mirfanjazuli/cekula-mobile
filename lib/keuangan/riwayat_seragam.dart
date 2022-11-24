@@ -1,24 +1,36 @@
+import 'package:cekula/denda_keterlambatan/denda_keterlambatan1.dart';
 import 'package:cekula/drawer.dart';
-import 'package:cekula/presensi_murid/presensi_murid1.dart';
-import 'package:cekula/presensi_murid/presensi_murid3.dart';
-import 'package:cekula/rapor_murid/rapor_murid1.dart';
+import 'package:cekula/keuangan/keuangan1.dart';
+import 'package:cekula/keuangan/pembayaran_seragam.dart';
+import 'package:cekula/keuangan/riwayat_transaksi.dart';
+import 'package:cekula/peminjaman_buku/peminjaman_buku1.dart';
+import 'package:cekula/sumbang_buku/sumbang_buku1.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:cekula/rapor_murid/rapor_murid3.dart';
 
-class PresensiMurid2 extends StatelessWidget {
-  PresensiMurid2({Key? key}) : super(key: key);
+class RiwayatSeragam extends StatelessWidget {
+  RiwayatSeragam({Key? key}) : super(key: key);
 
-  final List presensi = [
-    "Hadir",
-    "Izin",
-    "Sakit",
+  final List nama = [
+    "Amanda Manopo",
+    "Augusta Satrianto",
+    "Yulianingsih",
+    "Edwin Fatkhur Rozi",
+    "Desti Wulandari"
   ];
-
-  final List jenisPresensi = [
-    "Hadir : memakai seragam, tidak memakai helm, dan tidak memakai masker",
-    "Izin : Bukti tempat dan alasan izin",
-    "Sakit : Bukti surat keterangan dokter"
+  final List tanggal = [
+    "18 Nov 2022",
+    "17 Nov 2022",
+    "16 Nov 2022",
+    "15 Nov 2022",
+    "14 Nov 2022"
+  ];
+  final List tanggal2 = [
+    "18/11/2022",
+    "17/11/2022",
+    "16/11/2022",
+    "15/11/2022",
+    "14/11/2022",
   ];
 
   @override
@@ -71,7 +83,7 @@ class PresensiMurid2 extends StatelessWidget {
                                 PageRouteBuilder(
                                   pageBuilder:
                                       (context, animation1, animation2) =>
-                                          PresensiMurid1(),
+                                          RiwayatTransaksi(),
                                   transitionDuration: Duration.zero,
                                   reverseTransitionDuration: Duration.zero,
                                 ),
@@ -80,7 +92,7 @@ class PresensiMurid2 extends StatelessWidget {
                             icon: const Icon(Icons.arrow_back));
                       }),
                       Text(
-                        "Presensi Murid",
+                        "Riwayat Seragam",
                         style: GoogleFonts.rubik(
                             fontSize: 20, fontWeight: FontWeight.w600),
                       ),
@@ -139,69 +151,74 @@ class PresensiMurid2 extends StatelessWidget {
                 ),
                 Flexible(
                   child: Container(
-                    padding: EdgeInsets.only(left: 24.0, right: 24, top: 15),
+                    margin: EdgeInsets.only(
+                      top: 15,
+                      left: 24.0,
+                      right: 24,
+                    ),
                     color: Colors.white,
                     width: mediaQueryWidth,
-                    height: bodyHeight * 0.3025,
+                    height: bodyHeight,
                     child: ListView.separated(
-                      separatorBuilder: (context, index) => SizedBox(
-                        height: mediaQueryHeight * 0.025,
+                      separatorBuilder: (context, index) => Divider(
+                        thickness: 1,
+                        color: Color(0xFFD2D4DA),
+                        height: 20,
                       ),
-                      itemCount: presensi.length,
+                      itemCount: nama.length,
                       itemBuilder: (context, index) {
-                        return InkWell(
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(vertical: 16),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(6),
-                                color: Colors.white,
-                                boxShadow: const [
-                                  BoxShadow(
-                                      color: Color.fromARGB(255, 237, 237, 237),
-                                      blurRadius: 6.0,
-                                      offset: Offset(0, 2)),
-                                ]),
-                            child: Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 10.0, right: 15.0),
-                              child: Column(
-                                children: [
-                                  Row(
+                        return Row(
+                          children: [
+                            Image.asset(
+                              'assets/Centang.png',
+                              width: 20,
+                            ),
+                            SizedBox(
+                              width: 12,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Container(
+                                  width: mediaQueryWidth - 80,
+                                  child: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Container(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 10),
-                                        child: Text(
-                                          presensi[index],
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w600),
-                                        ),
+                                      Text(
+                                        nama[index],
+                                        style: GoogleFonts.notoSans(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w600,
+                                            color: Color(0xFF000000)),
                                       ),
-                                      const Icon(Icons.arrow_forward_ios,
-                                          size: 20),
+                                      Text(
+                                        tanggal[index],
+                                        style: GoogleFonts.notoSans(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w400,
+                                            color: Color(0xFFA6AAB4)),
+                                      ),
                                     ],
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                          onTap: () {
-                            Navigator.pushReplacement(
-                              context,
-                              PageRouteBuilder(
-                                pageBuilder:
-                                    (context, animation1, animation2) =>
-                                        PresensiMurid3(
-                                  jenisPresensi: jenisPresensi[index],
+                                  ),
                                 ),
-                                transitionDuration: Duration.zero,
-                                reverseTransitionDuration: Duration.zero,
-                              ),
-                            );
-                          },
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Container(
+                                  width: mediaQueryWidth - 80,
+                                  child: Text(
+                                    "Pembayaran seragam berhasil disimpan pada tanggal ${tanggal2[index]}. Ketuk untuk melihat detail",
+                                    style: GoogleFonts.notoSans(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w400,
+                                        color: Color(0xFFA6AAB4)),
+                                  ),
+                                ),
+                              ],
+                            )
+                          ],
                         );
                       },
                     ),

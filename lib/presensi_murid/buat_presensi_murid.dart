@@ -1,5 +1,6 @@
 import 'package:cekula/keuangan/jenis_pembayaran.dart';
 import 'package:cekula/keuangan/keuangan1.dart';
+import 'package:cekula/presensi_murid/presensi_murid4.dart';
 import 'package:cekula/radio/keuangan/radio_kelas_a.dart';
 import 'package:cekula/radio/keuangan/radio_kelas_h.dart';
 import 'package:flutter/material.dart';
@@ -8,14 +9,14 @@ import 'package:cekula/data_mutasi_murid/data_mutasi_murid1.dart';
 import 'package:cekula/drawer.dart';
 import 'package:intl/intl.dart';
 
-class PembayaranSeragam extends StatefulWidget {
-  PembayaranSeragam({Key? key}) : super(key: key);
+class BuatPresensiMurid extends StatefulWidget {
+  BuatPresensiMurid({Key? key}) : super(key: key);
 
   @override
-  State<PembayaranSeragam> createState() => _PembayaranSeragamState();
+  State<BuatPresensiMurid> createState() => _BuatPresensiMuridState();
 }
 
-class _PembayaranSeragamState extends State<PembayaranSeragam> {
+class _BuatPresensiMuridState extends State<BuatPresensiMurid> {
   List<String> suggestons = [
     "Andhika Setiabudi",
     "Augusta Satrianto",
@@ -209,7 +210,31 @@ class _PembayaranSeragamState extends State<PembayaranSeragam> {
                             height: 15,
                           ),
                           Text(
-                            "Tanggal Mutasi",
+                            "Pilih Kelas",
+                            style: GoogleFonts.notoSans(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600,
+                                color: const Color(0xFF4D5569)),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Container(
+                            height: 24,
+                            child: RadioKeuanganKelasA(),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Container(
+                            height: 24,
+                            child: RadioKeuanganKelasH(),
+                          ),
+                          const SizedBox(
+                            height: 15,
+                          ),
+                          Text(
+                            "Waktu Presensi",
                             style: GoogleFonts.notoSans(
                                 fontSize: 12,
                                 fontWeight: FontWeight.w600,
@@ -268,65 +293,6 @@ class _PembayaranSeragamState extends State<PembayaranSeragam> {
                           const SizedBox(
                             height: 15,
                           ),
-                          Text(
-                            "Pilih Kelas",
-                            style: GoogleFonts.notoSans(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w600,
-                                color: const Color(0xFF4D5569)),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Container(
-                            height: 24,
-                            child: RadioKeuanganKelasA(),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Container(
-                            height: 24,
-                            child: RadioKeuanganKelasH(),
-                          ),
-                          const SizedBox(
-                            height: 15,
-                          ),
-                          Text(
-                            "Jumlah Pembayaran",
-                            style: GoogleFonts.notoSans(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w600,
-                                color: const Color(0xFF4D5569)),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Container(
-                            height: 40,
-                            decoration: BoxDecoration(
-                                color: const Color(0xFFedf1f7),
-                                borderRadius: BorderRadius.circular(5)),
-                            child: Center(
-                              child: Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 10.0, bottom: 4),
-                                child: TextFormField(
-                                  decoration: InputDecoration(
-                                      border: InputBorder.none,
-                                      hintText: 'Rp 500.000',
-                                      hintStyle: GoogleFonts.notoSans(
-                                          color: const Color(0xFFA6AAB4))),
-                                  style: GoogleFonts.notoSans(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w400),
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 15,
-                          ),
                         ],
                       ),
                     ),
@@ -355,12 +321,12 @@ class _PembayaranSeragamState extends State<PembayaranSeragam> {
                               Builder(builder: (context) {
                                 return IconButton(
                                     onPressed: () {
-                                      Navigator.pushReplacement(
+                                      Navigator.pop(
                                         context,
                                         PageRouteBuilder(
                                           pageBuilder: (context, animation1,
                                                   animation2) =>
-                                              Keuangan1(),
+                                              PresensiMurid4(),
                                           transitionDuration: Duration.zero,
                                           reverseTransitionDuration:
                                               Duration.zero,
@@ -370,7 +336,7 @@ class _PembayaranSeragamState extends State<PembayaranSeragam> {
                                     icon: const Icon(Icons.arrow_back));
                               }),
                               Text(
-                                "Pembayaran Seragam",
+                                "Presensi Murid",
                                 style: GoogleFonts.rubik(
                                     fontSize: 20, fontWeight: FontWeight.w600),
                               ),
@@ -441,22 +407,86 @@ class _RoundedAlertBoxState extends State<RoundedAlertBox> {
       ),
       child: MaterialButton(
         child: Text(
-          'Lanjutkan Pembayaran',
+          'Simpan Kehadiran',
           style: GoogleFonts.notoSans(
               color: Colors.white, fontSize: 14, fontWeight: FontWeight.w600),
         ),
         onPressed: () {
-          Navigator.pushReplacement(
-            context,
-            PageRouteBuilder(
-              pageBuilder: (context, animation1, animation2) =>
-                  JenisPembayaran(),
-              transitionDuration: Duration.zero,
-              reverseTransitionDuration: Duration.zero,
-            ),
-          );
+          openAlertBox();
         },
       ),
     );
+  }
+
+  openAlertBox() {
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(10.0))),
+            contentPadding: const EdgeInsets.only(
+                top: 11.0, right: 12, bottom: 11, left: 12),
+            content: SizedBox(
+              width: 290,
+              height: 295,
+              // color: Colors.amber,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: <Widget>[
+                      InkWell(
+                        child: Image.asset(
+                          "assets/Exit.png",
+                          width: 16,
+                        ),
+                        onTap: () {
+                          Navigator.pushReplacement(
+                            context,
+                            PageRouteBuilder(
+                              pageBuilder: (context, animation1, animation2) =>
+                                  PresensiMurid4(),
+                              transitionDuration: Duration.zero,
+                              reverseTransitionDuration: Duration.zero,
+                            ),
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  Image.asset(
+                    "assets/alert-jadwal.png",
+                    width: 90,
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    "Presensi Anda Berhasil ",
+                    style: GoogleFonts.notoSans(
+                        fontSize: 16, fontWeight: FontWeight.w600),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  const Text(
+                    "Silahkan kembali ke\nhalaman presensi murid",
+                    style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
+                        color: Color(0xFF797F8F)),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+            ),
+          );
+        });
   }
 }

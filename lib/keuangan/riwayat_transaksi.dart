@@ -1,14 +1,15 @@
 import 'package:cekula/denda_keterlambatan/denda_keterlambatan1.dart';
 import 'package:cekula/drawer.dart';
+import 'package:cekula/keuangan/keuangan1.dart';
 import 'package:cekula/keuangan/pembayaran_seragam.dart';
-import 'package:cekula/keuangan/riwayat_transaksi.dart';
+import 'package:cekula/keuangan/riwayat_seragam.dart';
 import 'package:cekula/peminjaman_buku/peminjaman_buku1.dart';
 import 'package:cekula/sumbang_buku/sumbang_buku1.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class Keuangan1 extends StatelessWidget {
-  Keuangan1({Key? key}) : super(key: key);
+class RiwayatTransaksi extends StatelessWidget {
+  RiwayatTransaksi({Key? key}) : super(key: key);
 
   final List laporan = [
     "Pembayaran Seragam",
@@ -58,44 +59,27 @@ class Keuangan1 extends StatelessWidget {
                 title: Padding(
                   padding: const EdgeInsets.only(top: 20.0),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Row(
-                        children: [
-                          Builder(builder: (context) {
-                            return IconButton(
-                                onPressed: () {
-                                  Scaffold.of(context).openDrawer();
-                                },
-                                icon: const Icon(Icons.menu));
-                          }),
-                          Text(
-                            "Keuangan Administrasi",
-                            style: GoogleFonts.rubik(
-                                fontSize: 20, fontWeight: FontWeight.w600),
-                          ),
-                        ],
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 10),
-                        child: InkWell(
-                          child: Image.asset(
-                            'assets/History.png',
-                            width: 24,
-                          ),
-                          onTap: () {
-                            Navigator.pushReplacement(
-                              context,
-                              PageRouteBuilder(
-                                pageBuilder:
-                                    (context, animation1, animation2) =>
-                                        RiwayatTransaksi(),
-                                transitionDuration: Duration.zero,
-                                reverseTransitionDuration: Duration.zero,
-                              ),
-                            );
-                          },
-                        ),
+                      Builder(builder: (context) {
+                        return IconButton(
+                            onPressed: () {
+                              Navigator.pushReplacement(
+                                context,
+                                PageRouteBuilder(
+                                  pageBuilder:
+                                      (context, animation1, animation2) =>
+                                          Keuangan1(),
+                                  transitionDuration: Duration.zero,
+                                  reverseTransitionDuration: Duration.zero,
+                                ),
+                              );
+                            },
+                            icon: const Icon(Icons.arrow_back));
+                      }),
+                      Text(
+                        "Riwayat Transaksi",
+                        style: GoogleFonts.rubik(
+                            fontSize: 20, fontWeight: FontWeight.w600),
                       ),
                     ],
                   ),
@@ -187,7 +171,7 @@ class Keuangan1 extends StatelessWidget {
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 10),
                                       child: Text(
-                                        laporan[index],
+                                        "Riwayat ${laporan[index]}",
                                         style: TextStyle(
                                             fontSize: 14,
                                             fontWeight: FontWeight.w600),
@@ -206,12 +190,7 @@ class Keuangan1 extends StatelessWidget {
                             context,
                             PageRouteBuilder(
                               pageBuilder: (context, animation1, animation2) =>
-                                  laporan[index] == "Pembayaran Seragam"
-                                      ? PembayaranSeragam()
-                                      : laporan[index] ==
-                                              "Denda Keterlambatan & Hilang"
-                                          ? DendaKeterlambatan1()
-                                          : SumbangBuku1(),
+                                  RiwayatSeragam(),
                               transitionDuration: Duration.zero,
                               reverseTransitionDuration: Duration.zero,
                             ),

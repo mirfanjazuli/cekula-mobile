@@ -137,11 +137,8 @@ class KartuPelajar3 extends StatelessWidget {
                         left: flexsibelCard * 42.27,
                         right: flexsibelCard * 42.27),
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             CircleAvatar(
                               backgroundImage:

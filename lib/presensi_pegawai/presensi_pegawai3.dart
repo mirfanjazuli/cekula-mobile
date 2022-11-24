@@ -1,14 +1,14 @@
-import 'package:cekula/presensi_murid/buat_presensi_murid.dart';
+import 'package:cekula/presensi_pegawai/presensi_pegawai1.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cekula/drawer.dart';
 
-class PresensiMurid4 extends StatefulWidget {
+class PresensiPegawai3 extends StatefulWidget {
   @override
-  State<PresensiMurid4> createState() => _PresensiMurid4State();
+  State<PresensiPegawai3> createState() => _PresensiPegawai3State();
 }
 
-class _PresensiMurid4State extends State<PresensiMurid4> {
+class _PresensiPegawai3State extends State<PresensiPegawai3> {
   String aktif = "A";
 
   void pilihA() {
@@ -103,7 +103,7 @@ class _PresensiMurid4State extends State<PresensiMurid4> {
             automaticallyImplyLeading: false,
             leadingWidth: 20,
             toolbarHeight: bodyHeight * 0.10625,
-            backgroundColor: const Color(0xFF9FC3F9),
+            backgroundColor: const Color(0xFF91ceec),
             elevation: 0.0,
             title: Padding(
               padding: const EdgeInsets.only(top: 20.0),
@@ -112,12 +112,20 @@ class _PresensiMurid4State extends State<PresensiMurid4> {
                   Builder(builder: (context) {
                     return IconButton(
                         onPressed: () {
-                          Scaffold.of(context).openDrawer();
+                          Navigator.pushReplacement(
+                            context,
+                            PageRouteBuilder(
+                              pageBuilder: (context, animation1, animation2) =>
+                                  PresensiPegawai1(),
+                              transitionDuration: Duration.zero,
+                              reverseTransitionDuration: Duration.zero,
+                            ),
+                          );
                         },
-                        icon: const Icon(Icons.menu));
+                        icon: const Icon(Icons.arrow_back));
                   }),
                   Text(
-                    "Presensi Murid",
+                    "Presensi Pegawai",
                     style: GoogleFonts.rubik(
                         fontSize: 20, fontWeight: FontWeight.w600),
                   ),
@@ -147,16 +155,16 @@ class _PresensiMurid4State extends State<PresensiMurid4> {
                     Flexible(
                       child: Container(
                         margin: EdgeInsets.only(
-                          top: bodyHeight * 0.0875 - 23,
+                          top: 20,
                         ),
-                        height: bodyHeight * (1 - 0.10625 - 0.0875) - 61,
+                        height: bodyHeight * (1 - 0.10625 - 0.0875) - 61 + 20,
                         width: mediaQueryWidth,
                         color: Colors.white,
                         child: ListView.separated(
                           separatorBuilder: (context, index) => SizedBox(
                             height: 25,
                           ),
-                          padding: const EdgeInsets.only(top: 25, bottom: 148),
+                          padding: const EdgeInsets.only(top: 5, bottom: 148),
                           itemCount: nama.length,
                           itemBuilder: (context, index) {
                             return Container(
@@ -325,7 +333,7 @@ class _PresensiMurid4State extends State<PresensiMurid4> {
                   children: [
                     Container(
                       width: mediaQueryWidth,
-                      height: bodyHeight * (0.05),
+                      height: 20,
                       decoration: const BoxDecoration(
                         gradient: LinearGradient(
                           begin: Alignment.centerLeft,
@@ -340,128 +348,12 @@ class _PresensiMurid4State extends State<PresensiMurid4> {
                     Container(
                       padding: const EdgeInsets.only(top: 10),
                       width: mediaQueryWidth,
-                      height: bodyHeight * 0.0875,
+                      height: 20 + 1,
                       decoration: const BoxDecoration(
                         borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(20),
                             topRight: Radius.circular(20)),
                         color: Colors.white,
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                InkWell(
-                                  child: Text("Kelas A",
-                                      style: GoogleFonts.notoSans(
-                                          fontSize: 14,
-                                          fontWeight: aktif == "A"
-                                              ? FontWeight.w600
-                                              : FontWeight.normal)),
-                                  onTap: () {
-                                    pilihA();
-                                  },
-                                ),
-                                Container(
-                                  margin: const EdgeInsets.only(top: 10),
-                                  height: 3,
-                                  width: (mediaQueryWidth - 48) * 1 / 3,
-                                  decoration: aktif == "A"
-                                      ? BoxDecoration(
-                                          borderRadius: BorderRadius.only(
-                                              topRight: Radius.circular(40),
-                                              topLeft: Radius.circular(40)),
-                                          gradient: LinearGradient(
-                                            begin: Alignment.topCenter,
-                                            end: Alignment.bottomCenter,
-                                            colors: <Color>[
-                                              const Color(0xFF9FC3F9),
-                                              const Color(0xFF83DBE0),
-                                            ],
-                                          ),
-                                        )
-                                      : BoxDecoration(),
-                                ),
-                              ],
-                            ),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                InkWell(
-                                  child: Text("Kelas B",
-                                      style: GoogleFonts.notoSans(
-                                          fontSize: 14,
-                                          fontWeight: aktif == "B"
-                                              ? FontWeight.w600
-                                              : FontWeight.normal)),
-                                  onTap: () {
-                                    pilihB();
-                                  },
-                                ),
-                                Container(
-                                  margin: const EdgeInsets.only(top: 10),
-                                  height: 3,
-                                  width: (mediaQueryWidth - 48) * 1 / 3,
-                                  decoration: aktif == "B"
-                                      ? BoxDecoration(
-                                          borderRadius: BorderRadius.only(
-                                              topRight: Radius.circular(40),
-                                              topLeft: Radius.circular(40)),
-                                          gradient: LinearGradient(
-                                            begin: Alignment.topCenter,
-                                            end: Alignment.bottomCenter,
-                                            colors: <Color>[
-                                              const Color(0xFF9FC3F9),
-                                              const Color(0xFF83DBE0),
-                                            ],
-                                          ),
-                                        )
-                                      : BoxDecoration(),
-                                ),
-                              ],
-                            ),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                InkWell(
-                                  child: Text("Kelas C",
-                                      style: GoogleFonts.notoSans(
-                                          fontSize: 14,
-                                          fontWeight: aktif == "C"
-                                              ? FontWeight.w600
-                                              : FontWeight.normal)),
-                                  onTap: () {
-                                    pilihC();
-                                  },
-                                ),
-                                Container(
-                                  margin: const EdgeInsets.only(top: 10),
-                                  height: 3,
-                                  width: (mediaQueryWidth - 48) * 1 / 3,
-                                  decoration: aktif == "C"
-                                      ? BoxDecoration(
-                                          borderRadius: BorderRadius.only(
-                                              topRight: Radius.circular(40),
-                                              topLeft: Radius.circular(40)),
-                                          gradient: LinearGradient(
-                                            begin: Alignment.topCenter,
-                                            end: Alignment.bottomCenter,
-                                            colors: <Color>[
-                                              const Color(0xFF9FC3F9),
-                                              const Color(0xFF83DBE0),
-                                            ],
-                                          ),
-                                        )
-                                      : BoxDecoration(),
-                                ),
-                              ],
-                            )
-                          ],
-                        ),
                       ),
                     ),
                   ],
@@ -501,15 +393,15 @@ class _PresensiMurid4State extends State<PresensiMurid4> {
                     ),
                   ),
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      PageRouteBuilder(
-                        pageBuilder: (context, animation1, animation2) =>
-                            BuatPresensiMurid(),
-                        transitionDuration: Duration.zero,
-                        reverseTransitionDuration: Duration.zero,
-                      ),
-                    );
+                    // Navigator.pushReplacement(
+                    //   context,
+                    //   PageRouteBuilder(
+                    //     pageBuilder: (context, animation1, animation2) =>
+                    //         const BuatJadwalSekolah(),
+                    //     transitionDuration: Duration.zero,
+                    //     reverseTransitionDuration: Duration.zero,
+                    //   ),
+                    // );
                   },
                 ),
                 Container(
@@ -596,15 +488,15 @@ class _RoundedAlertBoxState extends State<RoundedAlertBox> {
                           width: 16,
                         ),
                         onTap: () {
-                          Navigator.pushReplacement(
-                            context,
-                            PageRouteBuilder(
-                              pageBuilder: (context, animation1, animation2) =>
-                                  PresensiMurid4(),
-                              transitionDuration: Duration.zero,
-                              reverseTransitionDuration: Duration.zero,
-                            ),
-                          );
+                          // Navigator.pushReplacement(
+                          //   context,
+                          //   PageRouteBuilder(
+                          //     pageBuilder: (context, animation1, animation2) =>
+                          //         PresensiMurid4(),
+                          //     transitionDuration: Duration.zero,
+                          //     reverseTransitionDuration: Duration.zero,
+                          //   ),
+                          // );
                         },
                       ),
                     ],

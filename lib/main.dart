@@ -1,4 +1,5 @@
 import 'package:cekula/login_page.dart';
+import 'package:cekula/splash_screen1.dart';
 import 'package:flutter/material.dart';
 import 'package:cekula/home_page.dart';
 
@@ -16,6 +17,6 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
             backgroundColor: Color(0xFFFBFBFB),
             scaffoldBackgroundColor: Color(0xFFFBFBFB)),
-        home: LoginPage());
+        home: SplashScreen1());
   }
 }
