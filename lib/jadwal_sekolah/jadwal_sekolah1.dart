@@ -5,7 +5,12 @@ import 'package:cekula/jadwal_kelas/jadwal_kelas1.dart';
 import 'package:cekula/jadwal_sekolah/buat_jadwal_sekolah.dart';
 import 'package:cekula/jadwal_sekolah/edit_jadwal_sekolah.dart';
 
-class JadwalSekolah1 extends StatelessWidget {
+class JadwalSekolah1 extends StatefulWidget {
+  @override
+  State<JadwalSekolah1> createState() => _JadwalSekolah1State();
+}
+
+class _JadwalSekolah1State extends State<JadwalSekolah1> {
   final List image = [
     "assets/jadwal-sekolah.png",
     "assets/jadwal-sekolah-2.png",
@@ -23,24 +28,6 @@ class JadwalSekolah1 extends StatelessWidget {
     "21 Desember - 28 Desember 2022",
     "29 Desember - 23 Desember 2022",
   ];
-
-  // var data = {
-  //   {
-  //     'image': 'assets/jadwal-sekolah.png',
-  //     'judul': 'Kegiatan Tengah Semester',
-  //     'tanggal': '15 Oktober - 23 Oktober 202'
-  //   },
-  //   {
-  //     'image': 'assets/jadwal-sekolah-2.png',
-  //     'judul': 'Dies Natalis Sekolah',
-  //     'tanggal': '21 Desember - 28 Desember 2022'
-  //   },
-  //   {
-  //     'image': 'assets/jadwal-sekolah-2.png',
-  //     'judul': 'Pentas Seni Akhir Tahun',
-  //     'tanggal': '29 Desember - 23 Desember 2022'
-  //   }
-  // };
 
   @override
   Widget build(BuildContext context) {
@@ -112,6 +99,7 @@ class JadwalSekolah1 extends StatelessWidget {
                             return Container(
                               margin: const EdgeInsets.only(
                                   bottom: 20, left: 24, right: 24),
+                              padding: EdgeInsets.only(bottom: 4),
                               width: mediaQueryWidth,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(15),
@@ -135,7 +123,7 @@ class JadwalSekolah1 extends StatelessWidget {
                                         left: 10.0,
                                         top: 10,
                                         right: 5,
-                                        bottom: 5),
+                                        bottom: 0),
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
@@ -147,8 +135,8 @@ class JadwalSekolah1 extends StatelessWidget {
                                               fontWeight: FontWeight.w600),
                                         ),
                                         Padding(
-                                          padding:
-                                              const EdgeInsets.only(top: 2.0),
+                                          padding: const EdgeInsets.only(
+                                              top: 2.0, bottom: 5),
                                           child: Text(tanggal[index],
                                               style: GoogleFonts.notoSans(
                                                   fontSize: 10,
@@ -158,12 +146,15 @@ class JadwalSekolah1 extends StatelessWidget {
                                           mainAxisAlignment:
                                               MainAxisAlignment.end,
                                           children: [
-                                            InkWell(
-                                              child: Image.asset(
+                                            IconButton(
+                                              padding: EdgeInsets.all(3),
+                                              constraints:
+                                                  const BoxConstraints(),
+                                              icon: Image.asset(
                                                 'assets/Edit.png',
                                                 width: 16,
                                               ),
-                                              onTap: () {
+                                              onPressed: () {
                                                 Navigator.pushReplacement(
                                                   context,
                                                   PageRouteBuilder(
@@ -180,9 +171,18 @@ class JadwalSekolah1 extends StatelessWidget {
                                               },
                                             ),
                                             const SizedBox(
-                                              width: 8,
+                                              width: 1,
                                             ),
-                                            const RoundedAlertBox()
+                                            IconButton(
+                                              padding: EdgeInsets.all(3),
+                                              constraints:
+                                                  const BoxConstraints(),
+                                              icon: Image.asset(
+                                                'assets/Delete.png',
+                                                width: 16,
+                                              ),
+                                              onPressed: openAlertBox,
+                                            )
                                           ],
                                         ),
                                       ],
@@ -349,28 +349,6 @@ class JadwalSekolah1 extends StatelessWidget {
       ),
     );
   }
-}
-
-class RoundedAlertBox extends StatefulWidget {
-  const RoundedAlertBox({Key? key}) : super(key: key);
-
-  @override
-  _RoundedAlertBoxState createState() => _RoundedAlertBoxState();
-}
-
-class _RoundedAlertBoxState extends State<RoundedAlertBox> {
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-      padding: EdgeInsets.zero,
-      constraints: const BoxConstraints(),
-      icon: Image.asset(
-        'assets/Delete.png',
-        width: 16,
-      ),
-      onPressed: openAlertBox,
-    );
-  }
 
   openAlertBox() {
     return showDialog(
@@ -379,68 +357,72 @@ class _RoundedAlertBoxState extends State<RoundedAlertBox> {
           return AlertDialog(
             shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(10.0))),
-            contentPadding: const EdgeInsets.only(
-                top: 11.0, right: 12, bottom: 11, left: 12),
+            contentPadding: const EdgeInsets.all(0),
             content: SizedBox(
               width: 290,
-              height: 295,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
+              height: 320,
+              child: Stack(
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
-                      InkWell(
-                        child: Image.asset(
-                          "assets/Exit.png",
-                          width: 16,
-                        ),
-                        onTap: () {
-                          Navigator.pushReplacement(
-                            context,
-                            PageRouteBuilder(
-                              pageBuilder: (context, animation1, animation2) =>
-                                  JadwalSekolah1(),
-                              transitionDuration: Duration.zero,
-                              reverseTransitionDuration: Duration.zero,
+                      IconButton(
+                          onPressed: () {
+                            Navigator.pushReplacement(
+                              context,
+                              PageRouteBuilder(
+                                pageBuilder:
+                                    (context, animation1, animation2) =>
+                                        JadwalSekolah1(),
+                                transitionDuration: Duration.zero,
+                                reverseTransitionDuration: Duration.zero,
+                              ),
+                            );
+                          },
+                          icon: Icon(Icons.clear_rounded)),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Column(
+                        children: [
+                          const SizedBox(
+                            height: 48,
+                          ),
+                          Image.asset(
+                            "assets/alert-yakin.png",
+                            width: 108,
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            "Yakin Ingin Menghapus?",
+                            style: GoogleFonts.notoSans(
+                                fontSize: 16, fontWeight: FontWeight.w600),
+                            textAlign: TextAlign.center,
+                          ),
+                          const SizedBox(
+                            height: 50,
+                          ),
+                          SizedBox(
+                            width: 219,
+                            height: 32,
+                            child: OutlinedButton(
+                              child: const Text('Ya'),
+                              style: OutlinedButton.styleFrom(
+                                primary: const Color(0xFF9FC3F9),
+                                side: const BorderSide(
+                                    color: Color(0xFF9FC3F9), width: 1),
+                              ),
+                              onPressed: () {},
                             ),
-                          );
-                        },
+                          )
+                        ],
                       ),
                     ],
                   ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  Image.asset(
-                    "assets/alert-yakin.png",
-                    width: 108,
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    "Yakin Ingin Menghapus?",
-                    style: GoogleFonts.notoSans(
-                        fontSize: 16, fontWeight: FontWeight.w600),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(
-                    height: 50,
-                  ),
-                  SizedBox(
-                    width: 219,
-                    height: 32,
-                    child: OutlinedButton(
-                      child: const Text('Ya'),
-                      style: OutlinedButton.styleFrom(
-                        primary: const Color(0xFF9FC3F9),
-                        side: const BorderSide(
-                            color: Color(0xFF9FC3F9), width: 1),
-                      ),
-                      onPressed: () {},
-                    ),
-                  )
                 ],
               ),
             ),
