@@ -1,7 +1,5 @@
-import 'package:cekula/login_page.dart';
-import 'package:cekula/splash_screen1.dart';
+import 'package:cekula/screens/splash/splash_screen1.dart';
 import 'package:flutter/material.dart';
-import 'package:cekula/home_page.dart';
 
 void main() {
   runApp(const MyApp());
