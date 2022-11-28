@@ -1,10 +1,83 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cekula/screens/drawer/drawer.dart';
-import 'package:cekula/screens/kartu_pelajar_digital/kartu_pelajar2.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
+import 'package:flutter/services.dart';
+import 'package:intl/intl.dart';
 
-class BuatKartuPelajar extends StatelessWidget {
+class BuatKartuPelajar extends StatefulWidget {
   const BuatKartuPelajar({Key? key}) : super(key: key);
+
+  @override
+  State<BuatKartuPelajar> createState() => _BuatKartuPelajarState();
+}
+
+class _BuatKartuPelajarState extends State<BuatKartuPelajar> {
+  File? image;
+
+  Future pickImage() async {
+    try {
+      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+
+      if (image == null) return;
+
+      final imageTemp = File(image.path);
+
+      setState(() => this.image = imageTemp);
+    } on PlatformException catch (e) {
+      print('Failed to pick image: $e');
+    }
+  }
+
+  bool formNamaLengkap = false;
+  bool formNoIdentitas = false;
+  bool formTempatLahir = false;
+  bool formTanggalLahir = false;
+  bool formAlamat = false;
+
+  TextEditingController _controllerNamaLengkap = TextEditingController();
+  TextEditingController _controllerNoIdentitas = TextEditingController();
+  TextEditingController _controllerTempatLahir = TextEditingController();
+  TextEditingController _controllerTanggalLahir = TextEditingController();
+  TextEditingController _controllerAlamat = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _controllerNamaLengkap = TextEditingController();
+    _controllerNamaLengkap.addListener(() {
+      final formNamaLengkap = _controllerNamaLengkap.text.isNotEmpty;
+      setState(() => this.formNamaLengkap = formNamaLengkap);
+    });
+
+    _controllerNoIdentitas = TextEditingController();
+    _controllerNoIdentitas.addListener(() {
+      final formNoIdentitas = _controllerNoIdentitas.text.isNotEmpty;
+      setState(() => this.formNoIdentitas = formNoIdentitas);
+    });
+
+    _controllerTempatLahir = TextEditingController();
+    _controllerTempatLahir.addListener(() {
+      final formTempatLahir = _controllerTempatLahir.text.isNotEmpty;
+      setState(() => this.formTempatLahir = formTempatLahir);
+    });
+
+    _controllerTanggalLahir = TextEditingController();
+    _controllerTanggalLahir.addListener(() {
+      final formTanggalLahir = _controllerTanggalLahir.text.isNotEmpty;
+      setState(() => this.formTanggalLahir = formTanggalLahir);
+    });
+
+    _controllerAlamat = TextEditingController();
+    _controllerAlamat.addListener(() {
+      final formAlamat = _controllerAlamat.text.isNotEmpty;
+      setState(() => this.formAlamat = formAlamat);
+    });
+
+    _controllerTanggalLahir.text = "";
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,16 +121,36 @@ class BuatKartuPelajar extends StatelessWidget {
                             children: [
                               Stack(
                                 children: [
-                                  CircleAvatar(
-                                    // backgroundImage: AssetImage('assets/Profil.png'),
-                                    backgroundColor: const Color(0xFFEDF1F7),
-                                    radius: 50,
-                                    child: Image.asset(
-                                      'assets/Profile.png',
-                                      width: 75,
-                                      color: const Color(0xFFD2D4DA),
-                                    ),
-                                  ),
+                                  Container(
+                                      width: 100,
+                                      height: 100,
+                                      decoration: BoxDecoration(
+                                          color: Color(0xFFEDF1F7),
+                                          shape: BoxShape.circle,
+                                          image: image != null
+                                              ? DecorationImage(
+                                                  fit: BoxFit.fill,
+                                                  image: FileImage(image!))
+                                              : DecorationImage(
+                                                  scale: 4,
+                                                  image: AssetImage(
+                                                      'assets/Profile.png')))),
+                                  // CircleAvatar(
+                                  //   // backgroundImage: AssetImage('assets/Profil.png'),
+                                  //   backgroundColor: const Color(0xFFEDF1F7),
+                                  //   radius: 50,
+                                  //   child: image != null
+                                  //       ? Image.file(
+                                  //           image!,
+                                  //           fit: BoxFit.cover,
+                                  //         )
+                                  //       : Image.asset(
+                                  //           'assets/Profile.png',
+                                  //           width: 75,
+                                  //           color: const Color(0xFFD2D4DA),
+                                  //         ),
+                                  // ),
+
                                   Positioned(
                                     right: 2.33,
                                     // top: bodyHeight * 0.88125,
@@ -85,17 +178,7 @@ class BuatKartuPelajar extends StatelessWidget {
                                         ),
                                       ),
                                       onTap: () {
-                                        Navigator.pushReplacement(
-                                          context,
-                                          PageRouteBuilder(
-                                            pageBuilder: (context, animation1,
-                                                    animation2) =>
-                                                const BuatKartuPelajar(),
-                                            transitionDuration: Duration.zero,
-                                            reverseTransitionDuration:
-                                                Duration.zero,
-                                          ),
-                                        );
+                                        pickImage();
                                       },
                                     ),
                                   ),
@@ -125,6 +208,7 @@ class BuatKartuPelajar extends StatelessWidget {
                               padding:
                                   const EdgeInsets.only(left: 10.0, bottom: 4),
                               child: TextFormField(
+                                controller: _controllerNamaLengkap,
                                 decoration: InputDecoration(
                                     border: InputBorder.none,
                                     hintText: 'Masukkan nama lengkap',
@@ -158,6 +242,7 @@ class BuatKartuPelajar extends StatelessWidget {
                                 padding: const EdgeInsets.only(
                                     left: 10.0, bottom: 4),
                                 child: TextFormField(
+                                  controller: _controllerNoIdentitas,
                                   decoration: InputDecoration(
                                       border: InputBorder.none,
                                       hintText:
@@ -194,6 +279,7 @@ class BuatKartuPelajar extends StatelessWidget {
                                 padding: const EdgeInsets.only(
                                     left: 10.0, bottom: 4),
                                 child: TextFormField(
+                                  controller: _controllerTempatLahir,
                                   decoration: InputDecoration(
                                       border: InputBorder.none,
                                       hintText: 'Masukkan tempat lahir',
@@ -220,25 +306,23 @@ class BuatKartuPelajar extends StatelessWidget {
                             height: 10,
                           ),
                           Container(
-                            height: 40,
-                            padding: const EdgeInsets.only(
-                              left: 10,
-                            ),
-                            decoration: BoxDecoration(
-                                color: const Color(0xFFedf1f7),
-                                borderRadius: BorderRadius.circular(5)),
-                            child: Center(
-                              child: Padding(
-                                padding: const EdgeInsets.only(bottom: 4.0),
+                              height: 40,
+                              padding: const EdgeInsets.only(left: 10),
+                              decoration: BoxDecoration(
+                                  color: const Color(0xFFedf1f7),
+                                  borderRadius: BorderRadius.circular(5)),
+                              child: Center(
+                                  child: Padding(
+                                padding: const EdgeInsets.only(bottom: 4),
                                 child: TextFormField(
-                                  // initialValue: "15/09/2022",
+                                  controller: _controllerTanggalLahir,
                                   decoration: InputDecoration(
                                     hintText: 'HH/BB/TT',
                                     hintStyle: GoogleFonts.notoSans(
                                         color: const Color(0xFFA6AAB4)),
                                     suffixIcon: Padding(
                                       padding: const EdgeInsets.only(
-                                          top: 8, bottom: 4),
+                                          bottom: 4, top: 8),
                                       child: Image.asset(
                                         'assets/Calendar.png',
                                         width: 24,
@@ -248,11 +332,33 @@ class BuatKartuPelajar extends StatelessWidget {
                                   ),
                                   style: GoogleFonts.notoSans(
                                       fontSize: 12,
-                                      fontWeight: FontWeight.w400),
+                                      fontWeight: FontWeight.w400,
+                                      color: Color(0xFF4D5569)),
+                                  readOnly: true,
+                                  onTap: () async {
+                                    DateTime? pickedDate = await showDatePicker(
+                                        context: context,
+                                        initialDate: DateTime.now(),
+                                        firstDate: DateTime(2000),
+                                        lastDate: DateTime(2101));
+
+                                    if (pickedDate != null) {
+                                      print(pickedDate);
+                                      String formattedDate =
+                                          DateFormat('dd/MM/yy')
+                                              .format(pickedDate);
+                                      print(formattedDate);
+
+                                      setState(() {
+                                        _controllerTanggalLahir.text =
+                                            formattedDate;
+                                      });
+                                    } else {
+                                      print("Date is not selected");
+                                    }
+                                  },
                                 ),
-                              ),
-                            ),
-                          ),
+                              ))),
                           const SizedBox(
                             height: 15,
                           ),
@@ -276,6 +382,7 @@ class BuatKartuPelajar extends StatelessWidget {
                                 padding: const EdgeInsets.only(
                                     left: 10.0, bottom: 4),
                                 child: TextFormField(
+                                  controller: _controllerAlamat,
                                   decoration: InputDecoration(
                                       border: InputBorder.none,
                                       hintText: 'Masukkan alamat',
@@ -294,7 +401,47 @@ class BuatKartuPelajar extends StatelessWidget {
                         ],
                       ),
                     ),
-                    const RoundedAlertBox(),
+                    Container(
+                      margin: const EdgeInsets.all(24),
+                      width: mediaQueryWidth,
+                      height: 39,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        gradient: image != null &&
+                                formNamaLengkap &&
+                                formNoIdentitas &&
+                                formTempatLahir &&
+                                formTanggalLahir &&
+                                formAlamat
+                            ? LinearGradient(
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                                colors: [Color(0xFF9FC3F9), Color(0xFF83DBE0)],
+                              )
+                            : LinearGradient(
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                                colors: [Color(0xFFD2D4DA), Color(0xFFD2D4DA)],
+                              ),
+                      ),
+                      child: MaterialButton(
+                        child: Text(
+                          'Buat Kartu Pelajar',
+                          style: GoogleFonts.notoSans(
+                              color: Colors.white,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600),
+                        ),
+                        onPressed: image != null &&
+                                formNamaLengkap &&
+                                formNoIdentitas &&
+                                formTempatLahir &&
+                                formTanggalLahir &&
+                                formAlamat
+                            ? openAlertBox
+                            : null,
+                      ),
+                    )
                   ],
                 ),
               ),
@@ -319,17 +466,7 @@ class BuatKartuPelajar extends StatelessWidget {
                               Builder(builder: (context) {
                                 return IconButton(
                                     onPressed: () {
-                                      Navigator.pushReplacement(
-                                        context,
-                                        PageRouteBuilder(
-                                          pageBuilder: (context, animation1,
-                                                  animation2) =>
-                                              KartuPelajar2(),
-                                          transitionDuration: Duration.zero,
-                                          reverseTransitionDuration:
-                                              Duration.zero,
-                                        ),
-                                      );
+                                      Navigator.of(context).pop(context);
                                     },
                                     icon: const Icon(Icons.arrow_back));
                               }),
@@ -378,41 +515,6 @@ class BuatKartuPelajar extends StatelessWidget {
       ),
     );
   }
-}
-
-class RoundedAlertBox extends StatefulWidget {
-  const RoundedAlertBox({Key? key}) : super(key: key);
-
-  @override
-  _RoundedAlertBoxState createState() => _RoundedAlertBoxState();
-}
-
-class _RoundedAlertBoxState extends State<RoundedAlertBox> {
-  @override
-  Widget build(BuildContext context) {
-    final mediaQueryWidth = MediaQuery.of(context).size.width;
-    return Container(
-      margin: const EdgeInsets.all(24),
-      width: mediaQueryWidth,
-      height: 39,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(5),
-        gradient: const LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [Color(0xFF9FC3F9), Color(0xFF83DBE0)],
-        ),
-      ),
-      child: MaterialButton(
-        child: Text(
-          'Buat Kartu Pelajar',
-          style: GoogleFonts.notoSans(
-              color: Colors.white, fontSize: 14, fontWeight: FontWeight.w600),
-        ),
-        onPressed: openAlertBox,
-      ),
-    );
-  }
 
   openAlertBox() {
     return showDialog(
@@ -421,63 +523,65 @@ class _RoundedAlertBoxState extends State<RoundedAlertBox> {
           return AlertDialog(
             shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(10.0))),
-            contentPadding: const EdgeInsets.only(
-                top: 11.0, right: 12, bottom: 11, left: 12),
-            content: SizedBox(
+            contentPadding: const EdgeInsets.all(0),
+            content: Container(
               width: 290,
-              height: 295,
-              // color: Colors.amber,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
+              height: 320,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Color(0xFFFBFBFB),
+              ),
+              child: Stack(
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
-                    children: <Widget>[
-                      InkWell(
-                        child: Image.asset(
-                          "assets/Exit.png",
-                          width: 16,
-                        ),
-                        onTap: () {
-                          Navigator.pushReplacement(
-                            context,
-                            PageRouteBuilder(
-                              pageBuilder: (context, animation1, animation2) =>
-                                  KartuPelajar2(),
-                              transitionDuration: Duration.zero,
-                              reverseTransitionDuration: Duration.zero,
-                            ),
-                          );
-                        },
-                      ),
+                    children: [
+                      IconButton(
+                          onPressed: () {
+                            Navigator.of(context).pop(context);
+                          },
+                          icon: Icon(Icons.clear_rounded)),
                     ],
                   ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  Image.asset(
-                    "assets/alert-jadwal.png",
-                    width: 90,
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    "Kartu Pelajar Berhasil Dibuat",
-                    style: GoogleFonts.notoSans(
-                        fontSize: 16, fontWeight: FontWeight.w600),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  const Text(
-                    "Silahkan kembali ke\nhalaman kartu pelajar anda",
-                    style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                        color: Color(0xFF797F8F)),
-                    textAlign: TextAlign.center,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Column(
+                        children: [
+                          const SizedBox(
+                            height: 44,
+                          ),
+                          Image.asset(
+                            "assets/alert-jadwal.png",
+                            height: 143,
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            "Kartu Pelajar Berhasil Dibuat",
+                            style: GoogleFonts.notoSans(
+                                fontSize: 16, fontWeight: FontWeight.w600),
+                            textAlign: TextAlign.center,
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          const Text(
+                            "Silahkan kembali ke\nhalaman kartu pelajar anda",
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400,
+                              color: Color(0xFF797F8F),
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                          const SizedBox(
+                            height: 53,
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ],
               ),

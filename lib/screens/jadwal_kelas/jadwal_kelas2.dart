@@ -4,9 +4,9 @@ import 'package:cekula/screens/jadwal_kelas/buat_jadwal_kelas.dart';
 import 'package:cekula/screens/jadwal_kelas/jadwal_kelas3.dart';
 
 class JadwalKelas2 extends StatelessWidget {
-  JadwalKelas2({Key? key}) : super(key: key);
+  JadwalKelas2({Key? key, required this.kelas}) : super(key: key);
   final List hari = ["Senin", "Selasa", "Rabu", "Kamis", "Jumat"];
-
+  String kelas;
   @override
   Widget build(BuildContext context) {
     final mediaQueryHeight = MediaQuery.of(context).size.height;
@@ -115,7 +115,7 @@ class JadwalKelas2 extends StatelessWidget {
                             Padding(
                               padding: EdgeInsets.only(top: 20, left: 24),
                               child: Text(
-                                'Kelas 7A',
+                                '${kelas}',
                                 style: GoogleFonts.notoSans(
                                     fontSize: 14, fontWeight: FontWeight.w600),
                               ),
@@ -155,7 +155,10 @@ class JadwalKelas2 extends StatelessWidget {
                                                 pageBuilder: (context,
                                                         animation1,
                                                         animation2) =>
-                                                    JadwalKelas3(),
+                                                    JadwalKelas3(
+                                                  kelas: kelas,
+                                                  hari: hari[index],
+                                                ),
                                                 transitionDuration:
                                                     Duration.zero,
                                                 reverseTransitionDuration:

@@ -7,14 +7,30 @@ import 'package:cekula/screens/penilaian_pembelajaran/penilaian_pembelajaran2.da
 import 'package:cekula/screens/penilaian_pembelajaran/penilaian_pembelajaran4.dart';
 
 class PenilaianPembelajaran3 extends StatefulWidget {
-  const PenilaianPembelajaran3({Key? key}) : super(key: key);
-
+  PenilaianPembelajaran3(
+      {Key? key, required this.kelas, required this.mapel, required this.image})
+      : super(key: key);
+  String kelas;
+  String mapel;
+  String image;
   @override
   State<PenilaianPembelajaran3> createState() => _PenilaianPembelajaran3State();
 }
 
 class _PenilaianPembelajaran3State extends State<PenilaianPembelajaran3> {
   String aktif = "ganjil";
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    if (widget.mapel.contains('Olahraga')) {
+      widget.mapel = 'Pendidikan Jasmani,\nOlahraga, dan Kesehatan';
+    }
+    if (widget.mapel.contains('Kewarganegaraan')) {
+      widget.mapel = 'Pendidikan\nKewarganegaraan';
+    }
+  }
 
   void pilihGanjil() {
     setState(() {
@@ -56,15 +72,7 @@ class _PenilaianPembelajaran3State extends State<PenilaianPembelajaran3> {
                   Builder(builder: (context) {
                     return IconButton(
                         onPressed: () {
-                          Navigator.pushReplacement(
-                            context,
-                            PageRouteBuilder(
-                              pageBuilder: (context, animation1, animation2) =>
-                                  PenilaianPembelajaran2(),
-                              transitionDuration: Duration.zero,
-                              reverseTransitionDuration: Duration.zero,
-                            ),
-                          );
+                          Navigator.of(context).pop(context);
                         },
                         icon: const Icon(Icons.arrow_back));
                   }),
@@ -117,7 +125,7 @@ class _PenilaianPembelajaran3State extends State<PenilaianPembelajaran3> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    "Kelas 9A",
+                                    widget.kelas,
                                     style: GoogleFonts.notoSans(
                                         fontSize: 14,
                                         fontWeight: FontWeight.w600,
@@ -126,17 +134,19 @@ class _PenilaianPembelajaran3State extends State<PenilaianPembelajaran3> {
                                   Row(
                                     children: [
                                       Image.asset(
-                                        'assets/mapel-indonesia.png',
+                                        '${widget.image}',
                                         width: 24,
                                       ),
                                       const SizedBox(
                                         width: 10,
                                       ),
                                       Text(
-                                        "Bahasa Indonesia",
+                                        widget.mapel,
                                         style: GoogleFonts.notoSans(
                                             fontSize: 14,
-                                            fontWeight: FontWeight.w400),
+                                            fontWeight: FontWeight.w600,
+                                            color: const Color(0xFF4D5569)),
+                                        textAlign: TextAlign.right,
                                       ),
                                     ],
                                   ),
@@ -193,7 +203,7 @@ class _PenilaianPembelajaran3State extends State<PenilaianPembelajaran3> {
                                                   ),
                                                 ),
                                                 onTap: () {
-                                                  Navigator.pushReplacement(
+                                                  Navigator.push(
                                                     context,
                                                     PageRouteBuilder(
                                                       pageBuilder: (context,
@@ -222,13 +232,17 @@ class _PenilaianPembelajaran3State extends State<PenilaianPembelajaran3> {
                                                     width: 16,
                                                   ),
                                                   onPressed: () {
-                                                    Navigator.pushReplacement(
+                                                    Navigator.push(
                                                       context,
                                                       PageRouteBuilder(
                                                         pageBuilder: (context,
                                                                 animation1,
                                                                 animation2) =>
-                                                            EditPenilaianPembelajaran(),
+                                                            EditPenilaianPembelajaran(
+                                                          kelas: widget.kelas,
+                                                          mapel: widget.mapel,
+                                                          image: widget.image,
+                                                        ),
                                                         transitionDuration:
                                                             Duration.zero,
                                                         reverseTransitionDuration:
@@ -434,11 +448,15 @@ class _PenilaianPembelajaran3State extends State<PenilaianPembelajaran3> {
                 ),
               ),
               onTap: () {
-                Navigator.pushReplacement(
+                Navigator.push(
                   context,
                   PageRouteBuilder(
                     pageBuilder: (context, animation1, animation2) =>
-                        BuatPenilaianPembelajaran(),
+                        BuatPenilaianPembelajaran(
+                      kelas: widget.kelas,
+                      mapel: widget.mapel,
+                      image: widget.image,
+                    ),
                     transitionDuration: Duration.zero,
                     reverseTransitionDuration: Duration.zero,
                   ),

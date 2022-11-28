@@ -76,16 +76,7 @@ class PenilaianPembelajaran4 extends StatelessWidget {
                       Builder(builder: (context) {
                         return IconButton(
                             onPressed: () {
-                              Navigator.pushReplacement(
-                                context,
-                                PageRouteBuilder(
-                                  pageBuilder:
-                                      (context, animation1, animation2) =>
-                                          const PenilaianPembelajaran3(),
-                                  transitionDuration: Duration.zero,
-                                  reverseTransitionDuration: Duration.zero,
-                                ),
-                              );
+                              Navigator.of(context).pop(context);
                             },
                             icon: const Icon(Icons.arrow_back));
                       }),

@@ -233,7 +233,7 @@ class _PresensiMurid4State extends State<PresensiMurid4> {
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(
-                                          top: 10.0, bottom: 10.0),
+                                          top: 5.0, bottom: 5.0),
                                       child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
@@ -250,19 +250,22 @@ class _PresensiMurid4State extends State<PresensiMurid4> {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.end,
                                             children: [
-                                              InkWell(
-                                                child: Image.asset(
+                                              IconButton(
+                                                padding: EdgeInsets.all(3),
+                                                constraints:
+                                                    const BoxConstraints(),
+                                                icon: Image.asset(
                                                   'assets/Edit.png',
                                                   width: 16,
                                                 ),
-                                                onTap: () {
+                                                onPressed: () {
                                                   // Navigator.pushReplacement(
                                                   //   context,
                                                   //   PageRouteBuilder(
                                                   //     pageBuilder: (context,
                                                   //             animation1,
                                                   //             animation2) =>
-                                                  //         const EditPeminjamanFasilitas(),
+                                                  //         const (),
                                                   //     transitionDuration:
                                                   //         Duration.zero,
                                                   //     reverseTransitionDuration:
@@ -272,9 +275,18 @@ class _PresensiMurid4State extends State<PresensiMurid4> {
                                                 },
                                               ),
                                               const SizedBox(
-                                                width: 8,
+                                                width: 1,
                                               ),
-                                              const RoundedAlertBox()
+                                              IconButton(
+                                                padding: EdgeInsets.all(3),
+                                                constraints:
+                                                    const BoxConstraints(),
+                                                icon: Image.asset(
+                                                  'assets/Delete.png',
+                                                  width: 16,
+                                                ),
+                                                onPressed: openAlertBox,
+                                              )
                                             ],
                                           ),
                                         ],
@@ -549,28 +561,6 @@ class _PresensiMurid4State extends State<PresensiMurid4> {
       ),
     );
   }
-}
-
-class RoundedAlertBox extends StatefulWidget {
-  const RoundedAlertBox({Key? key}) : super(key: key);
-
-  @override
-  _RoundedAlertBoxState createState() => _RoundedAlertBoxState();
-}
-
-class _RoundedAlertBoxState extends State<RoundedAlertBox> {
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-      padding: EdgeInsets.zero,
-      constraints: const BoxConstraints(),
-      icon: Image.asset(
-        'assets/Delete.png',
-        width: 16,
-      ),
-      onPressed: openAlertBox,
-    );
-  }
 
   openAlertBox() {
     return showDialog(
@@ -579,68 +569,63 @@ class _RoundedAlertBoxState extends State<RoundedAlertBox> {
           return AlertDialog(
             shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(10.0))),
-            contentPadding: const EdgeInsets.only(
-                top: 11.0, right: 12, bottom: 11, left: 12),
+            contentPadding: const EdgeInsets.all(0),
             content: SizedBox(
               width: 290,
-              height: 295,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
+              height: 320,
+              child: Stack(
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
-                      InkWell(
-                        child: Image.asset(
-                          "assets/Exit.png",
-                          width: 16,
-                        ),
-                        onTap: () {
-                          Navigator.pushReplacement(
-                            context,
-                            PageRouteBuilder(
-                              pageBuilder: (context, animation1, animation2) =>
-                                  PresensiMurid4(),
-                              transitionDuration: Duration.zero,
-                              reverseTransitionDuration: Duration.zero,
+                      IconButton(
+                          onPressed: () {
+                            Navigator.of(context).pop(context);
+                          },
+                          icon: Icon(Icons.clear_rounded)),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Column(
+                        children: [
+                          const SizedBox(
+                            height: 48,
+                          ),
+                          Image.asset(
+                            "assets/alert-yakin.png",
+                            width: 108,
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            "Yakin Ingin Menghapus?",
+                            style: GoogleFonts.notoSans(
+                                fontSize: 16, fontWeight: FontWeight.w600),
+                            textAlign: TextAlign.center,
+                          ),
+                          const SizedBox(
+                            height: 50,
+                          ),
+                          SizedBox(
+                            width: 219,
+                            height: 32,
+                            child: OutlinedButton(
+                              child: const Text('Ya'),
+                              style: OutlinedButton.styleFrom(
+                                primary: const Color(0xFF9FC3F9),
+                                side: const BorderSide(
+                                    color: Color(0xFF9FC3F9), width: 1),
+                              ),
+                              onPressed: () {},
                             ),
-                          );
-                        },
+                          )
+                        ],
                       ),
                     ],
                   ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  Image.asset(
-                    "assets/alert-yakin.png",
-                    width: 108,
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    "Yakin Ingin Menghapus?",
-                    style: GoogleFonts.notoSans(
-                        fontSize: 16, fontWeight: FontWeight.w600),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(
-                    height: 50,
-                  ),
-                  SizedBox(
-                    width: 219,
-                    height: 32,
-                    child: OutlinedButton(
-                      child: const Text('Ya'),
-                      style: OutlinedButton.styleFrom(
-                        primary: const Color(0xFF9FC3F9),
-                        side: const BorderSide(
-                            color: Color(0xFF9FC3F9), width: 1),
-                      ),
-                      onPressed: () {},
-                    ),
-                  )
                 ],
               ),
             ),

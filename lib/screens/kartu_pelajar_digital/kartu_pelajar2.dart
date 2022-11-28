@@ -5,15 +5,15 @@ import 'package:cekula/screens/kartu_pelajar_digital/buat_kartu_pelajar.dart';
 import 'package:cekula/screens/kartu_pelajar_digital/kartu_pelajar3.dart';
 
 class KartuPelajar2 extends StatelessWidget {
-  KartuPelajar2({Key? key}) : super(key: key);
-
+  KartuPelajar2({Key? key, required this.kelas}) : super(key: key);
+  String kelas;
   final List nama = [
     "Ahmad Jourji Zaidan",
     "Arsenio Hamas Syahid",
     "Daryl Mahardikasiandi",
     "Dini Anjani",
     "Muhammad Irfan Jazuli",
-    "Taqiyuddin Ja’far Syaifullah",
+    "Taqiyuddin Ja’far Syaifullah Irfan Jazuli",
     "Ahmad Jourji Zaidan",
     "Arsenio Hamas Syahid",
     "Daryl Mahardikasiandi",
@@ -161,7 +161,7 @@ class KartuPelajar2 extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              "Kelas 7 A",
+                              '$kelas',
                               style: GoogleFonts.notoSans(
                                   fontSize: 14, fontWeight: FontWeight.w600),
                             ),
@@ -197,12 +197,14 @@ class KartuPelajar2 extends StatelessWidget {
                                 width: 20,
                               ),
                               onTap: () {
-                                Navigator.pushReplacement(
+                                Navigator.push(
                                   context,
                                   PageRouteBuilder(
                                     pageBuilder:
                                         (context, animation1, animation2) =>
-                                            const KartuPelajar3(),
+                                            KartuPelajar3(
+                                      nama: nama[index],
+                                    ),
                                     transitionDuration: Duration.zero,
                                     reverseTransitionDuration: Duration.zero,
                                   ),
@@ -347,7 +349,7 @@ class KartuPelajar2 extends StatelessWidget {
                   ),
                 ),
                 onTap: () {
-                  Navigator.pushReplacement(
+                  Navigator.push(
                     context,
                     PageRouteBuilder(
                       pageBuilder: (context, animation1, animation2) =>

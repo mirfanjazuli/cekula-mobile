@@ -24,6 +24,8 @@ class _BuatPresensiMuridState extends State<BuatPresensiMurid> {
     "Budiono Arya"
   ];
 
+  bool formNamaMurid = false;
+
   TextEditingController dateinput = TextEditingController();
   @override
   void initState() {
@@ -95,6 +97,7 @@ class _BuatPresensiMuridState extends State<BuatPresensiMurid> {
                                     return s.toLowerCase().contains(
                                         textEditingValue.text.toLowerCase());
                                   });
+                                  formNamaMurid = true;
                                   return matches;
                                 }
                               },
@@ -102,7 +105,7 @@ class _BuatPresensiMuridState extends State<BuatPresensiMurid> {
                                 print('You just selected $selection');
                               },
                               fieldViewBuilder: (BuildContext context,
-                                  TextEditingController textEditingController,
+                                  TextEditingController _controllerNamaMurid,
                                   FocusNode focusNode,
                                   VoidCallback onFieldSubmitted) {
                                 return Padding(
@@ -121,7 +124,7 @@ class _BuatPresensiMuridState extends State<BuatPresensiMurid> {
                                           fontSize: 12,
                                           fontWeight: FontWeight.w400),
                                     ),
-                                    controller: textEditingController,
+                                    controller: _controllerNamaMurid,
                                     focusNode: focusNode,
                                     onSubmitted: (String value) {},
                                   ),
@@ -293,7 +296,38 @@ class _BuatPresensiMuridState extends State<BuatPresensiMurid> {
                         ],
                       ),
                     ),
-                    const RoundedAlertBox(),
+                    Container(
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 24, vertical: 24),
+                      width: mediaQueryWidth,
+                      height: 39,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        gradient: formNamaMurid
+                            ? LinearGradient(
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                                colors: [Color(0xFF9FC3F9), Color(0xFF83DBE0)],
+                              )
+                            : LinearGradient(
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                                colors: [Color(0xFFD2D4DA), Color(0xFFD2D4DA)],
+                              ),
+                      ),
+                      child: MaterialButton(
+                        child: Text(
+                          'Simpan Kehadiran',
+                          style: GoogleFonts.notoSans(
+                              color: Colors.white,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600),
+                        ),
+                        onPressed: () {
+                          openAlertBox();
+                        },
+                      ),
+                    )
                   ],
                 ),
               ),
@@ -377,43 +411,6 @@ class _BuatPresensiMuridState extends State<BuatPresensiMurid> {
       ),
     );
   }
-}
-
-class RoundedAlertBox extends StatefulWidget {
-  const RoundedAlertBox({Key? key}) : super(key: key);
-
-  @override
-  _RoundedAlertBoxState createState() => _RoundedAlertBoxState();
-}
-
-class _RoundedAlertBoxState extends State<RoundedAlertBox> {
-  @override
-  Widget build(BuildContext context) {
-    final mediaQueryWidth = MediaQuery.of(context).size.width;
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
-      width: mediaQueryWidth,
-      height: 39,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(5),
-        gradient: const LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [Color(0xFF9FC3F9), Color(0xFF83DBE0)],
-        ),
-      ),
-      child: MaterialButton(
-        child: Text(
-          'Simpan Kehadiran',
-          style: GoogleFonts.notoSans(
-              color: Colors.white, fontSize: 14, fontWeight: FontWeight.w600),
-        ),
-        onPressed: () {
-          openAlertBox();
-        },
-      ),
-    );
-  }
 
   openAlertBox() {
     return showDialog(
@@ -422,63 +419,65 @@ class _RoundedAlertBoxState extends State<RoundedAlertBox> {
           return AlertDialog(
             shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(10.0))),
-            contentPadding: const EdgeInsets.only(
-                top: 11.0, right: 12, bottom: 11, left: 12),
-            content: SizedBox(
+            contentPadding: const EdgeInsets.all(0),
+            content: Container(
               width: 290,
-              height: 295,
-              // color: Colors.amber,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
+              height: 320,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Color(0xFFFBFBFB),
+              ),
+              child: Stack(
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
-                    children: <Widget>[
-                      InkWell(
-                        child: Image.asset(
-                          "assets/Exit.png",
-                          width: 16,
-                        ),
-                        onTap: () {
-                          Navigator.pushReplacement(
-                            context,
-                            PageRouteBuilder(
-                              pageBuilder: (context, animation1, animation2) =>
-                                  PresensiMurid4(),
-                              transitionDuration: Duration.zero,
-                              reverseTransitionDuration: Duration.zero,
-                            ),
-                          );
-                        },
-                      ),
+                    children: [
+                      IconButton(
+                          onPressed: () {
+                            Navigator.of(context).pop(context);
+                          },
+                          icon: Icon(Icons.clear_rounded)),
                     ],
                   ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  Image.asset(
-                    "assets/alert-jadwal.png",
-                    width: 90,
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    "Presensi Anda Berhasil ",
-                    style: GoogleFonts.notoSans(
-                        fontSize: 16, fontWeight: FontWeight.w600),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  const Text(
-                    "Silahkan kembali ke\nhalaman presensi murid",
-                    style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                        color: Color(0xFF797F8F)),
-                    textAlign: TextAlign.center,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Column(
+                        children: [
+                          const SizedBox(
+                            height: 44,
+                          ),
+                          Image.asset(
+                            "assets/alert-jadwal.png",
+                            height: 143,
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            "Posting Jadwal Berhasil",
+                            style: GoogleFonts.notoSans(
+                                fontSize: 16, fontWeight: FontWeight.w600),
+                            textAlign: TextAlign.center,
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          const Text(
+                            "Silahkan kembali ke\nhalaman jadwal sekolah",
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400,
+                              color: Color(0xFF797F8F),
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                          const SizedBox(
+                            height: 53,
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ],
               ),

@@ -4,8 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:cekula/screens/penilaian_pembelajaran/penilaian_pembelajaran3.dart';
 
 class PenilaianPembelajaran2 extends StatelessWidget {
-  PenilaianPembelajaran2({Key? key}) : super(key: key);
-
+  PenilaianPembelajaran2({Key? key, required this.kelas}) : super(key: key);
+  String kelas;
   final List image = [
     "assets/mapel-indonesia.png",
     "assets/mapel-inggris.png",
@@ -25,7 +25,7 @@ class PenilaianPembelajaran2 extends StatelessWidget {
     "Ilmu Pengetahuan Sosial",
     "Pendidikan Kewarganegaraan",
     "Pendidikan Agama Islam",
-    "Pendidikan Jasmani, Olahraga, dan\nKesehatan",
+    "Pendidikan Jasmani, Olahraga, dan Kesehatan",
   ];
 
   @override
@@ -146,7 +146,7 @@ class PenilaianPembelajaran2 extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              "Kelas 7 A",
+                              "$kelas",
                               style: GoogleFonts.notoSans(
                                   fontSize: 14, fontWeight: FontWeight.w600),
                             ),
@@ -180,11 +180,15 @@ class PenilaianPembelajaran2 extends StatelessWidget {
                                             const SizedBox(
                                               width: 10,
                                             ),
-                                            Text(
-                                              pelajaran[index],
-                                              style: GoogleFonts.notoSans(
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.w400),
+                                            Container(
+                                              width: mediaQueryWidth - 120,
+                                              child: Text(
+                                                pelajaran[index],
+                                                style: GoogleFonts.notoSans(
+                                                    fontSize: 14,
+                                                    fontWeight:
+                                                        FontWeight.w400),
+                                              ),
                                             ),
                                           ],
                                         ),
@@ -201,7 +205,11 @@ class PenilaianPembelajaran2 extends StatelessWidget {
                                       PageRouteBuilder(
                                         pageBuilder:
                                             (context, animation1, animation2) =>
-                                                const PenilaianPembelajaran3(),
+                                                PenilaianPembelajaran3(
+                                          kelas: kelas,
+                                          mapel: pelajaran[index],
+                                          image: image[index],
+                                        ),
                                         transitionDuration: Duration.zero,
                                         reverseTransitionDuration:
                                             Duration.zero,

@@ -4,9 +4,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:cekula/screens/jadwal_kelas/edit_jadwal_kelas.dart';
 
 class JadwalKelas3 extends StatefulWidget {
-  JadwalKelas3({Key? key}) : super(key: key);
+  JadwalKelas3({Key? key, required this.kelas, required this.hari})
+      : super(key: key);
 
-  @override
+  String kelas;
+  String hari;
   State<JadwalKelas3> createState() => _JadwalKelas3State();
 }
 
@@ -154,12 +156,12 @@ class _JadwalKelas3State extends State<JadwalKelas3> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              "Kelas 7 A",
+                              widget.kelas,
                               style: GoogleFonts.notoSans(
                                   fontSize: 14, fontWeight: FontWeight.w600),
                             ),
                             Text(
-                              "Selasa",
+                              widget.hari,
                               style: GoogleFonts.notoSans(
                                   fontSize: 14, fontWeight: FontWeight.w600),
                             ),
@@ -296,7 +298,7 @@ class _JadwalKelas3State extends State<JadwalKelas3> {
                                             width: 16,
                                           ),
                                           onPressed: () {
-                                            Navigator.pushReplacement(
+                                            Navigator.push(
                                               context,
                                               PageRouteBuilder(
                                                 pageBuilder: (context,

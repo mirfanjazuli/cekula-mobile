@@ -93,16 +93,7 @@ class _PresensiMurid3State extends State<PresensiMurid3> {
                       Builder(builder: (context) {
                         return IconButton(
                             onPressed: () {
-                              Navigator.pushReplacement(
-                                context,
-                                PageRouteBuilder(
-                                  pageBuilder:
-                                      (context, animation1, animation2) =>
-                                          PresensiMurid2(),
-                                  transitionDuration: Duration.zero,
-                                  reverseTransitionDuration: Duration.zero,
-                                ),
-                              );
+                              Navigator.of(context).pop(context);
                             },
                             icon: const Icon(Icons.arrow_back));
                       }),
@@ -230,24 +221,24 @@ class _PresensiMurid3State extends State<PresensiMurid3> {
                       Container(
                         width: 63,
                         height: 39,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(5),
-                          border: Border.all(
-                            color: Color(0xFF9FC3F9),
-                            width: 1,
-                          ),
-                        ),
-                        child: Center(
-                          child: Text(
-                            "Ulangi",
-                            style: GoogleFonts.notoSans(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400,
-                                color: Color(0xFF9FC3F9)),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
+                        // decoration: BoxDecoration(
+                        //   color: Colors.white,
+                        //   borderRadius: BorderRadius.circular(5),
+                        //   border: Border.all(
+                        //     color: Color(0xFF9FC3F9),
+                        //     width: 1,
+                        //   ),
+                        // ),
+                        // child: Center(
+                        //   child: Text(
+                        //     "Ulangi",
+                        //     style: GoogleFonts.notoSans(
+                        //         fontSize: 14,
+                        //         fontWeight: FontWeight.w400,
+                        //         color: Color(0xFF9FC3F9)),
+                        //     textAlign: TextAlign.center,
+                        //   ),
+                        // ),
                       ),
                       InkWell(
                         child: Container(
@@ -328,63 +319,68 @@ class _PresensiMurid3State extends State<PresensiMurid3> {
           return AlertDialog(
             shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(10.0))),
-            contentPadding: const EdgeInsets.only(
-                top: 11.0, right: 12, bottom: 11, left: 12),
-            content: SizedBox(
+            contentPadding: const EdgeInsets.all(0),
+            content: Container(
               width: 290,
-              height: 295,
-              // color: Colors.amber,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
+              height: 320,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Color(0xFFFBFBFB),
+              ),
+              child: Stack(
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
-                    children: <Widget>[
-                      InkWell(
-                        child: Image.asset(
-                          "assets/Exit.png",
-                          width: 16,
-                        ),
-                        onTap: () {
-                          Navigator.pushReplacement(
-                            context,
-                            PageRouteBuilder(
-                              pageBuilder: (context, animation1, animation2) =>
-                                  PresensiMurid4(),
-                              transitionDuration: Duration.zero,
-                              reverseTransitionDuration: Duration.zero,
-                            ),
-                          );
-                        },
-                      ),
+                    children: [
+                      IconButton(
+                          onPressed: () {
+                            Navigator.of(context).pushAndRemoveUntil(
+                                MaterialPageRoute(
+                                    builder: (context) => PresensiMurid4()),
+                                (route) => false);
+                          },
+                          icon: Icon(Icons.clear_rounded)),
                     ],
                   ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  Image.asset(
-                    "assets/alert-jadwal.png",
-                    width: 90,
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    "Presensi Anda Berhasil",
-                    style: GoogleFonts.notoSans(
-                        fontSize: 16, fontWeight: FontWeight.w600),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  const Text(
-                    "Silahkan kembali ke\nhalaman presensi murid",
-                    style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                        color: Color(0xFF797F8F)),
-                    textAlign: TextAlign.center,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Column(
+                        children: [
+                          const SizedBox(
+                            height: 44,
+                          ),
+                          Image.asset(
+                            "assets/alert-jadwal.png",
+                            height: 143,
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            "Presensi Anda Berhasil ",
+                            style: GoogleFonts.notoSans(
+                                fontSize: 16, fontWeight: FontWeight.w600),
+                            textAlign: TextAlign.center,
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          const Text(
+                            "Silahkan kembali ke\nhalaman presensi murid",
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400,
+                              color: Color(0xFF797F8F),
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                          const SizedBox(
+                            height: 53,
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ],
               ),

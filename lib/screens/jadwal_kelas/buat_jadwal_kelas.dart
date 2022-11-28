@@ -397,17 +397,7 @@ class _BuatJadwalKelasState extends State<BuatJadwalKelas> {
                               Builder(builder: (context) {
                                 return IconButton(
                                     onPressed: () {
-                                      Navigator.pushReplacement(
-                                        context,
-                                        PageRouteBuilder(
-                                          pageBuilder: (context, animation1,
-                                                  animation2) =>
-                                              JadwalKelas2(),
-                                          transitionDuration: Duration.zero,
-                                          reverseTransitionDuration:
-                                              Duration.zero,
-                                        ),
-                                      );
+                                      Navigator.of(context).pop(context);
                                     },
                                     icon: const Icon(Icons.arrow_back));
                               }),

@@ -3,7 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:cekula/screens/rapor_murid/rapor_murid2.dart';
 
 class RaporMurid3 extends StatelessWidget {
-  RaporMurid3({Key? key}) : super(key: key);
+  RaporMurid3({Key? key, required this.nama}) : super(key: key);
+  String nama;
   final List rapor = [
     "Identitas Murid",
     "Semester 1",
@@ -59,16 +60,7 @@ class RaporMurid3 extends StatelessWidget {
                       Builder(builder: (context) {
                         return IconButton(
                             onPressed: () {
-                              Navigator.pushReplacement(
-                                context,
-                                PageRouteBuilder(
-                                  pageBuilder:
-                                      (context, animation1, animation2) =>
-                                          RaporMurid2(),
-                                  transitionDuration: Duration.zero,
-                                  reverseTransitionDuration: Duration.zero,
-                                ),
-                              );
+                              Navigator.of(context).pop(context);
                             },
                             icon: const Icon(Icons.arrow_back));
                       }),
@@ -131,7 +123,7 @@ class RaporMurid3 extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              "Ahmad Jourji Zaidan",
+                              '$nama',
                               style: GoogleFonts.notoSans(
                                   fontSize: 14, fontWeight: FontWeight.w600),
                             ),

@@ -64,16 +64,7 @@ class PresensiMurid2 extends StatelessWidget {
                       Builder(builder: (context) {
                         return IconButton(
                             onPressed: () {
-                              Navigator.pushReplacement(
-                                context,
-                                PageRouteBuilder(
-                                  pageBuilder:
-                                      (context, animation1, animation2) =>
-                                          PresensiMurid1(),
-                                  transitionDuration: Duration.zero,
-                                  reverseTransitionDuration: Duration.zero,
-                                ),
-                              );
+                              Navigator.of(context).pop(context);
                             },
                             icon: const Icon(Icons.arrow_back));
                       }),
@@ -187,7 +178,7 @@ class PresensiMurid2 extends StatelessWidget {
                             ),
                           ),
                           onTap: () {
-                            Navigator.pushReplacement(
+                            Navigator.push(
                               context,
                               PageRouteBuilder(
                                 pageBuilder:

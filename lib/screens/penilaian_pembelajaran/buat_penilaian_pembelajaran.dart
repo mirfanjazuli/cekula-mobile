@@ -5,8 +5,12 @@ import 'package:cekula/screens/penilaian_pembelajaran/penilaian_pembelajaran3.da
 import 'package:cekula/screens/radio/radio_jenis_nilai.dart';
 
 class BuatPenilaianPembelajaran extends StatefulWidget {
-  BuatPenilaianPembelajaran({Key? key}) : super(key: key);
-
+  BuatPenilaianPembelajaran(
+      {Key? key, required this.kelas, required this.mapel, required this.image})
+      : super(key: key);
+  String kelas;
+  String mapel;
+  String image;
   @override
   State<BuatPenilaianPembelajaran> createState() =>
       _BuatPenilaianPembelajaranState();
@@ -233,17 +237,7 @@ class _BuatPenilaianPembelajaranState extends State<BuatPenilaianPembelajaran> {
                               Builder(builder: (context) {
                                 return IconButton(
                                     onPressed: () {
-                                      Navigator.pushReplacement(
-                                        context,
-                                        PageRouteBuilder(
-                                          pageBuilder: (context, animation1,
-                                                  animation2) =>
-                                              const PenilaianPembelajaran3(),
-                                          transitionDuration: Duration.zero,
-                                          reverseTransitionDuration:
-                                              Duration.zero,
-                                        ),
-                                      );
+                                      Navigator.of(context).pop(context);
                                     },
                                     icon: const Icon(Icons.arrow_back));
                               }),
@@ -295,7 +289,7 @@ class _BuatPenilaianPembelajaranState extends State<BuatPenilaianPembelajaran> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "Kelas 9A",
+                            widget.kelas,
                             style: GoogleFonts.notoSans(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w600,
@@ -304,14 +298,14 @@ class _BuatPenilaianPembelajaranState extends State<BuatPenilaianPembelajaran> {
                           Row(
                             children: [
                               Image.asset(
-                                'assets/mapel-indonesia.png',
+                                '${widget.image}',
                                 width: 24,
                               ),
                               const SizedBox(
                                 width: 10,
                               ),
                               Text(
-                                "Bahasa Indonesia",
+                                widget.mapel,
                                 style: GoogleFonts.notoSans(
                                     fontSize: 14,
                                     fontWeight: FontWeight.w600,

@@ -4,7 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:cekula/screens/rapor_murid/rapor_murid3.dart';
 
 class RaporMurid2 extends StatelessWidget {
-  RaporMurid2({Key? key}) : super(key: key);
+  RaporMurid2({Key? key, required this.kelas}) : super(key: key);
+  String kelas;
 
   final List nama = [
     "Ahmad Jourji Zaidan",
@@ -160,7 +161,7 @@ class RaporMurid2 extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              "Kelas 7 A",
+                              "$kelas",
                               style: GoogleFonts.notoSans(
                                   fontSize: 14, fontWeight: FontWeight.w600),
                             ),
@@ -228,12 +229,14 @@ class RaporMurid2 extends StatelessWidget {
                                 width: 20,
                               ),
                               onTap: () {
-                                Navigator.pushReplacement(
+                                Navigator.push(
                                   context,
                                   PageRouteBuilder(
                                     pageBuilder:
                                         (context, animation1, animation2) =>
-                                            RaporMurid3(),
+                                            RaporMurid3(
+                                      nama: nama[index],
+                                    ),
                                     transitionDuration: Duration.zero,
                                     reverseTransitionDuration: Duration.zero,
                                   ),

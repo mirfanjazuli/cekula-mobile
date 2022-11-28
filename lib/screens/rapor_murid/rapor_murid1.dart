@@ -11,25 +11,52 @@ class RaporMurid1 extends StatefulWidget {
 }
 
 class _RaporMurid1State extends State<RaporMurid1> {
+  final List kelas = [
+    "Kelas 7A",
+    "Kelas 7B",
+    "Kelas 7C",
+    "Kelas 7D",
+    "Kelas 7E",
+    "Kelas 7F",
+    "Kelas 7G",
+    "Kelas 7H",
+    "Kelas 8A",
+    "Kelas 8B",
+    "Kelas 8C",
+    "Kelas 9A",
+    "Kelas 9B",
+    "Kelas 9C",
+    "Kelas 9D",
+  ];
+  List totalPerKelas = [];
+  int totalKelas7 = 0;
+  int totalKelas8 = 0;
+  int totalKelas9 = 0;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    if (totalKelas7 == 0 && totalKelas8 == 0 && totalKelas9 == 0) {
+      for (int a = 0; a < kelas.length; a++) {
+        if (kelas[a].contains('7')) {
+          totalKelas7++;
+        }
+        if (kelas[a].contains('8')) {
+          totalKelas8++;
+        }
+        if (kelas[a].contains('9')) {
+          totalKelas9++;
+        }
+      }
+      totalPerKelas.add(totalKelas9);
+      totalPerKelas.add(totalKelas8);
+      totalPerKelas.add(totalKelas7);
+    }
+    print(totalPerKelas);
+  }
+
   int aktif = 0;
-
-  void showToastKelas7() {
-    setState(() {
-      aktif = 7;
-    });
-  }
-
-  void showToastKelas8() {
-    setState(() {
-      aktif = 8;
-    });
-  }
-
-  void showToastKelas9() {
-    setState(() {
-      aktif = 9;
-    });
-  }
 
   final List image = [
     "assets/Slide-3.png",
@@ -37,23 +64,12 @@ class _RaporMurid1State extends State<RaporMurid1> {
     "assets/Slide-1.png",
   ];
 
-  final List kelas = [
-    "Kelas 7",
-    "Kelas 8",
-    "Kelas 9",
-  ];
-
-  final List show = [
-    7,
-    8,
+  final List tingkatKelas = [
     9,
+    8,
+    7,
   ];
 
-  final List subkelas = [
-    "A",
-    "B",
-    "C",
-  ];
   @override
   Widget build(BuildContext context) {
     final mediaQueryHeight = MediaQuery.of(context).size.height;
@@ -66,25 +82,6 @@ class _RaporMurid1State extends State<RaporMurid1> {
         toolbarHeight: 0,
         backgroundColor: const Color(0xFF91ceec),
         elevation: 0.0,
-        title: Padding(
-          padding: const EdgeInsets.only(top: 25.0),
-          child: Row(
-            children: [
-              Builder(builder: (context) {
-                return IconButton(
-                    onPressed: () {
-                      Scaffold.of(context).openDrawer();
-                    },
-                    icon: const Icon(Icons.menu));
-              }),
-              Text(
-                "Rapor Murid",
-                style: GoogleFonts.rubik(
-                    fontSize: 20, fontWeight: FontWeight.w600),
-              ),
-            ],
-          ),
-        ),
         flexibleSpace: Container(
           width: mediaQueryWidth,
           decoration: const BoxDecoration(
@@ -154,7 +151,7 @@ class _RaporMurid1State extends State<RaporMurid1> {
                   children: [
                     Container(
                       width: mediaQueryWidth,
-                      height: bodyHeight * (0.035) - 1,
+                      height: bodyHeight * (0.038),
                       decoration: const BoxDecoration(
                         gradient: LinearGradient(
                           begin: Alignment.centerLeft,
@@ -169,19 +166,17 @@ class _RaporMurid1State extends State<RaporMurid1> {
                     Container(
                       padding: const EdgeInsets.only(top: 10),
                       width: mediaQueryWidth,
-                      // height: bodyHeight * 0.07,
-                      height: bodyHeight * 0.035,
+                      height: bodyHeight * 0.04,
                       decoration: const BoxDecoration(
                         borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(20),
                             topRight: Radius.circular(20)),
-                        color: Colors.white,
+                        color: Color(0xFFFBFBFB),
                       ),
                     ),
                   ],
                 ),
                 Container(
-                  color: Colors.white,
                   height: bodyHeight * 0.385,
                   child: ListView.builder(
                     padding: const EdgeInsets.only(right: 21),
@@ -192,137 +187,72 @@ class _RaporMurid1State extends State<RaporMurid1> {
                         padding: const EdgeInsets.only(
                             left: 24.0, top: 10, bottom: 10),
                         child: InkWell(
-                          child: aktif == show[index]
-                              ? Container(
-                                  width: bodyHeight * 0.28,
-                                  decoration: BoxDecoration(
-                                    color: Color(0xFFEDF1F7),
-                                    borderRadius: BorderRadius.circular(10),
-                                    boxShadow: const [
-                                      BoxShadow(
-                                        color:
-                                            Color.fromRGBO(202, 184, 184, 0.25),
-                                        blurRadius: 3.0,
-                                        offset: Offset(0.0, 2.0),
-                                      ),
-                                    ],
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 15.0, vertical: 18.0),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Center(
-                                          child: Image.asset(
-                                            image[index],
-                                            width: bodyHeight * 0.2,
-                                          ),
-                                        ),
-                                        Text(
-                                          kelas[index],
-                                          style: GoogleFonts.rubik(
-                                              fontWeight: FontWeight.w600,
-                                              color: const Color(0xFF4D5569),
-                                              fontSize: 14),
-                                        ),
-                                        Row(
-                                          children: [
-                                            Row(
-                                              children: [
-                                                Image.asset(
-                                                  'assets/Paper.png',
-                                                  width: 13,
-                                                ),
-                                                const SizedBox(
-                                                  width: 6,
-                                                ),
-                                                Text(
-                                                  '3 Kelas',
-                                                  style: GoogleFonts.rubik(
-                                                      color: const Color(
-                                                          0xFF4D5569),
-                                                      fontSize: 12),
-                                                ),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                )
-                              : Container(
-                                  width: bodyHeight * 0.28,
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(10),
-                                    boxShadow: const [
-                                      BoxShadow(
-                                        color:
-                                            Color.fromRGBO(202, 184, 184, 0.25),
-                                        blurRadius: 3.0,
-                                        offset: Offset(0.0, 2.0),
-                                      ),
-                                    ],
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 15.0, vertical: 18.0),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Center(
-                                          child: Image.asset(
-                                            image[index],
-                                            width: bodyHeight * 0.2,
-                                          ),
-                                        ),
-                                        Text(
-                                          kelas[index],
-                                          style: GoogleFonts.rubik(
-                                              fontWeight: FontWeight.w600,
-                                              color: const Color(0xFF4D5569),
-                                              fontSize: 14),
-                                        ),
-                                        Row(
-                                          children: [
-                                            Row(
-                                              children: [
-                                                Image.asset(
-                                                  'assets/Paper.png',
-                                                  width: 13,
-                                                ),
-                                                const SizedBox(
-                                                  width: 6,
-                                                ),
-                                                Text(
-                                                  '3 Kelas',
-                                                  style: GoogleFonts.rubik(
-                                                      color: const Color(
-                                                          0xFF4D5569),
-                                                      fontSize: 12),
-                                                ),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ),
+                          child: Container(
+                            width: bodyHeight * 0.28,
+                            decoration: BoxDecoration(
+                              color: aktif == tingkatKelas[index]
+                                  ? Color(0xFFEDF1F7)
+                                  : Colors.white,
+                              borderRadius: BorderRadius.circular(10),
+                              boxShadow: const [
+                                BoxShadow(
+                                  color: Color.fromRGBO(202, 184, 184, 0.25),
+                                  blurRadius: 3.0,
+                                  offset: Offset(0.0, 2.0),
                                 ),
+                              ],
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 15.0, vertical: 18.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Center(
+                                    child: Image.asset(
+                                      image[index],
+                                      width: bodyHeight * 0.2,
+                                    ),
+                                  ),
+                                  Text(
+                                    'Kelas ${tingkatKelas[index]}',
+                                    style: GoogleFonts.rubik(
+                                        fontWeight: FontWeight.w600,
+                                        color: const Color(0xFF4D5569),
+                                        fontSize: 14),
+                                  ),
+                                  Row(
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Image.asset(
+                                            'assets/Paper.png',
+                                            width: 13,
+                                          ),
+                                          const SizedBox(
+                                            width: 6,
+                                          ),
+                                          Text(
+                                            '${totalPerKelas[index]} Kelas',
+                                            style: GoogleFonts.rubik(
+                                                color: const Color(0xFF4D5569),
+                                                fontSize: 12),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
                           onTap: () {
-                            index == 0
-                                ? showToastKelas7()
-                                : index == 1
-                                    ? showToastKelas8()
-                                    : showToastKelas9();
+                            setState(() {
+                              aktif = tingkatKelas[index];
+                              print(aktif);
+                            });
                           },
                         ),
                       );
@@ -358,70 +288,79 @@ class _RaporMurid1State extends State<RaporMurid1> {
                               EdgeInsets.only(left: 24.0, right: 24, top: 15),
                           color: Colors.white,
                           width: mediaQueryWidth,
-                          height: bodyHeight * 0.3025,
-                          child: ListView.separated(
-                            separatorBuilder: (context, index) => SizedBox(
-                              height: mediaQueryHeight * 0.025,
-                            ),
-                            itemCount: 3,
+                          height: bodyHeight,
+                          child: ListView.builder(
+                            itemCount: kelas.length,
                             itemBuilder: (context, index) {
-                              return Container(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 16),
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(6),
-                                    color: Colors.white,
-                                    boxShadow: const [
-                                      BoxShadow(
-                                          color: Color.fromARGB(
-                                              255, 237, 237, 237),
-                                          blurRadius: 6.0,
-                                          offset: Offset(0, 2)),
-                                    ]),
-                                child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 10.0, right: 15.0),
-                                  child: Column(
-                                    children: [
-                                      InkWell(
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
+                              return kelas[index].contains(aktif.toString())
+                                  ? Container(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 16),
+                                      margin: EdgeInsets.only(bottom: 20),
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(6),
+                                          color: Colors.white,
+                                          boxShadow: const [
+                                            BoxShadow(
+                                                color: Color.fromARGB(
+                                                    255, 237, 237, 237),
+                                                blurRadius: 6.0,
+                                                offset: Offset(0, 2)),
+                                          ]),
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 10.0, right: 15.0),
+                                        child: Column(
                                           children: [
-                                            Container(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 10),
-                                              child: Text(
-                                                "Kelas ${aktif}${subkelas[index]}",
-                                                style: TextStyle(
-                                                    fontSize: 14,
-                                                    fontWeight:
-                                                        FontWeight.w600),
+                                            InkWell(
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Container(
+                                                    padding: const EdgeInsets
+                                                            .symmetric(
+                                                        horizontal: 10),
+                                                    child: Text(
+                                                      kelas[index],
+                                                      style: TextStyle(
+                                                          fontSize: 14,
+                                                          fontWeight:
+                                                              FontWeight.w600),
+                                                    ),
+                                                  ),
+                                                  const Icon(
+                                                      Icons.arrow_forward_ios,
+                                                      size: 20),
+                                                ],
                                               ),
-                                            ),
-                                            const Icon(Icons.arrow_forward_ios,
-                                                size: 20),
+                                              onTap: () {
+                                                Navigator.push(
+                                                  context,
+                                                  PageRouteBuilder(
+                                                    pageBuilder: (context,
+                                                            animation1,
+                                                            animation2) =>
+                                                        RaporMurid2(
+                                                      kelas: kelas[index],
+                                                    ),
+                                                    transitionDuration:
+                                                        Duration.zero,
+                                                    reverseTransitionDuration:
+                                                        Duration.zero,
+                                                  ),
+                                                );
+                                              },
+                                            )
                                           ],
                                         ),
-                                        onTap: () {
-                                          Navigator.pushReplacement(
-                                            context,
-                                            PageRouteBuilder(
-                                              pageBuilder: (context, animation1,
-                                                      animation2) =>
-                                                  RaporMurid2(),
-                                              transitionDuration: Duration.zero,
-                                              reverseTransitionDuration:
-                                                  Duration.zero,
-                                            ),
-                                          );
-                                        },
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              );
+                                      ),
+                                    )
+                                  : SizedBox(
+                                      height: 0,
+                                    );
                             },
                           ),
                         ),

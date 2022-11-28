@@ -4,9 +4,15 @@ import 'package:cekula/screens/drawer/drawer.dart';
 import 'package:cekula/screens/kartu_pelajar_digital/edit_kartu_pelajar.dart';
 import 'package:cekula/screens/kartu_pelajar_digital/kartu_pelajar2.dart';
 
-class KartuPelajar3 extends StatelessWidget {
-  const KartuPelajar3({Key? key}) : super(key: key);
+class KartuPelajar3 extends StatefulWidget {
+  KartuPelajar3({Key? key, required this.nama}) : super(key: key);
+  String nama;
 
+  @override
+  State<KartuPelajar3> createState() => _KartuPelajar3State();
+}
+
+class _KartuPelajar3State extends State<KartuPelajar3> {
   @override
   Widget build(BuildContext context) {
     final mediaQueryHeight = MediaQuery.of(context).size.height;
@@ -52,16 +58,7 @@ class KartuPelajar3 extends StatelessWidget {
                       Builder(builder: (context) {
                         return IconButton(
                             onPressed: () {
-                              Navigator.pushReplacement(
-                                context,
-                                PageRouteBuilder(
-                                  pageBuilder:
-                                      (context, animation1, animation2) =>
-                                          KartuPelajar2(),
-                                  transitionDuration: Duration.zero,
-                                  reverseTransitionDuration: Duration.zero,
-                                ),
-                              );
+                              Navigator.of(context).pop(context);
                             },
                             icon: const Icon(Icons.arrow_back));
                       }),
@@ -153,12 +150,17 @@ class KartuPelajar3 extends StatelessWidget {
                                   children: [
                                     Column(
                                       children: [
-                                        Text(
-                                          "Ahmad Jourji Zaidan",
-                                          style: GoogleFonts.notoSans(
-                                              fontSize: flexsibelCard * 14.09,
-                                              fontWeight: FontWeight.w600,
-                                              color: const Color(0xFf4D5569)),
+                                        Container(
+                                          // color: Colors.orange,
+                                          width: flexsibelCard * 178,
+                                          child: Text(
+                                            '${widget.nama}',
+                                            style: GoogleFonts.notoSans(
+                                                fontSize: flexsibelCard * 14.09,
+                                                fontWeight: FontWeight.w600,
+                                                color: const Color(0xFf4D5569)),
+                                            textAlign: TextAlign.center,
+                                          ),
                                         ),
                                         Text("Murid SMPN 1 Cekula",
                                             style: GoogleFonts.notoSans(
@@ -269,17 +271,20 @@ class KartuPelajar3 extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(right: 35.0, top: 10),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 24, vertical: 6),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      InkWell(
-                        child: Image.asset(
+                      IconButton(
+                        padding: EdgeInsets.all(3),
+                        constraints: const BoxConstraints(),
+                        icon: Image.asset(
                           'assets/Edit.png',
                           width: 24,
                         ),
-                        onTap: () {
-                          Navigator.pushReplacement(
+                        onPressed: () {
+                          Navigator.push(
                             context,
                             PageRouteBuilder(
                               pageBuilder: (context, animation1, animation2) =>
@@ -291,9 +296,17 @@ class KartuPelajar3 extends StatelessWidget {
                         },
                       ),
                       const SizedBox(
-                        width: 13,
+                        width: 5,
                       ),
-                      const RoundedAlertBox()
+                      IconButton(
+                        padding: EdgeInsets.all(3),
+                        constraints: const BoxConstraints(),
+                        icon: Image.asset(
+                          'assets/Delete.png',
+                          width: 24,
+                        ),
+                        onPressed: openAlertBox,
+                      )
                     ],
                   ),
                 ),
@@ -304,28 +317,6 @@ class KartuPelajar3 extends StatelessWidget {
       ),
     );
   }
-}
-
-class RoundedAlertBox extends StatefulWidget {
-  const RoundedAlertBox({Key? key}) : super(key: key);
-
-  @override
-  _RoundedAlertBoxState createState() => _RoundedAlertBoxState();
-}
-
-class _RoundedAlertBoxState extends State<RoundedAlertBox> {
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-      padding: EdgeInsets.zero,
-      constraints: const BoxConstraints(),
-      icon: Image.asset(
-        'assets/Delete.png',
-        width: 24,
-      ),
-      onPressed: openAlertBox,
-    );
-  }
 
   openAlertBox() {
     return showDialog(
@@ -334,70 +325,63 @@ class _RoundedAlertBoxState extends State<RoundedAlertBox> {
           return AlertDialog(
             shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(10.0))),
-            contentPadding: const EdgeInsets.only(
-                top: 11.0, right: 12, bottom: 11, left: 12),
+            contentPadding: const EdgeInsets.all(0),
             content: SizedBox(
               width: 290,
-              height: 295,
-              // color: Colors.amber,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
+              height: 320,
+              child: Stack(
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
-                      InkWell(
-                        child: Image.asset(
-                          "assets/Exit.png",
-                          width: 16,
-                        ),
-                        onTap: () {
-                          Navigator.pushReplacement(
-                            context,
-                            PageRouteBuilder(
-                              pageBuilder: (context, animation1, animation2) =>
-                                  const KartuPelajar3(),
-                              transitionDuration: Duration.zero,
-                              reverseTransitionDuration: Duration.zero,
+                      IconButton(
+                          onPressed: () {
+                            Navigator.of(context).pop(context);
+                          },
+                          icon: Icon(Icons.clear_rounded)),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Column(
+                        children: [
+                          const SizedBox(
+                            height: 48,
+                          ),
+                          Image.asset(
+                            "assets/alert-yakin.png",
+                            width: 108,
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            "Yakin Ingin Menghapus?",
+                            style: GoogleFonts.notoSans(
+                                fontSize: 16, fontWeight: FontWeight.w600),
+                            textAlign: TextAlign.center,
+                          ),
+                          const SizedBox(
+                            height: 50,
+                          ),
+                          SizedBox(
+                            width: 219,
+                            height: 32,
+                            child: OutlinedButton(
+                              child: const Text('Ya'),
+                              style: OutlinedButton.styleFrom(
+                                primary: const Color(0xFF9FC3F9),
+                                side: const BorderSide(
+                                    color: Color(0xFF9FC3F9), width: 1),
+                              ),
+                              onPressed: () {},
                             ),
-                          );
-                        },
+                          )
+                        ],
                       ),
                     ],
                   ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  Image.asset(
-                    "assets/alert-yakin.png",
-                    width: 108,
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    "Yakin Ingin Menghapus?",
-                    style: GoogleFonts.notoSans(
-                        fontSize: 16, fontWeight: FontWeight.w600),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(
-                    height: 50,
-                  ),
-                  SizedBox(
-                    width: 219,
-                    height: 32,
-                    child: OutlinedButton(
-                      child: const Text('Ya'),
-                      style: OutlinedButton.styleFrom(
-                        primary: const Color(0xFF9FC3F9),
-                        // backgroundColor: Colors.teal,
-                        side: const BorderSide(
-                            color: Color(0xFF9FC3F9), width: 1),
-                      ),
-                      onPressed: () {},
-                    ),
-                  )
                 ],
               ),
             ),
